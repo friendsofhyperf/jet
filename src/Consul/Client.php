@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 /**
- * This file is part of Jet-Client.
+ * This file is part of jet.
  *
- * @link     https://github.com/huangdijia/jet-client
- * @document https://github.com/huangdijia/jet-client/blob/main/README.md
+ * @link     https://github.com/friendsofhyperf/jet
+ * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
  * @contact  huangdijia@gmail.com
- * @license  https://github.com/huangdijia/jet-client/blob/main/LICENSE
+ * @license  https://github.com/friendsofhyperf/jet/blob/main/LICENSE
  */
-namespace Huangdijia\Jet\Consul;
+namespace FriendsOfHyperf\Jet\Consul;
 
+use FriendsOfHyperf\Jet\Exception\ClientException;
+use FriendsOfHyperf\Jet\Exception\ServerException;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\TransferException;
-use Huangdijia\Jet\Exception\ClientException;
-use Huangdijia\Jet\Exception\ServerException;
 
 class Client
 {

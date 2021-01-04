@@ -1,16 +1,16 @@
 # Hyperf jet client
 
-[![Latest Test](https://github.com/huangdijia/jet-client/workflows/tests/badge.svg)](https://github.com/huangdijia/jet-client/actions)
-[![Latest Stable Version](https://poser.pugx.org/huangdijia/jet-client/version.png)](https://packagist.org/packages/huangdijia/jet-client)
-[![Total Downloads](https://poser.pugx.org/huangdijia/jet-client/d/total.png)](https://packagist.org/packages/huangdijia/jet-client)
-[![GitHub license](https://img.shields.io/github/license/huangdijia/jet-client)](https://github.com/huangdijia/jet-client)
+[![Latest Test](https://github.com/friendsofhyperf/jet/workflows/tests/badge.svg)](https://github.com/friendsofhyperf/jet/actions)
+[![Latest Stable Version](https://poser.pugx.org/friendsofhyperf/jet/version.png)](https://packagist.org/packages/friendsofhyperf/jet)
+[![Total Downloads](https://poser.pugx.org/friendsofhyperf/jet/d/total.png)](https://packagist.org/packages/friendsofhyperf/jet)
+[![GitHub license](https://img.shields.io/github/license/friendsofhyperf/jet)](https://github.com/friendsofhyperf/jet)
 
 ## Installation
 
 ### Composer
 
 ~~~php
-composer require "huangdijia/jet-client:^2.0"
+composer require "friendsofhyperf/jet:^2.0"
 ~~~
 
 ## Quickstart
@@ -18,9 +18,9 @@ composer require "huangdijia/jet-client:^2.0"
 ### Register with metadata
 
 ~~~php
-use Huangdijia\Jet\ServiceManager;
-use Huangdijia\Jet\Registry\ConsulRegistry;
-use Huangdijia\Jet\Transporter\GuzzleHttpTransporter;
+use FriendsOfHyperf\Jet\ServiceManager;
+use FriendsOfHyperf\Jet\Registry\ConsulRegistry;
+use FriendsOfHyperf\Jet\Transporter\GuzzleHttpTransporter;
 
 ServiceManager::register('CalculatorService', [
     // register with transporter
@@ -33,8 +33,8 @@ ServiceManager::register('CalculatorService', [
 ### Auto register services by registry
 
 ~~~php
-use Huangdijia\Jet\ServiceManager;
-use Huangdijia\Jet\Registry\ConsulRegistry;
+use FriendsOfHyperf\Jet\ServiceManager;
+use FriendsOfHyperf\Jet\Registry\ConsulRegistry;
 
 $registry = new ConsulRegistry(['uri' => 'http://127.0.0.1:8500']);
 $registry->register('CalculatorService'); // register a service
@@ -45,8 +45,8 @@ $registry->register(); // register all service
 ### Register default registry
 
 ~~~php
-use Huangdijia\Jet\RegistryManager;
-use Huangdijia\Jet\Registry\ConsulRegistry;
+use FriendsOfHyperf\Jet\RegistryManager;
+use FriendsOfHyperf\Jet\Registry\ConsulRegistry;
 
 RegistryManager::register(RegistryManager::DEFAULT, new new ConsulRegistry(['uri' => $uri, 'timeout' => 1]));
 ~~~
@@ -56,7 +56,7 @@ RegistryManager::register(RegistryManager::DEFAULT, new new ConsulRegistry(['uri
 ### Call by ClientFactory
 
 ~~~php
-use Huangdijia\Jet\ClientFactory;
+use FriendsOfHyperf\Jet\ClientFactory;
 
 $client = ClientFactory::create('CalculatorService');
 var_dump($client->add(1, 20));
@@ -65,9 +65,9 @@ var_dump($client->add(1, 20));
 ### Call by custom client
 
 ~~~php
-use Huangdijia\Jet\Client;
-use Huangdijia\Jet\Transporter\GuzzleHttpTransporter;
-use Huangdijia\Jet\Registry\ConsulRegistry;
+use FriendsOfHyperf\Jet\Client;
+use FriendsOfHyperf\Jet\Transporter\GuzzleHttpTransporter;
+use FriendsOfHyperf\Jet\Registry\ConsulRegistry;
 
 /**
  * @method int add(int $a, int $b)
@@ -94,8 +94,8 @@ var_dump($service->add(3, 10));
 ### Call by custom facade
 
 ~~~php
-use Huangdijia\Jet\Facade;
-use Huangdijia\Jet\ClientFactory;
+use FriendsOfHyperf\Jet\Facade;
+use FriendsOfHyperf\Jet\ClientFactory;
 
 /**
  * @method static int add(int $a, int $b)

@@ -2,25 +2,25 @@
 
 declare(strict_types=1);
 /**
- * This file is part of Jet-Client.
+ * This file is part of jet.
  *
- * @link     https://github.com/huangdijia/jet-client
- * @document https://github.com/huangdijia/jet-client/blob/main/README.md
+ * @link     https://github.com/friendsofhyperf/jet
+ * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
  * @contact  huangdijia@gmail.com
- * @license  https://github.com/huangdijia/jet-client/blob/main/LICENSE
+ * @license  https://github.com/friendsofhyperf/jet/blob/main/LICENSE
  */
-namespace Huangdijia\Jet\Registry;
+namespace FriendsOfHyperf\Jet\Registry;
 
+use FriendsOfHyperf\Jet\Consul\Catalog;
+use FriendsOfHyperf\Jet\Consul\Health;
+use FriendsOfHyperf\Jet\Contract\LoadBalancerInterface;
+use FriendsOfHyperf\Jet\Contract\RegistryInterface;
+use FriendsOfHyperf\Jet\LoadBalancer\Node;
+use FriendsOfHyperf\Jet\LoadBalancer\RoundRobin;
+use FriendsOfHyperf\Jet\ServiceManager;
+use FriendsOfHyperf\Jet\Transporter\GuzzleHttpTransporter;
+use FriendsOfHyperf\Jet\Transporter\StreamSocketTransporter;
 use GuzzleHttp\Client;
-use Huangdijia\Jet\Consul\Catalog;
-use Huangdijia\Jet\Consul\Health;
-use Huangdijia\Jet\Contract\LoadBalancerInterface;
-use Huangdijia\Jet\Contract\RegistryInterface;
-use Huangdijia\Jet\LoadBalancer\Node;
-use Huangdijia\Jet\LoadBalancer\RoundRobin;
-use Huangdijia\Jet\ServiceManager;
-use Huangdijia\Jet\Transporter\GuzzleHttpTransporter;
-use Huangdijia\Jet\Transporter\StreamSocketTransporter;
 use RuntimeException;
 
 class ConsulRegistry implements RegistryInterface

@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 /**
- * This file is part of Jet-Client.
+ * This file is part of jet.
  *
- * @link     https://github.com/huangdijia/jet-client
- * @document https://github.com/huangdijia/jet-client/blob/main/README.md
+ * @link     https://github.com/friendsofhyperf/jet
+ * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
  * @contact  huangdijia@gmail.com
- * @license  https://github.com/huangdijia/jet-client/blob/main/LICENSE
+ * @license  https://github.com/friendsofhyperf/jet/blob/main/LICENSE
  */
-namespace Huangdijia\Jet\Transporter;
+namespace FriendsOfHyperf\Jet\Transporter;
 
 use Exception;
-use Huangdijia\Jet\Exception\ConnectionException;
-use Huangdijia\Jet\Exception\ExceptionThrower;
-use Huangdijia\Jet\Exception\RecvFailedException;
+use FriendsOfHyperf\Jet\Exception\ConnectionException;
+use FriendsOfHyperf\Jet\Exception\ExceptionThrower;
+use FriendsOfHyperf\Jet\Exception\RecvFailedException;
 use InvalidArgumentException;
 use RuntimeException;
 use Throwable;

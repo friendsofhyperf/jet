@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 /**
- * This file is part of Jet-Client.
+ * This file is part of jet.
  *
- * @link     https://github.com/huangdijia/jet-client
- * @document https://github.com/huangdijia/jet-client/blob/main/README.md
+ * @link     https://github.com/friendsofhyperf/jet
+ * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
  * @contact  huangdijia@gmail.com
- * @license  https://github.com/huangdijia/jet-client/blob/main/LICENSE
+ * @license  https://github.com/friendsofhyperf/jet/blob/main/LICENSE
  */
-namespace Huangdijia\Jet;
+namespace FriendsOfHyperf\Jet;
 
-use Huangdijia\Jet\Contract\DataFormatterInterface;
-use Huangdijia\Jet\Contract\PackerInterface;
-use Huangdijia\Jet\Contract\PathGeneratorInterface;
-use Huangdijia\Jet\Contract\RegistryInterface;
-use Huangdijia\Jet\Contract\TransporterInterface;
-use Huangdijia\Jet\Exception\JetException;
+use FriendsOfHyperf\Jet\Contract\DataFormatterInterface;
+use FriendsOfHyperf\Jet\Contract\PackerInterface;
+use FriendsOfHyperf\Jet\Contract\PathGeneratorInterface;
+use FriendsOfHyperf\Jet\Contract\RegistryInterface;
+use FriendsOfHyperf\Jet\Contract\TransporterInterface;
+use FriendsOfHyperf\Jet\Exception\JetException;
 use InvalidArgumentException;
 
 class ServiceManager

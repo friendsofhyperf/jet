@@ -1,6 +1,6 @@
 {
-    "name": "huangdijia/jet-client",
-    "description": "Hyperf jet client",
+    "name": "friendsofhyperf/jet",
+    "description": "A another jet client for Hyperf",
     "type": "library",
     "license": "MIT",
     "authors": [{
@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Huangdijia\\Jet\\": "src/"
+            "FriendsOfHyperf\\Jet\\": "src/"
         },
         "files": [
             "src/helpers.php"
@@ -27,7 +27,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Huangdijia\\Jet\\Tests\\": "tests/"
+            "FriendsOfHyperf\\Jet\\Tests\\": "tests/"
         }
     },
     "config": {
