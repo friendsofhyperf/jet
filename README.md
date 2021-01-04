@@ -1,9 +1,9 @@
 # Hyperf jet client for PHP5.3+
 
-[![Latest Test](https://github.com/huangdijia/jet-client/workflows/tests-1.x/badge.svg)](https://github.com/huangdijia/jet-client/actions)
-[![Latest Stable Version](https://poser.pugx.org/huangdijia/jet-client/version.png)](https://packagist.org/packages/huangdijia/jet-client)
-[![Total Downloads](https://poser.pugx.org/huangdijia/jet-client/d/total.png)](https://packagist.org/packages/huangdijia/jet-client)
-[![GitHub license](https://img.shields.io/github/license/huangdijia/jet-client)](https://github.com/huangdijia/jet-client)
+[![Latest Test](https://github.com/friendsofhyperf/jet/workflows/tests-1.x/badge.svg)](https://github.com/friendsofhyperf/jet/actions)
+[![Latest Stable Version](https://poser.pugx.org/friendsofhyperf/jet/version.png)](https://packagist.org/packages/friendsofhyperf/jet)
+[![Total Downloads](https://poser.pugx.org/friendsofhyperf/jet/d/total.png)](https://packagist.org/packages/friendsofhyperf/jet)
+[![GitHub license](https://img.shields.io/github/license/friendsofhyperf/jet)](https://github.com/friendsofhyperf/jet)
 
 ## Installation
 
@@ -16,7 +16,7 @@ require 'path/jet-client/bootstrap.php';
 ### Composer
 
 ~~~php
-composer require "huangdijia/jet-client:^1.0"
+composer require "friendsofhyperf/jet:^1.0"
 ~~~
 
 ## Quickstart

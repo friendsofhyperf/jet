@@ -1,7 +1,5 @@
 <?php
 
-use Huangdijia\Jet\ServiceManager;
-
 class JetClient
 {
     protected $service;
