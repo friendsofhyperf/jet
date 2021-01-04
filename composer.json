@@ -1,6 +1,6 @@
 {
     "name": "friendsofhyperf/jet",
-    "description": "A another jet client for Hyperf",
+    "description": "Another jet client for Hyperf",
     "type": "library",
     "license": "MIT",
     "authors": [{
