@@ -1,9 +1,11 @@
-# Hyperf jet client for PHP5.3+
+# Jet
 
 [![Latest Test](https://github.com/friendsofhyperf/jet/workflows/tests-1.x/badge.svg)](https://github.com/friendsofhyperf/jet/actions)
 [![Latest Stable Version](https://poser.pugx.org/friendsofhyperf/jet/version.png)](https://packagist.org/packages/friendsofhyperf/jet)
 [![Total Downloads](https://poser.pugx.org/friendsofhyperf/jet/d/total.png)](https://packagist.org/packages/friendsofhyperf/jet)
 [![GitHub license](https://img.shields.io/github/license/friendsofhyperf/jet)](https://github.com/friendsofhyperf/jet)
+
+Another jet client for Hyperf (PHP5.3)
 
 ## Installation
 
