@@ -50,8 +50,10 @@ $registry->register(); // register all service
 use FriendsOfHyperf\Jet\RegistryManager;
 use FriendsOfHyperf\Jet\Registry\ConsulRegistry;
 
-RegistryManager::register(RegistryManager::DEFAULT, new new ConsulRegistry(['uri' => $uri, 'timeout' => 1]));
+RegistryManager::register(RegistryManager::DEFAULT, new ConsulRegistry(['uri' => $uri, 'timeout' => 1]));
 ~~~
+
+> In Laravel project, Add to `boot()` in `App/Providers/AppServiceProvider.php`
 
 ## Call RPC method
 
