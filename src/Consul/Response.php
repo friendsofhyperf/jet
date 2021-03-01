@@ -21,6 +21,11 @@ class Response
      */
     private $response;
 
+    /**
+     * @var null|array
+     */
+    private $decoded;
+
     public function __construct(ResponseInterface $response)
     {
         $this->response = $response;
@@ -38,17 +43,27 @@ class Response
      */
     public function json(string $key = null, $default = null)
     {
-        if ($this->response->getHeaderLine('Content-Type') !== 'application/json') {
-            throw new ServerException(['message' => 'The Content-Type of response is not equal application/json']);
-        }
+        if (is_null($this->decoded)) {
+            if ($this->response->getHeaderLine('Content-Type') !== 'application/json') {
+                throw new ServerException(['message' => 'The Content-Type of response is not equal application/json']);
+            }
 
-        $data = json_decode((string) $this->response->getBody(), true);
+            $this->decoded = json_decode((string) $this->response->getBody(), true);
+        }
 
         if (! $key) {
-            return $data;
+            return $this->decoded;
         }
 
-        return array_get($data, $key, $default);
+        return array_get($this->decoded, $key, $default);
+    }
+
+    /**
+     * @return null|bool|object
+     */
+    public function object()
+    {
+        return json_decode((string) $this->response->getBody());
     }
 
     /**
