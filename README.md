@@ -115,3 +115,21 @@ class Calculator extends Facade
 
 var_dump(Calculator::add(rand(0, 100), rand(0, 100)));
 ~~~
+
+## Coroutine support in Hyperf
+
+~~~php
+// config/autoload/annotations.php
+<?php
+
+declare(strict_types=1);
+
+return [
+    'scan' => [
+        // ...
+        'class_map' => [
+            GuzzleHttp\Client::class => BASE_PATH . '/vendor/friendsofhyperf/jet/classmap/GuzzleHttp/Client.php',
+        ],
+    ],
+];
+~~~
