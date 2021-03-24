@@ -33,21 +33,14 @@ class JetServiceManager
     }
 
     /**
-     * @param mixed $service
-     * @param array $metadatas
+     * @param string $service
+     * @param JetMetadata $metadata
      * @return void
      * @throws InvalidArgumentException
      */
-    public static function register($service, $metadatas = array())
+    public static function register($service, $metadata)
     {
-        static::assertTransporter(isset($metadatas[static::TRANSPORTER]) ? $metadatas[static::TRANSPORTER] : null);
-        static::assertRegistry(isset($metadatas[static::REGISTRY]) ? $metadatas[static::REGISTRY] : null);
-        static::assertPacker(isset($metadatas[static::PACKER]) ? $metadatas[static::PACKER] : null);
-        static::assertDataFormatter(isset($metadatas[static::DATA_FORMATTER]) ? $metadatas[static::DATA_FORMATTER] : null);
-        static::assertPathGenerator(isset($metadatas[static::PATH_GENERATOR]) ? $metadatas[static::PATH_GENERATOR] : null);
-        static::assertTries(isset($metadatas[static::TRIES]) ? $metadatas[static::TRIES] : null);
-
-        static::$services[$service] = $metadatas;
+        static::$services[$service] = $metadata;
     }
 
     /**

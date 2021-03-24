@@ -17,34 +17,36 @@ class JetClientFactory
      */
     public static function create($service, $transporter = null, $packer = null, $dataFormatter = null, $pathGenerator = null, $tries = null)
     {
-        $metadata = new JetMetadata($service);
+        if (!$metadata = JetServiceManager::get($service)) {
+            $metadata = new JetMetadata($service);
 
-        if (JetRegistryManager::isRegistered(JetRegistryManager::DEFAULT_REGISTRY)) {
-            $metadata->setRegistry(JetRegistryManager::get(JetRegistryManager::DEFAULT_REGISTRY));
-        }
+            if (JetRegistryManager::isRegistered(JetRegistryManager::DEFAULT_REGISTRY)) {
+                $metadata->setRegistry(JetRegistryManager::get(JetRegistryManager::DEFAULT_REGISTRY));
+            }
 
-        if (is_numeric($transporter)) {
-            $metadata->setTimeout($transporter);
-        } elseif (is_string($transporter)) {
-            $metadata->setProtocol($transporter);
-        } elseif ($transporter instanceof JetTransporterInterface) {
-            $metadata->setTransporter($transporter);
-        }
+            if (is_numeric($transporter)) {
+                $metadata->setTimeout($transporter);
+            } elseif (is_string($transporter)) {
+                $metadata->setProtocol($transporter);
+            } elseif ($transporter instanceof JetTransporterInterface) {
+                $metadata->setTransporter($transporter);
+            }
 
-        if ($packer instanceof JetPackerInterface) {
-            $metadata->setPacker($packer);
-        }
+            if ($packer instanceof JetPackerInterface) {
+                $metadata->setPacker($packer);
+            }
 
-        if ($dataFormatter instanceof JetDataFormatterInterface) {
-            $metadata->setDataFormatter($dataFormatter);
-        }
+            if ($dataFormatter instanceof JetDataFormatterInterface) {
+                $metadata->setDataFormatter($dataFormatter);
+            }
 
-        if ($pathGenerator instanceof JetPathGeneratorInterface) {
-            $metadata->setPathGenerator($pathGenerator);
-        }
+            if ($pathGenerator instanceof JetPathGeneratorInterface) {
+                $metadata->setPathGenerator($pathGenerator);
+            }
 
-        if (is_numeric($tries)) {
-            $metadata->setTries($tries);
+            if (is_numeric($tries)) {
+                $metadata->setTries($tries);
+            }
         }
 
         return new JetClient($metadata);
