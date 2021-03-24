@@ -24,7 +24,7 @@ use RuntimeException;
 class Metadata
 {
     /**
-     * @var TransporterInterface
+     * @var null|TransporterInterface
      */
     protected $transporter;
 
