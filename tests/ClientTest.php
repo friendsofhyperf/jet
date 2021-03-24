@@ -22,26 +22,26 @@ class ClientTest extends TestCase
 {
     private $service = 'CalculatorService';
 
-    public function testCalculatorServiceByRegistry()
-    {
-        $registry = $this->createRegistry();
+    // public function testCalculatorServiceByRegistry()
+    // {
+    //     $registry = $this->createRegistry();
 
-        RegistryManager::register(RegistryManager::DEFAULT, $registry, true);
+    //     RegistryManager::register(RegistryManager::DEFAULT, $registry, true);
 
-        $client = ClientFactory::create($this->service, 'jsonrpc-http');
+    //     $client = ClientFactory::create($this->service, 'jsonrpc-http');
 
-        $a = rand(1, 99);
-        $b = rand(1, 99);
+    //     $a = rand(1, 99);
+    //     $b = rand(1, 99);
 
-        $this->assertSame($a + $b, $client->add($a, $b));
+    //     $this->assertSame($a + $b, $client->add($a, $b));
 
-        $client = ClientFactory::create($this->service, 'jsonrpc');
+    //     $client = ClientFactory::create($this->service, 'jsonrpc');
 
-        $a = rand(1, 99);
-        $b = rand(1, 99);
+    //     $a = rand(1, 99);
+    //     $b = rand(1, 99);
 
-        $this->assertSame($a + $b, $client->add($a, $b));
-    }
+    //     $this->assertSame($a + $b, $client->add($a, $b));
+    // }
 
     public function testCalculatorServiceByGuzzleHttpTransporter()
     {
