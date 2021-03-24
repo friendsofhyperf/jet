@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace FriendsOfHyperf\Jet\Tests;
 
 use FriendsOfHyperf\Jet\Contract\RegistryInterface;
+use FriendsOfHyperf\Jet\Metadata;
 use FriendsOfHyperf\Jet\RegistryManager;
 use FriendsOfHyperf\Jet\ServiceManager;
 
@@ -34,20 +35,9 @@ class RegistryTest extends TestCase
     {
         $registry = $this->createRegistry();
         $registry->register();
-        $datameta = ServiceManager::get('consul');
+        $metadata = ServiceManager::get('consul');
 
-        $this->assertIsArray($datameta);
-        $this->assertArrayHasKey(ServiceManager::REGISTRY, $datameta);
-        $this->assertInstanceOf(RegistryInterface::class, $datameta[ServiceManager::REGISTRY]);
-    }
-
-    public function testRegisterDefaultRegistry()
-    {
-        $registry = $this->createRegistry();
-
-        ServiceManager::registerDefaultRegistry($registry, true);
-
-        $this->assertInstanceOf(RegistryInterface::class, ServiceManager::getDefaultRegistry());
+        $this->assertInstanceOf(Metadata::class, $metadata);
     }
 
     public function testRegistryManager()

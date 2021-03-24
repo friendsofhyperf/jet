@@ -17,7 +17,6 @@ use FriendsOfHyperf\Jet\Contract\LoadBalancerInterface;
 use FriendsOfHyperf\Jet\Contract\RegistryInterface;
 use FriendsOfHyperf\Jet\LoadBalancer\Node;
 use FriendsOfHyperf\Jet\LoadBalancer\RoundRobin;
-use FriendsOfHyperf\Jet\ServiceManager;
 use FriendsOfHyperf\Jet\Transporter\GuzzleHttpTransporter;
 use FriendsOfHyperf\Jet\Transporter\StreamSocketTransporter;
 use GuzzleHttp\Client;
@@ -170,18 +169,5 @@ class ConsulRegistry implements RegistryInterface
         }
 
         return $transporter;
-    }
-
-    public function register($service = null)
-    {
-        if (is_null($service)) {
-            $service = $this->getServices();
-        }
-
-        foreach ((array) $service as $serviceName) {
-            ServiceManager::register($serviceName, [
-                ServiceManager::REGISTRY => $this,
-            ]);
-        }
     }
 }

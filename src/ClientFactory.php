@@ -29,34 +29,36 @@ class ClientFactory
      */
     public static function create(string $service, $transporter = null, ?PackerInterface $packer = null, ?DataFormatterInterface $dataFormatter = null, ?PathGeneratorInterface $pathGenerator = null, ?int $tries = null): Client
     {
-        $metadata = new Metadata($service);
+        if (! $metadata = ServiceManager::get($service)) {
+            $metadata = new Metadata($service);
 
-        if (RegistryManager::isRegistered(RegistryManager::DEFAULT)) {
-            $metadata->setRegistry(RegistryManager::get(RegistryManager::DEFAULT));
-        }
+            if (RegistryManager::isRegistered(RegistryManager::DEFAULT)) {
+                $metadata->setRegistry(RegistryManager::get(RegistryManager::DEFAULT));
+            }
 
-        if ($transporter instanceof TransporterInterface) {
-            $metadata->setTransporter($transporter);
-        } elseif (is_numeric($transporter)) {
-            $metadata->setTimeout($transporter);
-        } elseif (is_string($transporter)) {
-            $metadata->setProtocol($transporter);
-        }
+            if ($transporter instanceof TransporterInterface) {
+                $metadata->setTransporter($transporter);
+            } elseif (is_numeric($transporter)) {
+                $metadata->setTimeout($transporter);
+            } elseif (is_string($transporter)) {
+                $metadata->setProtocol($transporter);
+            }
 
-        if ($packer) {
-            $metadata->setPacker($packer);
-        }
+            if ($packer) {
+                $metadata->setPacker($packer);
+            }
 
-        if ($dataFormatter) {
-            $metadata->setDataFormatter($dataFormatter);
-        }
+            if ($dataFormatter) {
+                $metadata->setDataFormatter($dataFormatter);
+            }
 
-        if ($pathGenerator) {
-            $metadata->setPathGenerator($pathGenerator);
-        }
+            if ($pathGenerator) {
+                $metadata->setPathGenerator($pathGenerator);
+            }
 
-        if ($tries) {
-            $metadata->setTries($tries);
+            if ($tries) {
+                $metadata->setTries($tries);
+            }
         }
 
         return new Client($metadata);
