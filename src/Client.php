@@ -11,72 +11,38 @@ declare(strict_types=1);
  */
 namespace FriendsOfHyperf\Jet;
 
-use FriendsOfHyperf\Jet\Contract\DataFormatterInterface;
-use FriendsOfHyperf\Jet\Contract\PackerInterface;
-use FriendsOfHyperf\Jet\Contract\PathGeneratorInterface;
-use FriendsOfHyperf\Jet\Contract\TransporterInterface;
-use FriendsOfHyperf\Jet\DataFormatter\DataFormatter;
 use FriendsOfHyperf\Jet\Exception\RecvFailedException;
 use FriendsOfHyperf\Jet\Exception\ServerException;
-use FriendsOfHyperf\Jet\Packer\JsonEofPacker;
-use FriendsOfHyperf\Jet\PathGenerator\PathGenerator;
 use Throwable;
 
 class Client
 {
-    protected $service;
-
     /**
-     * @var TransporterInterface
+     * @var Metadata
      */
-    protected $transporter;
+    protected $metadata;
 
-    /**
-     * @var PackerInterface
-     */
-    protected $packer;
-
-    /**
-     * @var DataFormatterInterface
-     */
-    protected $dataFormatter;
-
-    /**
-     * @var PathGeneratorInterface
-     */
-    protected $pathGenerator;
-
-    /**
-     * @var int
-     */
-    protected $tries;
-
-    public function __construct(string $service, TransporterInterface $transporter, ?PackerInterface $packer = null, ?DataFormatterInterface $dataFormatter = null, ?PathGeneratorInterface $pathGenerator = null, ?int $tries = null)
+    public function __construct(Metadata $metadata)
     {
-        $this->service = $service;
-        $this->transporter = $transporter;
-        $this->packer = $packer ?? new JsonEofPacker();
-        $this->dataFormatter = $dataFormatter ?? new DataFormatter();
-        $this->pathGenerator = $pathGenerator ?? new PathGenerator();
-        $this->tries = $tries ?? 1;
+        $this->metadata = $metadata;
     }
 
     /**
-     * @param mixed $name
-     * @param mixed $arguments
+     * @param string $name
+     * @param array $arguments
      * @throws Throwable
      * @return mixed
      */
     public function __call($name, $arguments)
     {
-        $tries = $this->tries;
-        $path = $this->pathGenerator->generate($this->service, $name);
-        $transporter = $this->transporter;
-        $dataFormatter = $this->dataFormatter;
-        $packer = $this->packer;
+        $tries = $this->metadata->getTries();
+        $path = $this->metadata->getPathGenerator()->generate($this->metadata->getName(), $name);
+        $transporter = $this->metadata->getTransporter();
+        $dataFormatter = $this->metadata->getDataFormatter();
+        $packer = $this->metadata->getPacker();
 
-        if ($this->transporter->getLoadBalancer()) {
-            $nodeCount = count($this->transporter->getLoadBalancer()->getNodes());
+        if ($transporter->getLoadBalancer()) {
+            $nodeCount = count($transporter->getLoadBalancer()->getNodes());
             if ($nodeCount > $tries) {
                 $tries = $nodeCount;
             }
