@@ -13,7 +13,6 @@ namespace FriendsOfHyperf\Jet\Tests;
 
 use FriendsOfHyperf\Jet\ClientFactory;
 use FriendsOfHyperf\Jet\RegistryManager;
-use FriendsOfHyperf\Jet\ServiceManager;
 
 /**
  * @internal
@@ -28,10 +27,6 @@ class ClientTest extends TestCase
         $registry = $this->createRegistry();
 
         RegistryManager::register(RegistryManager::DEFAULT, $registry, true);
-
-        // ServiceManager::register($this->service, [
-        //     ServiceManager::REGISTRY => RegistryManager::DEFAULT,
-        // ]);
 
         $client = ClientFactory::create($this->service, 'jsonrpc-http');
 
