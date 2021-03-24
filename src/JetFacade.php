@@ -34,7 +34,7 @@ abstract class JetFacade
             return static::$instances[$name];
         }
 
-        return static::$instances[$name] = JetClientFactory::create(new JetMetadata($name));
+        return static::$instances[$name] = JetClientFactory::create($name);
     }
 
     /**
