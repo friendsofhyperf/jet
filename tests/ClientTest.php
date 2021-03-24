@@ -17,12 +17,6 @@ $registry = new JetConsulRegistry(array('uri' => $consulUri));
 
 JetServiceManager::registerDefaultRegistry($registry, true);
 
-// JetServiceManager::register($service, array(
-//     JetServiceManager::TRANSPORTER => new JetCurlHttpTransporter($jsonrpcHttpHost, $jsonrpcHttpPort),
-//     JetServiceManager::TRANSPORTER => $registry->getTransporter($service),
-//     JetServiceManager::REGISTRY => $registry,
-// ));
-
 echo "Create with http transporter\n";
 $client = JetClientFactory::create($service, new JetCurlHttpTransporter($jsonrpcHttpHost, $jsonrpcHttpPort));
 var_dump($client->add(rand(0, 100), rand(0, 100)));
@@ -67,10 +61,8 @@ class CalculatorService extends JetClient
     {
         global $jsonrpcHttpHost, $jsonrpcHttpPort;
 
-        $transporter = new JetCurlHttpTransporter($jsonrpcHttpHost, $jsonrpcHttpPort);
-
         $metadata = new JetMetadata($service);
-        $metadata->setTransporter($transporter);
+        $metadata->setTransporter(new JetCurlHttpTransporter($jsonrpcHttpHost, $jsonrpcHttpPort));
 
         parent::__construct($metadata);
     }

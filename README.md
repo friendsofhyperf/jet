@@ -21,26 +21,16 @@ require 'path/jet-client/bootstrap.php';
 composer require "friendsofhyperf/jet:^1.0"
 ~~~
 
-## Quickstart
+## QuickStart
 
 ### Register with metadata
 
 ~~~php
-JetServiceManager::register('CalculatorService', [
-    // register with transporter
-    JetServiceManager::TRANSPORTER => new JetCurlHttpTransporter('127.0.0.1', 9502),
-    // or register with registry
-    JetServiceManager::REGISTRY => new JetConsulRegistry(array('uri' => 'http://127.0.0.1:8500')),
-]);
-~~~
+$metadata = new JetMetadata();
+$metadata->setTransporter(new JetCurlHttpTransporter('127.0.0.1', 9502));
+$metadata->setRegistry(new JetConsulRegistry(array('uri' => 'http://127.0.0.1:8500')));
 
-### Auto register services by registry
-
-~~~php
-$registry = new JetConsulRegistry(array('uri' => 'http://127.0.0.1:8500'));
-$registry->register('CalculatorService'); // register a service
-$registry->register(['CalculatorService', 'AnotherService']); // register some services
-$registry->register(); // register all service
+JetServiceManager::register('CalculatorService', $metadata);
 ~~~
 
 ### Register default registry
@@ -68,14 +58,11 @@ class CalculatorService extends JetClient
 {
     public function __construct($service = 'CalculatorService', $transporter = null, $packer = null, $dataFormatter = null, $pathGenerator = null, $tries = null)
     {
-        // Custom transporter
-        $transporter = new JetCurlHttpTransporter('127.0.0.1', 9502);
+        $metadata = new JetMetadata();
+        $metadata->setTransporter(new JetCurlHttpTransporter('127.0.0.1', 9502));
+        $metadata->setRegistry(new JetConsulRegistry(array('uri' => 'http://127.0.0.1:8500')));
 
-        // Or get tranporter by registry
-        $registry    = new JetConsulRegistry(array('uri' => 'http://127.0.0.1:8500'));
-        $transporter = $registry->getTransporter($service);
-
-        parent::__construct($service, $transporter, $packer, $dataFormatter, $pathGenerator, $tries);
+        parent::__construct($metadata);
     }
 }
 
