@@ -17,17 +17,21 @@ if (! function_exists('retry')) {
      */
     function retry(int $times, callable $callback, int $sleep = 0, callable $when = null)
     {
+        $attempts = 0;
+
         beginning:
+        $attempts++;
+        --$times;
 
         try {
-            return $callback();
-        } catch (\Throwable $e) {
+            return $callback($attempts);
+        } catch (Exception $e) {
             if ($times < 1 || ($when && ! $when($e))) {
                 throw $e;
             }
 
             if ($sleep) {
-                sleep($sleep);
+                usleep($sleep * 1000);
             }
 
             goto beginning;
