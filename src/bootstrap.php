@@ -19,6 +19,7 @@ $classMap = array(
     'JetRandomLoadBalancer' => $baseDir . '/LoadBalancer/JetRandomLoadBalancer.php',
     'JetLoadBalancerNode' => $baseDir . '/LoadBalancer/JetLoadBalancerNode.php',
     'JetClient' => $baseDir . '/JetClient.php',
+    'JetMetadata' => $baseDir . '/JetMetadata.php',
     'JetPathGenerator' => $baseDir . '/PathGenerator/JetPathGenerator.php',
     'JetConsulCatalog' => $baseDir . '/Consul/JetConsulCatalog.php',
     'JetConsulClient' => $baseDir . '/Consul/JetConsulClient.php',

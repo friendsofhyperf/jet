@@ -154,4 +154,26 @@ class JetServiceManager
             throw new InvalidArgumentException('TRIES of service must be int.');
         }
     }
+
+    /**
+     * @param mixed $timeout
+     * @throws InvalidArgumentException
+     */
+    public static function assertTimeout($timeout)
+    {
+        if (!is_null($timeout) && !is_int($timeout)) {
+            throw new InvalidArgumentException('TIMEOUT of service must be int.');
+        }
+    }
+
+    /**
+     * @param mixed $protocol
+     * @throws InvalidArgumentException
+     */
+    public static function assertProtocol($protocol)
+    {
+        if (!is_null($protocol) && !is_string($protocol) && !in_array($protocol, array('jsonrpc', 'jsonrpc-http'))) {
+            throw new InvalidArgumentException('PROTOCOL of service must be jsonrpc or jsonrpc-http.');
+        }
+    }
 }

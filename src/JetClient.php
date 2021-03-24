@@ -2,79 +2,33 @@
 
 class JetClient
 {
-    protected $service;
     /**
-     * @var AbstractJetTransporter
+     * @var JetMetadata
      */
-    protected $transporter;
-    /**
-     * @var JetPackerInterface
-     */
-    protected $packer;
-    /**
-     * @var JetDataFormatterInterface
-     */
-    protected $dataFormatter;
-    /**
-     * @var JetPathGeneratorInterface
-     */
-    protected $pathGenerator;
-    /**
-     * @var int
-     */
-    protected $tries;
+    protected $metadata;
 
     /**
-     * @param mixed $service
-     * @param AbstractJetTransporter $transporter
-     * @param JetPackerInterface|null $packer
-     * @param JetDataFormatterInterface|null $dataFormatter
-     * @param JetPathGeneratorInterface|null $pathGenerator
-     * @param int|null $tries
+     * @param JetMetadata $metadata
      * @return void
      * @throws InvalidArgumentException
      * @throws Exception
      */
-    public function __construct($service, $transporter, $packer = null, $dataFormatter = null, $pathGenerator = null, $tries = null)
+    public function __construct($metadata)
     {
-        if (is_null($packer)) {
-            $packer = new JetJsonEofPacker();
-        }
-        if (is_null($dataFormatter)) {
-            $dataFormatter = new JetDataFormatter();
-        }
-        if (is_null($pathGenerator)) {
-            $pathGenerator = new JetPathGenerator();
-        }
-        if (is_null($tries)) {
-            $tries = 1;
-        }
-
-        JetServiceManager::assertTransporter($transporter);
-        JetServiceManager::assertPacker($packer);
-        JetServiceManager::assertDataFormatter($dataFormatter);
-        JetServiceManager::assertPathGenerator($pathGenerator);
-        JetServiceManager::assertTries($tries);
-
-        $this->service       = $service;
-        $this->transporter   = $transporter;
-        $this->packer        = $packer;
-        $this->dataFormatter = $dataFormatter;
-        $this->pathGenerator = $pathGenerator;
-        $this->tries         = $tries;
-
+        $this->metadata = $metadata;
     }
 
     public function __call($name, $arguments)
     {
-        $tries         = $this->tries;
-        $path          = $this->pathGenerator->generate($this->service, $name);
-        $transporter   = $this->transporter;
-        $dataFormatter = $this->dataFormatter;
-        $packer        = $this->packer;
+        $tries         = $this->metadata->getTries();
+        $pathGenerator = $this->metadata->getPathGenerator();
+        $transporter   = $this->metadata->getTransporter();
+        $dataFormatter = $this->metadata->getDataFormatter();
+        $packer        = $this->metadata->getPacker();
+        $path          = $pathGenerator->generate($this->metadata->getName(), $name);
 
-        if ($this->transporter->getLoadBalancer()) {
-            $nodeCount = count($this->transporter->getLoadBalancer()->getNodes());
+        if ($transporter->getLoadBalancer()) {
+            $nodeCount = count($transporter->getLoadBalancer()->getNodes());
             if ($nodeCount > $tries) {
                 $tries = $nodeCount;
             }
