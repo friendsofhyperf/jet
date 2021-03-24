@@ -20,16 +20,16 @@ composer require "friendsofhyperf/jet:^2.0"
 ### Register with metadata
 
 ~~~php
+use FriendsOfHyperf\Jet\Metadata;
 use FriendsOfHyperf\Jet\ServiceManager;
 use FriendsOfHyperf\Jet\Registry\ConsulRegistry;
 use FriendsOfHyperf\Jet\Transporter\GuzzleHttpTransporter;
 
-ServiceManager::register('CalculatorService', [
-    // register with transporter
-    ServiceManager::TRANSPORTER => new GuzzleHttpTransporter('127.0.0.1', 9502),
-    // or register with registry
-    ServiceManager::REGISTRY => new ConsulRegistry(['uri' => 'http://127.0.0.1:8500']),
-]);
+$metadata = new Metadata('CalculatorService');
+$metadata->setTransporter(new GuzzleHttpTransporter('127.0.0.1', 9502));
+$metadata->setRegistry(new ConsulRegistry(['uri' => 'http://127.0.0.1:8500']));
+
+ServiceManager::register('CalculatorService', $metadata);
 ~~~
 
 ### Auto register services by registry
@@ -78,16 +78,17 @@ use FriendsOfHyperf\Jet\Registry\ConsulRegistry;
  */
 class CalculatorService extends Client
 {
-    public function __construct($service = 'CalculatorService', $transporter = null, $packer = null, $dataFormatter = null, $pathGenerator = null, $tries = null)
+    public function __construct($service = 'CalculatorService')
     {
+        $metadata = new Metadata($service);
+
         // Custom transporter
-        $transporter = new GuzzleHttpTransporter('127.0.0.1', 9502);
+        $metadata->setTransporter(new GuzzleHttpTransporter('127.0.0.1', 9502));
 
-        // Or get tranporter by registry
-        $registry    = new ConsulRegistry(['uri' => 'http://127.0.0.1:8500']);
-        $transporter = $registry->getTransporter($service);
+        // Custom registry
+        $metadata->setRegistry(new ConsulRegistry(['uri' => 'http://127.0.0.1:8500']));
 
-        parent::__construct($service, $transporter, $packer, $dataFormatter, $pathGenerator, $tries);
+        parent::__construct($metadata);
     }
 }
 
