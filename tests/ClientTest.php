@@ -13,9 +13,6 @@ $jsonrpcTcpPort  = JetUtil::arrayGet($config, 'jsonrpc.tcp.port', 9503);
 echo sprintf("CONSUL_URI: %s\n", $consulUri);
 
 $service  = 'CalculatorService';
-$registry = new JetConsulRegistry(array('uri' => $consulUri));
-
-JetServiceManager::registerDefaultRegistry($registry, true);
 
 echo "Create with http transporter\n";
 $client = JetClientFactory::create($service, new JetCurlHttpTransporter($jsonrpcHttpHost, $jsonrpcHttpPort));
@@ -24,14 +21,6 @@ var_dump($client->add(rand(0, 100), rand(0, 100)));
 echo "Create with tcp transporter\n";
 $client = JetClientFactory::create($service, new JetStreamSocketTransporter($jsonrpcTcpHost, $jsonrpcTcpPort));
 var_dump($client->add(rand(0, 100), rand(0, 100)));
-
-// echo "Create with jsonrpc-http protocol\n";
-// $client = JetClientFactory::create($service, 'jsonrpc-http');
-// var_dump($client->add(rand(0, 100), rand(0, 100)));
-
-// echo "Create with jsonrpc protocol\n";
-// $client = JetClientFactory::create($service, 'jsonrpc');
-// var_dump($client->add(rand(0, 100), rand(0, 100)));
 
 echo "Create with facade\n";
 /**
