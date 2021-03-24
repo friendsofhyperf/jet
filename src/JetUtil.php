@@ -7,20 +7,27 @@ class JetUtil
      * @param int $times
      * @param Closure $callback
      * @param int $sleep
+     * @param null|Closure $when
      * @return mixed
      */
-    public static function retry($times, $callback, $sleep = 0)
+    public static function retry($times, $callback, $sleep = 0, $when = null)
     {
+        $attempts = 0;
+
         beginning:
+        $attempts++;
+        $times--;
 
         try {
-            return $callback();
+            return $callback($attempts);
         } catch (Exception $e) {
-            if (--$times < 0) {
+            if ($times < 1 || ($when && ! $when($e))) {
                 throw $e;
             }
 
-            sleep($sleep);
+            if ($sleep) {
+                usleep($sleep * 1000);
+            }
 
             goto beginning;
         }
