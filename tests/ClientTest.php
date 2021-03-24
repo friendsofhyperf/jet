@@ -49,10 +49,7 @@ class Calculator extends JetFacade
     {
         global $jsonrpcHttpHost, $jsonrpcHttpPort;
 
-        $metadata = new JetMetadata('CalculatorService');
-        $metadata->setTransporter(new JetCurlHttpTransporter($jsonrpcHttpHost, $jsonrpcHttpPort));
-
-        return JetClientFactory::create($metadata);
+        return JetClientFactory::create('CalculatorService', new JetCurlHttpTransporter($jsonrpcHttpHost, $jsonrpcHttpPort));
         // return 'CalculatorService';
     }
 }
