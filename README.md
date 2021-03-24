@@ -32,18 +32,6 @@ $metadata->setRegistry(new ConsulRegistry(['uri' => 'http://127.0.0.1:8500']));
 ServiceManager::register('CalculatorService', $metadata);
 ~~~
 
-### Auto register services by registry
-
-~~~php
-use FriendsOfHyperf\Jet\ServiceManager;
-use FriendsOfHyperf\Jet\Registry\ConsulRegistry;
-
-$registry = new ConsulRegistry(['uri' => 'http://127.0.0.1:8500']);
-$registry->register('CalculatorService'); // register a service
-$registry->register(['CalculatorService', 'CalculatorService2']); // register some services
-$registry->register(); // register all service
-~~~
-
 ### Register default registry
 
 ~~~php
