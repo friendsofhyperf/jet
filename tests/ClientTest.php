@@ -49,7 +49,10 @@ class Calculator extends JetFacade
     {
         global $jsonrpcHttpHost, $jsonrpcHttpPort;
 
-        return JetClientFactory::create('CalculatorService', new JetCurlHttpTransporter($jsonrpcHttpHost, $jsonrpcHttpPort));
+        $metadata = new JetMetadata('CalculatorService');
+        $metadata->setTransporter(new JetCurlHttpTransporter($jsonrpcHttpHost, $jsonrpcHttpPort));
+
+        return JetClientFactory::create($metadata);
         // return 'CalculatorService';
     }
 }
@@ -63,13 +66,16 @@ echo "Create with custom client\n";
  */
 class CalculatorService extends JetClient
 {
-    public function __construct($service = 'CalculatorService', $transporter = null, $packer = null, $dataFormatter = null, $pathGenerator = null)
+    public function __construct($service = 'CalculatorService')
     {
         global $jsonrpcHttpHost, $jsonrpcHttpPort;
 
         $transporter = new JetCurlHttpTransporter($jsonrpcHttpHost, $jsonrpcHttpPort);
 
-        parent::__construct($service, $transporter, $packer, $dataFormatter, $pathGenerator);
+        $metadata = new JetMetadata($service);
+        $metadata->setTransporter($transporter);
+
+        parent::__construct($metadata);
     }
 }
 
