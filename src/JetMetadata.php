@@ -47,7 +47,7 @@ class JetMetadata
      */
     protected $timeout = 3;
 
-    public function __construct(string $name)
+    public function __construct($name)
     {
         $this->name = $name;
     }
@@ -64,7 +64,7 @@ class JetMetadata
     /**
      * Set protocol.
      */
-    public function setProtocol(string $protocol)
+    public function setProtocol($protocol)
     {
         JetServiceManager::assertProtocol($protocol);
 
