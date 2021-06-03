@@ -101,11 +101,10 @@ if (! function_exists('with')) {
 
 if (! function_exists('str_snake')) {
     /**
-     * @param string $value
      * @param string $delimiter
      * @return string
      */
-    function str_snake($value, $delimiter = '_')
+    function str_snake(string $value, $delimiter = '_')
     {
         if (! ctype_lower($value)) {
             $value = preg_replace('/\s+/u', '', ucwords($value));
@@ -118,12 +117,57 @@ if (! function_exists('str_snake')) {
 
 if (! function_exists('str_lower')) {
     /**
-     * @param string $value
      * @return string
      */
-    function str_lower($value)
+    function str_lower(string $value)
     {
         return mb_strtolower($value, 'UTF-8');
+    }
+}
+
+if (! function_exists('str_studly')) {
+    /**
+     * @return string
+     */
+    function str_studly(string $value, string $gap = '')
+    {
+        $value = ucwords(str_replace(['-', '_'], ' ', $value));
+
+        return str_replace(' ', $gap, $value);
+    }
+}
+
+if (! function_exists('str_replace_first')) {
+    /**
+     * @return string
+     */
+    function str_replace_first(string $search, string $replace, string $subject)
+    {
+        if ($search == '') {
+            return $subject;
+        }
+
+        $position = strpos($subject, $search);
+
+        if ($position !== false) {
+            return substr_replace($subject, $replace, $position, strlen($search));
+        }
+
+        return $subject;
+    }
+}
+
+if (! function_exists('str_replace_array')) {
+    /**
+     * @return string
+     */
+    function str_replace_array(string $search, array $replace, string $subject)
+    {
+        foreach ($replace as $value) {
+            $subject = str_replace_first($search, (string) $value, $subject);
+        }
+
+        return $subject;
     }
 }
 
