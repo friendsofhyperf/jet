@@ -112,7 +112,7 @@ class JetUtil
      */
     public static function studly($value, $gap = '')
     {
-        $value = ucwords(str_replace(['-', '_'], ' ', $value));
+        $value = ucwords(str_replace(array('-', '_'), ' ', $value));
 
         return str_replace(' ', $gap, $value);
     }
