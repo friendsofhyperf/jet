@@ -21,7 +21,7 @@ class JetUtil
         try {
             return $callback($attempts);
         } catch (Exception $e) {
-            if ($times < 1 || ($when && ! $when($e))) {
+            if ($times < 1 || ($when && !$when($e))) {
                 throw $e;
             }
 
@@ -103,6 +103,54 @@ class JetUtil
     public static function lower($value)
     {
         return mb_strtolower($value, 'UTF-8');
+    }
+
+    /**
+     * @param string $value
+     * @param string $gap
+     * @return string
+     */
+    public static function studly($value, $gap = '')
+    {
+        $value = ucwords(str_replace(['-', '_'], ' ', $value));
+
+        return str_replace(' ', $gap, $value);
+    }
+
+    /**
+     * @param string $search
+     * @param string $replace
+     * @param string $subject
+     * @return string
+     */
+    public static function replaceFirst($search, $replace, $subject)
+    {
+        if ($search == '') {
+            return $subject;
+        }
+
+        $position = strpos($subject, $search);
+
+        if ($position !== false) {
+            return substr_replace($subject, $replace, $position, strlen($search));
+        }
+
+        return $subject;
+    }
+
+    /**
+     * @param array $search
+     * @param array $replace
+     * @param string $subject
+     * @return string
+     */
+    public static function replaceArray($search, $replace, $subject)
+    {
+        foreach ($replace as $value) {
+            $subject = self::replaceFirst($search, $value, $subject);
+        }
+
+        return $subject;
     }
 
     /**
