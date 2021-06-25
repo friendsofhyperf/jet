@@ -9,7 +9,7 @@ This file is part of jet.
 @license  https://github.com/friendsofhyperf/jet/blob/main/LICENSE
 EOF;
 
-return PhpCsFixer\Config::create()
+return (new PhpCsFixer\Config())
     ->setRiskyAllowed(true)
     ->setRules([
         '@PSR2' => true,
