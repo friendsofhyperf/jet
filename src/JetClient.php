@@ -34,7 +34,7 @@ class JetClient
             }
         }
 
-        return JetUtil::retry($tries, function () use ($transporter, $dataFormatter, $packer, $path, $arguments) {
+        $callback = function () use ($transporter, $dataFormatter, $packer, $path, $arguments) {
             $data = $dataFormatter->formatRequest(array($path, $arguments, uniqid()));
 
             $transporter->send($packer->pack($data));
@@ -50,7 +50,12 @@ class JetClient
 
                 throw new JetServerException(isset($data['error']) ? $data['error'] : array());
             });
-        });
+        };
 
+        if ($tries > 0) {
+            return JetUtil::retry($tries, $callback);
+        }
+
+        return $callback();
     }
 }
