@@ -27,12 +27,12 @@ class JetClient
         $packer        = $this->metadata->getPacker();
         $path          = $pathGenerator->generate($this->metadata->getName(), $name);
 
-        if ($transporter->getLoadBalancer()) {
-            $nodeCount = count($transporter->getLoadBalancer()->getNodes());
-            if ($nodeCount > $tries) {
-                $tries = $nodeCount;
-            }
-        }
+        // if ($transporter->getLoadBalancer()) {
+        //     $nodeCount = count($transporter->getLoadBalancer()->getNodes());
+        //     if ($nodeCount > $tries) {
+        //         $tries = $nodeCount;
+        //     }
+        // }
 
         $callback = function () use ($transporter, $dataFormatter, $packer, $path, $arguments) {
             $data = $dataFormatter->formatRequest(array($path, $arguments, uniqid()));
