@@ -48,7 +48,7 @@ class Client
             }
         }
 
-        return retry($tries, function () use ($transporter, $dataFormatter, $packer, $path, $arguments) {
+        $callback = function () use ($transporter, $dataFormatter, $packer, $path, $arguments) {
             $data = $dataFormatter->formatRequest([$path, $arguments, uniqid()]);
 
             $transporter->send($packer->pack($data));
@@ -66,6 +66,12 @@ class Client
 
                 throw new ServerException($data['error'] ?? []);
             });
-        });
+        };
+
+        if ($tries > 0) {
+            return retry($tries, $callback);
+        }
+
+        return $callback();
     }
 }
