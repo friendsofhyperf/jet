@@ -51,7 +51,7 @@ class Metadata
     /**
      * @var int
      */
-    protected $tries = 1;
+    protected $tries = 0;
 
     /**
      * @var string

@@ -68,10 +68,6 @@ class Client
             });
         };
 
-        if ($tries > 0) {
-            return retry($tries, $callback);
-        }
-
-        return $callback();
+        return retry($tries, $callback);
     }
 }
