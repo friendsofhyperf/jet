@@ -52,10 +52,6 @@ class JetClient
             });
         };
 
-        if ($tries > 0) {
-            return JetUtil::retry($tries, $callback);
-        }
-
-        return $callback();
+        return JetUtil::retry($tries, $callback);
     }
 }
