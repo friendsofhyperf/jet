@@ -218,7 +218,7 @@ class Metadata
      */
     public function getTries()
     {
-        return $this->tries;
+        return (int) $this->tries;
     }
 
     /**
@@ -235,6 +235,6 @@ class Metadata
      */
     public function getTimeout()
     {
-        return $this->timeout;
+        return (int) $this->timeout;
     }
 }
