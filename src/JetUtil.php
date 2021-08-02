@@ -12,6 +12,7 @@ class JetUtil
      */
     public static function retry($times, $callback, $sleep = 0, $when = null)
     {
+        $times = (int) $times;
         $attempts = 0;
 
         beginning:

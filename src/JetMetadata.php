@@ -214,7 +214,9 @@ class JetMetadata
     {
         JetServiceManager::assertTries($tries);
 
-        $this->tries = $tries;
+        if (!is_null($tries)) {
+            $this->tries = (int) $tries;
+        }
     }
 
     /**
@@ -223,7 +225,7 @@ class JetMetadata
      */
     public function getTries()
     {
-        return $this->tries;
+        return (int) $this->tries;
     }
 
     /**
@@ -235,7 +237,9 @@ class JetMetadata
     {
         JetServiceManager::assertTimeout($timeout);
 
-        $this->timeout = $timeout;
+        if (!is_null($timeout)) {
+            $this->timeout = (int) $timeout;
+        }
     }
 
     /**
@@ -244,6 +248,6 @@ class JetMetadata
      */
     public function getTimeout()
     {
-        return $this->timeout;
+        return (int) $this->timeout;
     }
 }
