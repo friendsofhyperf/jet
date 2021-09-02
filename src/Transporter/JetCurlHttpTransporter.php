@@ -41,8 +41,8 @@ class JetCurlHttpTransporter extends AbstractJetTransporter
         $url     = sprintf('http://%s:%d', $host, $port);
         $headers = array(
             'Content-Type: application/json',
-            'X-Real-Ip: ' . $_SERVER['SERVER_ADDR'],
-            'X-Forwarded-For:' . $_SERVER['REMOTE_ADDR'],
+            'X-Real-Ip: ' . (isset($_SERVER['SERVER_ADDR']) ? $_SERVER['SERVER_ADDR'] : ''),
+            'X-Forwarded-For:' . (isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : ''),
         );
 
         $ch = curl_init();
