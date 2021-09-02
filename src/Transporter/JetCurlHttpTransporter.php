@@ -41,11 +41,15 @@ class JetCurlHttpTransporter extends AbstractJetTransporter
         $url     = sprintf('http://%s:%d', $host, $port);
         $headers = array(
             'Content-Type: application/json',
+            'X-Real-Ip: ' . $_SERVER['SERVER_ADDR'],
+            'X-Forwarded-For:' . $_SERVER['REMOTE_ADDR'],
         );
 
         $ch = curl_init();
+        $version = curl_version();
 
         curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_USERAGENT, sprintf('jet/1.0 php/%s curl/%s', PHP_VERSION, $version['version']));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_TIMEOUT, $this->timeout);
         curl_setopt($ch, CURLOPT_POST, 1);
