@@ -3,6 +3,11 @@
 class JetClient
 {
     /**
+     * The Jet major version.
+     */
+    const MAJOR_VERSION = 1;
+
+    /**
      * @var JetMetadata
      */
     protected $metadata;

@@ -29,7 +29,7 @@ class JetClientFactory
 
         $version = curl_version();
 
-        return self::$userAgent = sprintf('jet/1.0 php/%s curl/%s', PHP_VERSION, $version['version']);
+        return self::$userAgent = sprintf('jet/%s php/%s curl/%s', JetClient::MAJOR_VERSION, PHP_VERSION, $version['version']);
     }
 
     /**
