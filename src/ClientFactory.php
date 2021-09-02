@@ -16,6 +16,7 @@ use FriendsOfHyperf\Jet\Contract\DataFormatterInterface;
 use FriendsOfHyperf\Jet\Contract\PackerInterface;
 use FriendsOfHyperf\Jet\Contract\PathGeneratorInterface;
 use FriendsOfHyperf\Jet\Contract\TransporterInterface;
+use GuzzleHttp\ClientInterface;
 use InvalidArgumentException;
 
 class ClientFactory
@@ -39,7 +40,13 @@ class ClientFactory
      */
     public static function getUserAgent(): string
     {
-        return self::$userAgent ?: sprintf('jet/2.0 php/%s curl/%s', PHP_VERSION, curl_version()['version']);
+        return self::$userAgent ?: sprintf(
+            'jet/%s php/%s guzzle/%s curl/%s',
+            Client::MAJOR_VERSION,
+            PHP_VERSION,
+            ClientInterface::MAJOR_VERSION,
+            curl_version()['version']
+        );
     }
 
     /**
