@@ -11,6 +11,7 @@ declare(strict_types=1);
  */
 namespace FriendsOfHyperf\Jet\Transporter;
 
+use FriendsOfHyperf\Jet\ClientFactory;
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\RequestOptions;
@@ -39,6 +40,9 @@ class GuzzleHttpTransporter extends AbstractTransporter
         $this->config = array_merge_recursive($config, [
             'headers' => [
                 'Content-Type' => 'application/json',
+                'X-Real-Ip' => $_SERVER['SERVER_ADDR'],
+                'X-Forwarded-For' => $_SERVER['REMOTE_ADDR'],
+                'User-Agent' => ClientFactory::getUserAgent(),
             ],
             'http_errors' => false,
         ]);

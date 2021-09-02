@@ -21,8 +21,29 @@ use InvalidArgumentException;
 class ClientFactory
 {
     /**
+     * User agent.
+     * @var string
+     */
+    protected static $userAgent;
+
+    /**
+     * Set user agent.
+     */
+    public static function setUserAgent(string $userAgent): void
+    {
+        self::$userAgent = $userAgent;
+    }
+
+    /**
+     * Get user agent.
+     */
+    public static function getUserAgent(): string
+    {
+        return self::$userAgent ?: sprintf('jet/2.0 php/%s curl/%s', PHP_VERSION, curl_version()['version']);
+    }
+
+    /**
      * Create a client.
-     *
      * @param null|int|string|TransporterInterface $transporter transporter, protocol, timeout or null
      * @throws InvalidArgumentException
      * @throws Exception
