@@ -44,7 +44,7 @@ class ClientFactory
             'jet/%s php/%s guzzle/%s curl/%s',
             Client::MAJOR_VERSION,
             PHP_VERSION,
-            ClientInterface::MAJOR_VERSION,
+            defined(ClientInterface::class . '::VERSION') ? constant(ClientInterface::class . '::VERSION') : constant(ClientInterface::class . '::MAJOR_VERSION'),
             curl_version()['version']
         );
     }
