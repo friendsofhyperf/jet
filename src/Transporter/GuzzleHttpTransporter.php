@@ -40,8 +40,8 @@ class GuzzleHttpTransporter extends AbstractTransporter
         $this->config = array_merge_recursive($config, [
             'headers' => [
                 'Content-Type' => 'application/json',
-                'X-Real-Ip' => $_SERVER['SERVER_ADDR'],
-                'X-Forwarded-For' => $_SERVER['REMOTE_ADDR'],
+                'X-Real-Ip' => $_SERVER['SERVER_ADDR'] ?? '',
+                'X-Forwarded-For' => $_SERVER['REMOTE_ADDR'] ?? '',
                 'User-Agent' => ClientFactory::getUserAgent(),
             ],
             'http_errors' => false,
