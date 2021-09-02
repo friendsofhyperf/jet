@@ -2,10 +2,38 @@
 
 class JetClientFactory
 {
-    
+    /**
+     * @var string
+     */
+    protected static $userAgent;
+
+    /**
+     * Set user-agent
+     * @param string $userAgent
+     * @return void
+     */
+    public static function setUserAgent($userAgent)
+    {
+        self::$userAgent = $userAgent;
+    }
+
+    /**
+     * Get user-agent
+     * @return string
+     */
+    public static function getUserAgent()
+    {
+        if (!is_null(self::$userAgent)) {
+            return self::$userAgent;
+        }
+
+        $version = curl_version();
+
+        return self::$userAgent = sprintf('jet/1.0 php/%s curl/%s', PHP_VERSION, $version['version']);
+    }
+
     /**
      * Create a client
-     *
      * @param string $service
      * @param JetTransporterInterface|string|int|null $transporter
      * @param JetPackerInterface|null $packer

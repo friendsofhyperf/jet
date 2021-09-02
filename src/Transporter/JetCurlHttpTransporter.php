@@ -46,10 +46,9 @@ class JetCurlHttpTransporter extends AbstractJetTransporter
         );
 
         $ch = curl_init();
-        $version = curl_version();
 
         curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_USERAGENT, sprintf('jet/1.0 php/%s curl/%s', PHP_VERSION, $version['version']));
+        curl_setopt($ch, CURLOPT_USERAGENT, JetClientFactory::getUserAgent());
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_TIMEOUT, $this->timeout);
         curl_setopt($ch, CURLOPT_POST, 1);
