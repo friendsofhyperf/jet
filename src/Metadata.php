@@ -113,15 +113,15 @@ class Metadata
      */
     public function getTransporter()
     {
+        if ($this->transporter) {
+            return $this->transporter;
+        }
+
         if ($this->registry) {
             return $this->registry->getTransporter($this->name, $this->protocol, $this->timeout);
         }
 
-        if (! $this->transporter) {
-            throw new RuntimeException('Transporter not registered yet.');
-        }
-
-        return $this->transporter;
+        throw new RuntimeException('Transporter not registered yet.');
     }
 
     /**
