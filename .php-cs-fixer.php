@@ -17,7 +17,7 @@ return (new PhpCsFixer\Config())
         '@DoctrineAnnotation' => true,
         '@PhpCsFixer' => true,
         'header_comment' => [
-            'commentType' => 'PHPDoc',
+            'comment_type' => 'PHPDoc',
             'header' => $header,
             'separate' => 'none',
             'location' => 'after_declare_strict',

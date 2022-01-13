@@ -17,7 +17,7 @@ use InvalidArgumentException;
 
 class RegistryManager
 {
-    const DEFAULT = 'default';
+    public const DEFAULT = 'default';
 
     /**
      * @var array

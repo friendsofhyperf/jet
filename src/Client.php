@@ -20,7 +20,7 @@ class Client
     /**
      * The Jet major version.
      */
-    const MAJOR_VERSION = 2;
+    public const MAJOR_VERSION = 2;
 
     /**
      * @var Metadata
