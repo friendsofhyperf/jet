@@ -11,6 +11,9 @@ declare(strict_types=1);
  */
 namespace FriendsOfHyperf\Jet\Transporter;
 
+use FriendsOfHyperf\Jet\Grpc\BaseStub;
+use FriendsOfHyperf\Jet\ObjectManager;
+
 class GrpcTransporter extends AbstractTransporter
 {
     protected $client;
@@ -48,7 +51,7 @@ class GrpcTransporter extends AbstractTransporter
         );
 
         $this->make = function ($dsn, $config) {
-            return new class($dsn, $config) extends \Grpc\BaseStub {
+            return new class($dsn, $config) extends BaseStub {
                 public function __construct($dsn, $config)
                 {
                     parent::__construct($dsn, $config);
@@ -73,7 +76,7 @@ class GrpcTransporter extends AbstractTransporter
         [$response, $status] = $this->getClient()->SimpleRequest(
             [
                 $path . $data['method'],
-                app()->get($data['params']),
+                ObjectManager::get($data['params']),
                 $data['deserialize'],
                 $this->metadata,
                 $this->options,
@@ -88,16 +91,16 @@ class GrpcTransporter extends AbstractTransporter
         return $this->ret;
     }
 
-    public function getClient(): \Grpc\BaseStub
+    public function getClient(): BaseStub
     {
-        if (! $this->client instanceof \Grpc\BaseStub) {
+        if (! $this->client instanceof BaseStub) {
             if ($this->getLoadBalancer()) {
                 $node = $this->getLoadBalancer()->select();
             } else {
                 $node = $this;
             }
 
-            $this->client = call_user_func($this->make, sprintf('%s:%s', $this->host, $this->port), $this->config);
+            $this->client = call_user_func($this->make, sprintf('%s:%s', $node->host, $node->port), $this->config);
         }
 
         return $this->client;
