@@ -100,6 +100,19 @@ if (! function_exists('with')) {
 }
 
 if (! function_exists('str_snake')) {
+    function starts_with($haystack, $needles)
+    {
+        foreach ((array) $needles as $needle) {
+            if ((string) $needle !== '' && strncmp($haystack, $needle, strlen($needle)) === 0) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+}
+
+if (! function_exists('str_snake')) {
     /**
      * @param string $delimiter
      * @return string

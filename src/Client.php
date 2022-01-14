@@ -13,6 +13,7 @@ namespace FriendsOfHyperf\Jet;
 
 use FriendsOfHyperf\Jet\Exception\RecvFailedException;
 use FriendsOfHyperf\Jet\Exception\ServerException;
+use FriendsOfHyperf\Jet\Transporter\GrpcTransporter;
 use Throwable;
 
 class Client
@@ -59,6 +60,20 @@ class Client
             $transporter->send($packer->pack($data));
 
             $ret = $transporter->recv();
+
+            if ($transporter instanceof GrpcTransporter) {
+                if (! isset($ret[0])) {
+                    throw new ServerException(
+                        [
+                            'metadata' => $ret[1]->metadata ?? '',
+                            'code' => $ret[1]->code ?? '',
+                            'message' => $ret[1]->details ?? '',
+                        ]
+                    );
+                }
+
+                return $ret[0];
+            }
 
             if (! is_string($ret)) {
                 throw new RecvFailedException('Recv failed');

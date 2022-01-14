@@ -17,6 +17,7 @@ use FriendsOfHyperf\Jet\Contract\LoadBalancerInterface;
 use FriendsOfHyperf\Jet\Contract\RegistryInterface;
 use FriendsOfHyperf\Jet\LoadBalancer\Node;
 use FriendsOfHyperf\Jet\LoadBalancer\RoundRobin;
+use FriendsOfHyperf\Jet\Transporter\GrpcTransporter;
 use FriendsOfHyperf\Jet\Transporter\GuzzleHttpTransporter;
 use FriendsOfHyperf\Jet\Transporter\StreamSocketTransporter;
 use GuzzleHttp\Client;
@@ -141,7 +142,7 @@ class ConsulRegistry implements RegistryInterface
         });
     }
 
-    public function getTransporter(string $service, ?string $protocol = null, int $timeout = 1)
+    public function getTransporter(string $service, ?string $protocol = null, array $config = [])
     {
         $nodes = $this->getServiceNodes($service, $protocol);
 
@@ -152,13 +153,18 @@ class ConsulRegistry implements RegistryInterface
         $serviceBalancer = new RoundRobin($nodes);
         $node = $serviceBalancer->select();
 
-        if ($node->options['type'] == 'tcp') {
-            $transporter = new StreamSocketTransporter($node->host, $node->port, $timeout);
+        if (isset($node->options['protocol']) && $node->options['protocol'] == 'grpc') {
+            $transporter = new GrpcTransporter($node->host, $node->port, $config);
+            $serviceBalancer->setNodes(array_filter($nodes, function ($node) {
+                return $node->options['type'] == 'grpc';
+            }));
+        } elseif ($node->options['type'] == 'tcp') {
+            $transporter = new StreamSocketTransporter($node->host, $node->port, $config['timeout'] ?? 1);
             $serviceBalancer->setNodes(array_filter($nodes, function ($node) {
                 return $node->options['type'] == 'tcp';
             }));
         } else {
-            $transporter = new GuzzleHttpTransporter($node->host, $node->port, ['timeout' => $timeout]);
+            $transporter = new GuzzleHttpTransporter($node->host, $node->port, $config);
             $serviceBalancer->setNodes(array_filter($nodes, function ($node) {
                 return $node->options['type'] == 'http';
             }));

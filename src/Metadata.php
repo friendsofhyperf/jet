@@ -29,6 +29,11 @@ class Metadata
     protected $transporter;
 
     /**
+     * @var array
+     */
+    protected $transporterConfig = [];
+
+    /**
      * @var null|PackerInterface
      */
     protected $packer;
@@ -118,7 +123,14 @@ class Metadata
         }
 
         if ($this->registry) {
-            return $this->registry->getTransporter($this->name, $this->protocol, $this->timeout);
+            return $this->registry->getTransporter(
+                $this->name,
+                $this->protocol,
+                array_merge_recursive(
+                    $this->transporterConfig,
+                    ['timeout' => $this->timeout]
+                )
+            );
         }
 
         throw new RuntimeException('Transporter not registered yet.');
@@ -236,5 +248,22 @@ class Metadata
     public function getTimeout()
     {
         return (int) $this->timeout;
+    }
+
+    /**
+     * Set transporter config.
+     */
+    public function setTransporterConfig(array $config = [])
+    {
+        $this->transporterConfig = $config;
+    }
+
+    /**
+     * Get transporter config.
+     * @return array
+     */
+    public function getTransporterConfig()
+    {
+        return (array) $this->transporterConfig;
     }
 }
