@@ -63,13 +63,7 @@ class Client
 
             if ($transporter instanceof GrpcTransporter) {
                 if (! isset($ret[0])) {
-                    throw new ServerException(
-                        [
-                            'metadata' => $ret[1]->metadata ?? '',
-                            'code' => $ret[1]->code ?? '',
-                            'message' => $ret[1]->details ?? '',
-                        ]
-                    );
+                    throw new RecvFailedException('Recv failed');
                 }
 
                 return $ret[0];
