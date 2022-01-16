@@ -11,7 +11,7 @@ declare(strict_types=1);
  */
 namespace FriendsOfHyperf\Jet\Transporter;
 
-use FriendsOfHyperf\Jet\Grpc\BaseStub;
+use Grpc\BaseStub;
 use FriendsOfHyperf\Jet\ObjectManager;
 
 class GrpcTransporter extends AbstractTransporter
@@ -70,12 +70,12 @@ class GrpcTransporter extends AbstractTransporter
         $data = json_decode($data, true);
 
         if (! starts_with($this->path, '/')) {
-            $path = '/' . $this->path;
+            $this->path = '/' . $this->path;
         }
 
         [$response, $status] = $this->getClient()->SimpleRequest(
             [
-                $path . $data['method'],
+                $this->path . $data['method'],
                 ObjectManager::get($data['params']),
                 $data['deserialize'],
                 $this->metadata,
@@ -91,9 +91,9 @@ class GrpcTransporter extends AbstractTransporter
         return $this->ret;
     }
 
-    public function getClient(): BaseStub
+    public function getClient()
     {
-        if (! $this->client instanceof BaseStub) {
+        if (! $this->client) {
             if ($this->getLoadBalancer()) {
                 $node = $this->getLoadBalancer()->select();
             } else {

@@ -99,7 +99,7 @@ if (! function_exists('with')) {
     }
 }
 
-if (! function_exists('str_snake')) {
+if (! function_exists('starts_with')) {
     function starts_with($haystack, $needles)
     {
         foreach ((array) $needles as $needle) {
