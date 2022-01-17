@@ -99,8 +99,15 @@ if (! function_exists('with')) {
     }
 }
 
-if (! function_exists('starts_with')) {
-    function starts_with($haystack, $needles)
+if (! function_exists('str_starts_with')) {
+    /**
+     * Determine if a given string starts with a given substring.
+     *
+     * @param string $haystack
+     * @param string|string[] $needles
+     * @return bool
+     */
+    function str_starts_with($haystack, $needles)
     {
         foreach ((array) $needles as $needle) {
             if ((string) $needle !== '' && strncmp($haystack, $needle, strlen($needle)) === 0) {

@@ -94,7 +94,7 @@ class GrpcTransporter extends AbstractTransporter
     {
         $data = json_decode($data, true);
 
-        if (! starts_with($this->path, '/')) {
+        if (! str_starts_with($this->path, '/')) {
             $this->path = '/' . $this->path;
         }
 
