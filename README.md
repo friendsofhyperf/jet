@@ -12,7 +12,7 @@ Another jet client for Hyperf
 ### Composer
 
 ~~~php
-composer require "friendsofhyperf/jet:^2.0"
+composer require "friendsofhyperf/jet:^3.0"
 ~~~
 
 ## Quickstart
