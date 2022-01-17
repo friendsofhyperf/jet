@@ -54,6 +54,31 @@ $client = ClientFactory::create('CalculatorService');
 var_dump($client->add(1, 20));
 ~~~
 
+### Call by ClientFactory Using Grpc
+
+~~~php
+use FriendsOfHyperf\Jet\ClientFactory;
+
+$meta = new Metadata('CalculatorService');
+$meta->setDataFormatter(new GrpcDataFormatter());
+$meta->setPathGenerator(new GrpcPathGenerator());
+
+// If use consul next config is necessary
+$meta->setRegistry(RegistryManager::get(RegistryManager::DEFAULT));
+$meta->setTransporterConfig([
+    'path' => 'calculator.CalCulator',
+]);
+$meta->setProtocol('grpc');
+$meta->setTimeout(10);
+
+// If not use consul,directly use GrpcTransporter 
+$meta->setTransporter(new GrpcTransporter('127.0.0.1', 9502, [
+    'path' => 'calculator.CalCulator',
+]));
+
+return ClientFactory::createWithMetadata($meta);
+~~~
+
 ### Call by custom client
 
 ~~~php

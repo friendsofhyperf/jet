@@ -91,4 +91,12 @@ class ClientFactory
 
         return new Client($metadata);
     }
+
+    /**
+     * Create a client with metadata.
+     */
+    public static function createWithMetadata(Metadata $metadata): Client
+    {
+        return new Client($metadata);
+    }
 }

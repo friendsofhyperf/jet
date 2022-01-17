@@ -13,6 +13,7 @@ namespace FriendsOfHyperf\Jet;
 
 use FriendsOfHyperf\Jet\Exception\RecvFailedException;
 use FriendsOfHyperf\Jet\Exception\ServerException;
+use FriendsOfHyperf\Jet\Transporter\GrpcTransporter;
 use Throwable;
 
 class Client
@@ -60,6 +61,16 @@ class Client
 
             $ret = $transporter->recv();
 
+            // GRPC
+            if ($transporter instanceof GrpcTransporter) {
+                if (! isset($ret[0]) || ! is_resource($ret[0])) {
+                    throw new RecvFailedException('Recv failed');
+                }
+
+                return $ret[0];
+            }
+
+            // JSONRPC
             if (! is_string($ret)) {
                 throw new RecvFailedException('Recv failed');
             }

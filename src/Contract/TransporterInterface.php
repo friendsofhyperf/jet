@@ -16,7 +16,7 @@ interface TransporterInterface
     public function send(string $data);
 
     /**
-     * @return string
+     * @return array|resource|string
      */
     public function recv();
 
