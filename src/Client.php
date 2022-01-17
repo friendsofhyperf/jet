@@ -61,14 +61,16 @@ class Client
 
             $ret = $transporter->recv();
 
+            // GRPC
             if ($transporter instanceof GrpcTransporter) {
-                if (! isset($ret[0])) {
+                if (! isset($ret[0]) || ! is_resource($ret[0])) {
                     throw new RecvFailedException('Recv failed');
                 }
 
                 return $ret[0];
             }
 
+            // JSONRPC
             if (! is_string($ret)) {
                 throw new RecvFailedException('Recv failed');
             }

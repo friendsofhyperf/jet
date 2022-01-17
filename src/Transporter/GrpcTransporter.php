@@ -11,25 +11,50 @@ declare(strict_types=1);
  */
 namespace FriendsOfHyperf\Jet\Transporter;
 
-use Grpc\BaseStub;
+use Closure;
 use FriendsOfHyperf\Jet\ObjectManager;
+use Grpc\BaseStub;
 
 class GrpcTransporter extends AbstractTransporter
 {
+    /**
+     * @var BaseStub
+     */
     protected $client;
 
-    protected $make;
+    /**
+     * @var Closure
+     */
+    protected $factory;
 
+    /**
+     * @var array
+     */
     protected $ret;
 
+    /**
+     * @var string
+     */
     protected $path;
 
+    /**
+     * @var array
+     */
     protected $config = [];
 
+    /**
+     * @var array
+     */
     protected $metadata = [];
 
+    /**
+     * @var array
+     */
     protected $options = [];
 
+    /**
+     * @var string
+     */
     protected $credentials;
 
     public function __construct(string $host = '', int $port = 9501, array $config = [])
@@ -50,14 +75,14 @@ class GrpcTransporter extends AbstractTransporter
             $config
         );
 
-        $this->make = function ($dsn, $config) {
+        $this->factory = function ($dsn, $config) {
             return new class($dsn, $config) extends BaseStub {
                 public function __construct($dsn, $config)
                 {
                     parent::__construct($dsn, $config);
                 }
 
-                public function SimpleRequest($params)
+                public function simpleRequest($params)
                 {
                     return $this->_simpleRequest(...$params)->wait();
                 }
@@ -73,7 +98,7 @@ class GrpcTransporter extends AbstractTransporter
             $this->path = '/' . $this->path;
         }
 
-        [$response, $status] = $this->getClient()->SimpleRequest(
+        [$response, $status] = $this->getClient()->simpleRequest(
             [
                 $this->path . $data['method'],
                 ObjectManager::get($data['params']),
@@ -91,16 +116,20 @@ class GrpcTransporter extends AbstractTransporter
         return $this->ret;
     }
 
+    /**
+     * @return BaseStub|object
+     */
     public function getClient()
     {
-        if (! $this->client) {
+        if (! ($this->client instanceof BaseStub)) {
             if ($this->getLoadBalancer()) {
                 $node = $this->getLoadBalancer()->select();
             } else {
                 $node = $this;
             }
 
-            $this->client = call_user_func($this->make, sprintf('%s:%s', $node->host, $node->port), $this->config);
+            $factory = $this->factory;
+            $this->client = $factory(sprintf('%s:%s', $node->host, $node->port), $this->config);
         }
 
         return $this->client;
