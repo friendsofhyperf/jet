@@ -9,7 +9,6 @@ declare(strict_types=1);
  * @contact  huangdijia@gmail.com
  * @license  https://github.com/friendsofhyperf/jet/blob/main/LICENSE
  */
-
 namespace FriendsOfHyperf\Jet\PathGenerator;
 
 use FriendsOfHyperf\Jet\Contract\PathGeneratorInterface;
@@ -18,6 +17,6 @@ class GrpcPathGenerator implements PathGeneratorInterface
 {
     public function generate(string $service, string $method): string
     {
-        return "/".$method;
+        return '/' . $method;
     }
 }

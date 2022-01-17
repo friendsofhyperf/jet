@@ -39,7 +39,7 @@ class ObjectManager
     /**
      * @throws InvalidArgumentException
      */
-    public static function register(string $service, Object $obj)
+    public static function register(string $service, object $obj)
     {
         static::$services[$service] = $obj;
     }
