@@ -63,7 +63,7 @@ class Client
 
             // GRPC
             if ($transporter instanceof GrpcTransporter) {
-                if (! isset($ret[0]) || ! is_resource($ret[0])) {
+                if (! isset($ret[0])) {
                     throw new RecvFailedException('Recv failed');
                 }
 

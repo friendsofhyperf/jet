@@ -53,7 +53,7 @@ class GrpcTransporter extends AbstractTransporter
     protected $options = [];
 
     /**
-     * @var string
+     * @var string|object|null
      */
     protected $credentials;
 
