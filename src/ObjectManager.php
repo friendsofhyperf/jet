@@ -21,7 +21,7 @@ class ObjectManager
     protected static $services = [];
 
     /**
-     * @return null|Metadata
+     * @return null|object
      */
     public static function get(string $service)
     {
@@ -37,9 +37,10 @@ class ObjectManager
     }
 
     /**
+     * @param object $obj
      * @throws InvalidArgumentException
      */
-    public static function register(string $service, object $obj)
+    public static function register(string $service, $obj)
     {
         static::$services[$service] = $obj;
     }
