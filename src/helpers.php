@@ -99,6 +99,18 @@ if (! function_exists('with')) {
     }
 }
 
+if (! function_exists('str_start')) {
+    /**
+     * Begin a string with a single instance of a given value.
+     */
+    function str_start(string $value, string $prefix): string
+    {
+        $quoted = preg_quote($prefix, '/');
+
+        return $prefix . preg_replace('/^(?:' . $quoted . ')+/u', '', $value);
+    }
+}
+
 if (! function_exists('str_starts_with')) {
     /**
      * Determine if a given string starts with a given substring.
