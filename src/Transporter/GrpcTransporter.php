@@ -12,7 +12,6 @@ declare(strict_types=1);
 namespace FriendsOfHyperf\Jet\Transporter;
 
 use Closure;
-use FriendsOfHyperf\Jet\ObjectManager;
 use Grpc\BaseStub;
 
 class GrpcTransporter extends AbstractTransporter
@@ -53,7 +52,7 @@ class GrpcTransporter extends AbstractTransporter
     protected $options = [];
 
     /**
-     * @var string|object|null
+     * @var null|object|string
      */
     protected $credentials;
 
@@ -82,9 +81,9 @@ class GrpcTransporter extends AbstractTransporter
                     parent::__construct($dsn, $config);
                 }
 
-                public function simpleRequest($params)
+                public function request($method, $argument, $deserialize, array $metadata = [], array $options = [])
                 {
-                    return $this->_simpleRequest(...$params)->wait();
+                    return $this->_simpleRequest(...func_get_args())->wait();
                 }
             };
         };
@@ -93,22 +92,11 @@ class GrpcTransporter extends AbstractTransporter
     public function send(string $data)
     {
         $data = json_decode($data, true);
+        $method = str_start($this->path, '/') . $data['method'];
+        $argument = (object) $data['params'][0];
+        $deserialize = $data['params'][1];
 
-        if (! str_starts_with($this->path, '/')) {
-            $this->path = '/' . $this->path;
-        }
-
-        [$response, $status] = $this->getClient()->simpleRequest(
-            [
-                $this->path . $data['method'],
-                ObjectManager::get($data['params']),
-                $data['deserialize'],
-                $this->metadata,
-                $this->options,
-            ]
-        );
-
-        $this->ret = [$response, $status];
+        $this->ret = $this->getClient()->request($method, $argument, $deserialize, $this->metadata, $this->options);
     }
 
     public function recv()
