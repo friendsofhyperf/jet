@@ -15,14 +15,10 @@ use FriendsOfHyperf\Jet\ClientFactory;
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\RequestOptions;
+use RuntimeException;
 
 class GuzzleHttpTransporter extends AbstractTransporter
 {
-    /**
-     * @var null|Client
-     */
-    protected $client;
-
     /**
      * @var array
      */
@@ -62,25 +58,25 @@ class GuzzleHttpTransporter extends AbstractTransporter
         return $this->result;
     }
 
+    /**
+     * @throws RuntimeException
+     * @return Client
+     */
     protected function client()
     {
-        if (! $this->client instanceof Client) {
-            if (! isset($this->config['handler'])) {
-                $this->config['handler'] = HandlerStack::create();
-            }
-
-            if (! isset($this->config['base_uri'])) {
-                if ($this->getLoadBalancer()) {
-                    $node = $this->getLoadBalancer()->select();
-                } else {
-                    $node = $this;
-                }
-                $this->config['base_uri'] = sprintf('http://%s:%d', $node->host, $node->port);
-            }
-
-            $this->client = new Client($this->config);
+        if (! isset($this->config['handler'])) {
+            $this->config['handler'] = HandlerStack::create();
         }
 
-        return $this->client;
+        if (! isset($this->config['base_uri'])) {
+            if ($this->getLoadBalancer()) {
+                $node = $this->getLoadBalancer()->select();
+            } else {
+                $node = $this;
+            }
+            $this->config['base_uri'] = sprintf('http://%s:%d', $node->host, $node->port);
+        }
+
+        return new Client($this->config);
     }
 }

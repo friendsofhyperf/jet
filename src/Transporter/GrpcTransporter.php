@@ -17,14 +17,9 @@ use Grpc\BaseStub;
 class GrpcTransporter extends AbstractTransporter
 {
     /**
-     * @var BaseStub
-     */
-    protected $client;
-
-    /**
      * @var Closure
      */
-    protected $factory;
+    protected $clientFactory;
 
     /**
      * @var array
@@ -74,7 +69,7 @@ class GrpcTransporter extends AbstractTransporter
             $config
         );
 
-        $this->factory = function ($dsn, $config) {
+        $this->clientFactory = function ($dsn, $config) {
             return new class($dsn, $config) extends BaseStub {
                 public function __construct($dsn, $config)
                 {
@@ -96,7 +91,7 @@ class GrpcTransporter extends AbstractTransporter
         $argument = (object) $data['params'][0];
         $deserialize = $data['params'][1];
 
-        $this->ret = $this->getClient()->request($method, $argument, $deserialize, $this->metadata, $this->options);
+        $this->ret = $this->stub()->request($method, $argument, $deserialize, $this->metadata, $this->options);
     }
 
     public function recv()
@@ -107,19 +102,16 @@ class GrpcTransporter extends AbstractTransporter
     /**
      * @return BaseStub|object
      */
-    public function getClient()
+    protected function stub()
     {
-        if (! ($this->client instanceof BaseStub)) {
-            if ($this->getLoadBalancer()) {
-                $node = $this->getLoadBalancer()->select();
-            } else {
-                $node = $this;
-            }
-
-            $factory = $this->factory;
-            $this->client = $factory(sprintf('%s:%s', $node->host, $node->port), $this->config);
+        if ($this->getLoadBalancer()) {
+            $node = $this->getLoadBalancer()->select();
+        } else {
+            $node = $this;
         }
 
-        return $this->client;
+        $factory = $this->clientFactory;
+
+        return $factory(sprintf('%s:%s', $node->host, $node->port), $this->config);
     }
 }
