@@ -46,7 +46,7 @@ class GuzzleHttpTransporter extends AbstractTransporter
 
     public function send(string $data)
     {
-        $response = $this->client()->post('/', [
+        $response = $this->getClient()->post('/', [
             RequestOptions::BODY => $data,
         ]);
 
@@ -62,21 +62,19 @@ class GuzzleHttpTransporter extends AbstractTransporter
      * @throws RuntimeException
      * @return Client
      */
-    protected function client()
+    protected function getClient()
     {
-        if (! isset($this->config['handler'])) {
-            $this->config['handler'] = HandlerStack::create();
+        $config = $this->config;
+
+        if (! isset($config['handler'])) {
+            $config['handler'] = HandlerStack::create();
         }
 
-        if (! isset($this->config['base_uri'])) {
-            if ($this->getLoadBalancer()) {
-                $node = $this->getLoadBalancer()->select();
-            } else {
-                $node = $this;
-            }
-            $this->config['base_uri'] = sprintf('http://%s:%d', $node->host, $node->port);
+        if (! isset($config['base_uri'])) {
+            [$host, $port] = $this->getTarget();
+            $config['base_uri'] = sprintf('http://%s:%d', $host, $port);
         }
 
-        return new Client($this->config);
+        return new Client($config);
     }
 }

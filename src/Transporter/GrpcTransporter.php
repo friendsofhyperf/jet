@@ -91,7 +91,7 @@ class GrpcTransporter extends AbstractTransporter
         $argument = (object) $data['params'][0];
         $deserialize = $data['params'][1];
 
-        $this->ret = $this->stub()->request($method, $argument, $deserialize, $this->metadata, $this->options);
+        $this->ret = $this->getClient()->request($method, $argument, $deserialize, $this->metadata, $this->options);
     }
 
     public function recv()
@@ -102,16 +102,11 @@ class GrpcTransporter extends AbstractTransporter
     /**
      * @return BaseStub|object
      */
-    protected function stub()
+    protected function getClient()
     {
-        if ($this->getLoadBalancer()) {
-            $node = $this->getLoadBalancer()->select();
-        } else {
-            $node = $this;
-        }
-
         $factory = $this->clientFactory;
+        [$host, $port] = $this->getTarget();
 
-        return $factory(sprintf('%s:%s', $node->host, $node->port), $this->config);
+        return $factory(sprintf('%s:%s', $host, $port), $this->config);
     }
 }

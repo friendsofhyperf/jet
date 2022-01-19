@@ -112,26 +112,6 @@ class StreamSocketTransporter extends AbstractTransporter
     /**
      * @throws InvalidArgumentException
      * @throws Exception
-     * @return (string|int)[]
-     */
-    protected function getTarget()
-    {
-        if ($this->getLoadBalancer()) {
-            $node = $this->getLoadBalancer()->select();
-        } else {
-            $node = $this;
-        }
-
-        if (! $node->host || ! $node->port) {
-            throw new InvalidArgumentException(sprintf('Invalid host %s or port %s.', $node->host, $node->port));
-        }
-
-        return [$node->host, $node->port];
-    }
-
-    /**
-     * @throws InvalidArgumentException
-     * @throws Exception
      */
     protected function connect()
     {

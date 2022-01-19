@@ -13,6 +13,7 @@ namespace FriendsOfHyperf\Jet\Transporter;
 
 use FriendsOfHyperf\Jet\Contract\LoadBalancerInterface;
 use FriendsOfHyperf\Jet\Contract\TransporterInterface;
+use InvalidArgumentException;
 
 abstract class AbstractTransporter implements TransporterInterface
 {
@@ -53,5 +54,24 @@ abstract class AbstractTransporter implements TransporterInterface
         $this->loadBalancer = $loadBalancer;
 
         return $this;
+    }
+
+    /**
+     * @throws InvalidArgumentException
+     * @return (string|int)[]
+     */
+    protected function getTarget()
+    {
+        if ($this->getLoadBalancer()) {
+            $node = $this->getLoadBalancer()->select();
+        } else {
+            $node = $this;
+        }
+
+        if (! $node->host || ! $node->port) {
+            throw new InvalidArgumentException(sprintf('Invalid host %s or port %s.', $node->host, $node->port));
+        }
+
+        return [$node->host, $node->port];
     }
 }
