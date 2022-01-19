@@ -91,7 +91,7 @@ class GrpcTransporter extends AbstractTransporter
 
     public function send(string $data)
     {
-        $data = json_decode($data, true);
+        $data = unserialize($data);
         $method = str_start($this->path, '/') . $data['method'];
         $argument = (object) $data['params'][0];
         $deserialize = $data['params'][1];
