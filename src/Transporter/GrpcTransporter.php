@@ -12,6 +12,8 @@ declare(strict_types=1);
 namespace FriendsOfHyperf\Jet\Transporter;
 
 use Closure;
+use FriendsOfHyperf\Jet\Contract\PackerInterface;
+use FriendsOfHyperf\Jet\Packer\GrpcPacker;
 use Grpc\BaseStub;
 
 class GrpcTransporter extends AbstractTransporter
@@ -51,6 +53,11 @@ class GrpcTransporter extends AbstractTransporter
      */
     protected $credentials;
 
+    /**
+     * @var PackerInterface
+     */
+    protected $packer;
+
     public function __construct(string $host = '', int $port = 9501, array $config = [])
     {
         $this->host = $host;
@@ -69,6 +76,8 @@ class GrpcTransporter extends AbstractTransporter
             $config
         );
 
+        $this->packer = new GrpcPacker();
+
         $this->clientFactory = function ($dsn, $config) {
             return new class($dsn, $config) extends BaseStub {
                 public function __construct($dsn, $config)
@@ -86,7 +95,7 @@ class GrpcTransporter extends AbstractTransporter
 
     public function send(string $data)
     {
-        $data = unserialize($data);
+        $data = $this->packer->unpack($data);
         $method = str_start($this->path, '/') . $data['method'];
         $argument = (object) $data['params'][0];
         $deserialize = $data['params'][1];

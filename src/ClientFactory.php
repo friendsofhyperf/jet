@@ -11,11 +11,8 @@ declare(strict_types=1);
  */
 namespace FriendsOfHyperf\Jet;
 
+use Closure;
 use Exception;
-use FriendsOfHyperf\Jet\Contract\DataFormatterInterface;
-use FriendsOfHyperf\Jet\Contract\PackerInterface;
-use FriendsOfHyperf\Jet\Contract\PathGeneratorInterface;
-use FriendsOfHyperf\Jet\Contract\TransporterInterface;
 use GuzzleHttp\ClientInterface;
 use InvalidArgumentException;
 
@@ -51,52 +48,28 @@ class ClientFactory
 
     /**
      * Create a client.
-     * @param null|int|string|TransporterInterface $transporter transporter, protocol, timeout or null
+     * @param Closure|Metadata|string $service
      * @throws InvalidArgumentException
      * @throws Exception
      */
-    public static function create(string $service, $transporter = null, ?PackerInterface $packer = null, ?DataFormatterInterface $dataFormatter = null, ?PathGeneratorInterface $pathGenerator = null, ?int $tries = null): Client
+    public static function create($service): Client
     {
-        if (! $metadata = ServiceManager::get($service)) {
-            $metadata = new Metadata($service);
+        if ($service instanceof Metadata) {
+            return new Client($service);
+        }
 
-            if (RegistryManager::isRegistered(RegistryManager::DEFAULT)) {
-                $metadata->setRegistry(RegistryManager::get(RegistryManager::DEFAULT));
-            }
+        if (is_string($service)) {
+            $metadata = ServiceManager::get($service) ?? new Metadata($service);
+            return new Client($metadata);
+        }
 
-            if ($transporter instanceof TransporterInterface) {
-                $metadata->setTransporter($transporter);
-            } elseif (is_numeric($transporter)) {
-                $metadata->setTimeout($transporter);
-            } elseif (is_string($transporter)) {
-                $metadata->setProtocol($transporter);
-            }
-
-            if ($packer) {
-                $metadata->setPacker($packer);
-            }
-
-            if ($dataFormatter) {
-                $metadata->setDataFormatter($dataFormatter);
-            }
-
-            if ($pathGenerator) {
-                $metadata->setPathGenerator($pathGenerator);
-            }
-
-            if ($tries) {
-                $metadata->setTries($tries);
+        if ($service instanceof Closure) {
+            $metadata = $service();
+            if ($metadata instanceof Metadata) {
+                return new Client($metadata);
             }
         }
 
-        return new Client($metadata);
-    }
-
-    /**
-     * Create a client with metadata.
-     */
-    public static function createWithMetadata(Metadata $metadata): Client
-    {
-        return new Client($metadata);
+        throw new InvalidArgumentException('$service must been instanced of string/Closure/Metadata');
     }
 }

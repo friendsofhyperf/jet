@@ -59,24 +59,22 @@ var_dump($client->add(1, 20));
 ~~~php
 use FriendsOfHyperf\Jet\ClientFactory;
 
-$meta = new Metadata('CalculatorService');
-$meta->setDataFormatter(new GrpcDataFormatter());
-$meta->setPathGenerator(new GrpcPathGenerator());
-
-// If use consul next config is necessary
-$meta->setRegistry(RegistryManager::get(RegistryManager::DEFAULT));
-$meta->setTransporterConfig([
-    'path' => 'calculator.CalCulator',
-]);
-$meta->setProtocol('grpc');
-$meta->setTimeout(10);
-
-// If not use consul,directly use GrpcTransporter 
-$meta->setTransporter(new GrpcTransporter('127.0.0.1', 9502, [
-    'path' => 'calculator.CalCulator',
-]));
-
-return ClientFactory::createWithMetadata($meta);
+return ClientFactory::create(function() {
+    return (new Metadata('CalculatorService'))
+        ->setPacker(new GrpcPacker())
+        ->setPathGenerator(new GrpcPathGenerator())
+        // If use consul next config is necessary
+        ->setRegistry(RegistryManager::get(RegistryManager::DEFAULT))
+        ->setTransporterConfig([
+            'path' => 'calculator.CalCulator',
+        ])
+        ->setProtocol('grpc')
+        ->setTimeout(10)
+        // If not use consul,directly use GrpcTransporter 
+        ->setTransporter(new GrpcTransporter('127.0.0.1', 9502, [
+            'path' => 'calculator.CalCulator',
+        ]));
+});
 ~~~
 
 ### Call by custom client
@@ -93,13 +91,11 @@ class CalculatorService extends Client
 {
     public function __construct($service = 'CalculatorService')
     {
-        $metadata = new Metadata($service);
-
-        // Custom transporter
-        $metadata->setTransporter(new GuzzleHttpTransporter('127.0.0.1', 9502));
-
-        // Custom registry
-        $metadata->setRegistry(new ConsulRegistry(['uri' => 'http://127.0.0.1:8500']));
+        $metadata = (new Metadata($service))
+            // Custom transporter
+            ->setTransporter(new GuzzleHttpTransporter('127.0.0.1', 9502))
+            // Custom registry
+            ->setRegistry(new ConsulRegistry(['uri' => 'http://127.0.0.1:8500']));
 
         parent::__construct($metadata);
     }
