@@ -27,6 +27,7 @@ use FriendsOfHyperf\Jet\Transporter\GuzzleHttpTransporter;
 
 $metadata = new Metadata('CalculatorService');
 $metadata->setTransporter(new GuzzleHttpTransporter('127.0.0.1', 9502));
+// or
 $metadata->setRegistry(new ConsulRegistry(['uri' => 'http://127.0.0.1:8500']));
 
 ServiceManager::register('CalculatorService', $metadata);
