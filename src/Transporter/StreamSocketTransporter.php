@@ -27,7 +27,7 @@ class StreamSocketTransporter extends AbstractTransporter
     protected $client;
 
     /**
-     * @var float
+     * @var int
      */
     protected $timeout;
 
