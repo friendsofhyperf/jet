@@ -11,12 +11,14 @@ declare(strict_types=1);
  */
 namespace FriendsOfHyperf\Jet\Contract;
 
+use FriendsOfHyperf\Jet\Exception\NoNodesAvailableException;
 use FriendsOfHyperf\Jet\LoadBalancer\Node;
 
 interface LoadBalancerInterface
 {
     /**
      * Select an item via the load balancer.
+     * @throws NoNodesAvailableException
      */
     public function select(): Node;
 

@@ -11,7 +11,7 @@ declare(strict_types=1);
  */
 namespace FriendsOfHyperf\Jet\LoadBalancer;
 
-use RuntimeException;
+use FriendsOfHyperf\Jet\Exception\NoNodesAvailableException;
 
 class RoundRobin extends AbstractLoadBalancer
 {
@@ -28,7 +28,7 @@ class RoundRobin extends AbstractLoadBalancer
         $count = count($this->nodes);
 
         if ($count <= 0) {
-            throw new RuntimeException('Nodes missing.');
+            throw new NoNodesAvailableException('Nodes missing.');
         }
 
         $item = $this->nodes[self::$current % $count];
