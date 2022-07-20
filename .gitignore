@@ -4,3 +4,4 @@ composer.lock
 *.bak
 /phpunit.xml
 /.phpunit.result.cache
+.idea
