@@ -36,8 +36,8 @@ class Client
     /**
      * @param string $name
      * @param array $arguments
-     * @throws Throwable
      * @return mixed
+     * @throws Throwable
      */
     public function __call($name, $arguments)
     {

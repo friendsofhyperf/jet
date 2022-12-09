@@ -57,8 +57,8 @@ abstract class AbstractTransporter implements TransporterInterface
     }
 
     /**
-     * @throws InvalidArgumentException
      * @return (string|int)[]
+     * @throws InvalidArgumentException
      */
     protected function getTarget()
     {

@@ -59,8 +59,8 @@ class GuzzleHttpTransporter extends AbstractTransporter
     }
 
     /**
-     * @throws RuntimeException
      * @return Client
+     * @throws RuntimeException
      */
     protected function getClient()
     {

@@ -41,7 +41,7 @@ class RegistryManager
      */
     public static function register($name, $registry, bool $force = false)
     {
-        if (! ($registry instanceof RegistryInterface)) {
+        if (! $registry instanceof RegistryInterface) {
             throw new InvalidArgumentException('$registry must be instanceof RegistryInterface');
         }
 

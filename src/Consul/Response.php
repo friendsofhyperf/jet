@@ -38,8 +38,8 @@ class Response
 
     /**
      * @param null|mixed $default
-     * @throws ServerException
      * @return mixed
+     * @throws ServerException
      */
     public function json(string $key = null, $default = null)
     {

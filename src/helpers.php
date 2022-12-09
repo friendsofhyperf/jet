@@ -12,8 +12,8 @@ declare(strict_types=1);
 if (! function_exists('retry')) {
     /**
      * Retry.
-     * @throws Throwable
      * @return mixed
+     * @throws Throwable
      */
     function retry(int $times, callable $callback, int $sleep = 0, callable $when = null)
     {
@@ -43,14 +43,14 @@ if (! function_exists('throw_if')) {
     /**
      * @param mixed $condition
      * @param string|\Throwable $exception
+     * @return mixed
      * @throws InvalidArgumentException
      * @throws Exception
-     * @return mixed
      */
     function throw_if($condition, $exception, ...$parameters)
     {
         if ($condition) {
-            throw (is_string($exception) ? new $exception(...$parameters) : $exception);
+            throw is_string($exception) ? new $exception(...$parameters) : $exception;
         }
 
         return $condition;
