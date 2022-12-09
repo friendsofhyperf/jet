@@ -26,6 +26,10 @@ jobs:
         run: |
           if [ "${{ matrix.php-version }}" == "8.2" ]; then
             PHP_CS_FIXER_IGNORE_ENV=true ./vendor/bin/php-cs-fixer fix $1 --dry-run --diff --verbose --show-progress=dots
+          else if [ "${{ matrix.php-version }}" == "7.2" ]; then
+            echo "Skip php-cs-fixer on PHP 7.2"
+          else if [ "${{ matrix.php-version }}" == "7.2" ]; then
+            echo "Skip php-cs-fixer on PHP 7.3"
           else
             ./vendor/bin/php-cs-fixer fix $1 --dry-run --diff --verbose --show-progress=dots
           fi
