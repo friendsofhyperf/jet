@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace FriendsOfHyperf\Jet\DataFormatter;
 
 use FriendsOfHyperf\Jet\Contract\DataFormatterInterface;
+use Throwable;
 
 class DataFormatter implements DataFormatterInterface
 {
@@ -43,7 +44,7 @@ class DataFormatter implements DataFormatterInterface
     {
         [$id, $code, $message, $data] = $data;
 
-        if (isset($data) && $data instanceof \Throwable) {
+        if (isset($data) && $data instanceof Throwable) {
             $data = [
                 'class' => get_class($data),
                 'code' => $data->getCode(),

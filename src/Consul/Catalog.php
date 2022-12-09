@@ -18,10 +18,10 @@ use GuzzleHttp\Exception\GuzzleException;
 class Catalog extends Client
 {
     /**
+     * @return Response
      * @throws ServerException
      * @throws ClientException
      * @throws GuzzleException
-     * @return Response
      */
     public function services(array $options = [])
     {

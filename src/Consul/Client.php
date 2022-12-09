@@ -11,6 +11,7 @@ declare(strict_types=1);
  */
 namespace FriendsOfHyperf\Jet\Consul;
 
+use Closure;
 use FriendsOfHyperf\Jet\Exception\ClientException;
 use FriendsOfHyperf\Jet\Exception\ServerException;
 use GuzzleHttp\ClientInterface;
@@ -26,11 +27,11 @@ class Client
      * and the closure should return a GuzzleHttp\ClientInterface instance.
      * $clientFactory(array $options).
      *
-     * @var \Closure
+     * @var Closure
      */
     private $clientFactory;
 
-    public function __construct(\Closure $clientFactory)
+    public function __construct(Closure $clientFactory)
     {
         $this->clientFactory = $clientFactory;
     }

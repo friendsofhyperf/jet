@@ -34,8 +34,8 @@ abstract class Facade
     }
 
     /**
-     * @throws RuntimeException
      * @return Client
+     * @throws RuntimeException
      */
     protected static function getFacadeRoot()
     {
@@ -44,9 +44,9 @@ abstract class Facade
 
     /**
      * @param mixed $name
+     * @return mixed
      * @throws InvalidArgumentException
      * @throws Exception
-     * @return mixed
      */
     protected static function resolveFacadeInstance($name)
     {
@@ -62,8 +62,8 @@ abstract class Facade
     }
 
     /**
-     * @throws RuntimeException
      * @return Client|string
+     * @throws RuntimeException
      */
     protected static function getFacadeAccessor()
     {

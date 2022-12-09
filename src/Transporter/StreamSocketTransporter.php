@@ -52,8 +52,8 @@ class StreamSocketTransporter extends AbstractTransporter
     }
 
     /**
-     * @throws Throwable
      * @return string
+     * @throws Throwable
      */
     public function recv()
     {

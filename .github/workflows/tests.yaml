@@ -9,8 +9,8 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        php-version: ['7.2', '7.3', '7.4', '8.0', '8.1']
-      max-parallel: 3
+        php-version: ['7.2', '7.3', '7.4', '8.0', '8.1', '8.2']
+      max-parallel: 6
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -22,6 +22,17 @@ jobs:
           coverage: none
       - name: Setup Packages
         run: composer update -o
+      - name: Run Cs Fixer
+        run: |
+          if [ "${{ matrix.php-version }}" == "7.2" ]; then
+            echo "Skip php-cs-fixer on PHP 7.2"
+          elif [ "${{ matrix.php-version }}" == "7.3" ]; then
+            echo "Skip php-cs-fixer on PHP 7.3"
+          elif [ "${{ matrix.php-version }}" == "8.2" ]; then
+            PHP_CS_FIXER_IGNORE_ENV=true ./vendor/bin/php-cs-fixer fix $1 --dry-run --diff --verbose --show-progress=dots
+          else
+            ./vendor/bin/php-cs-fixer fix $1 --dry-run --diff --verbose --show-progress=dots
+          fi
       - name: Run Analyse
         run: |
           composer analyse src
