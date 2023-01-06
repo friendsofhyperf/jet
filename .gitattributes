@@ -1,0 +1,9 @@
+/.vscode export-ignore
+/.fleet export-ignore
+/.idea export-ignore
+/.github export-ignore
+/tests export-ignore
+/.php-cs-fixer.php export-ignore
+/.phpstorm.meta.php export-ignore
+/phpstan.neon export-ignore
+.gitattributes export-ignore
