@@ -7,7 +7,6 @@ declare(strict_types=1);
  * @link     https://github.com/friendsofhyperf/jet
  * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
  * @contact  huangdijia@gmail.com
- * @license  https://github.com/friendsofhyperf/jet/blob/main/LICENSE
  */
 namespace FriendsOfHyperf\Jet\Transporter;
 
@@ -22,7 +21,7 @@ use Throwable;
 class StreamSocketTransporter extends AbstractTransporter
 {
     /**
-     * @var null|resource
+     * @var resource|null
      */
     protected $client;
 

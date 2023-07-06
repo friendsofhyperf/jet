@@ -7,7 +7,6 @@ declare(strict_types=1);
  * @link     https://github.com/friendsofhyperf/jet
  * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
  * @contact  huangdijia@gmail.com
- * @license  https://github.com/friendsofhyperf/jet/blob/main/LICENSE
  */
 namespace FriendsOfHyperf\Jet\Consul;
 
@@ -22,7 +21,7 @@ class Response
     private $response;
 
     /**
-     * @var null|array
+     * @var array|null
      */
     private $decoded;
 
@@ -37,7 +36,7 @@ class Response
     }
 
     /**
-     * @param null|mixed $default
+     * @param mixed|null $default
      * @return mixed
      * @throws ServerException
      */
@@ -59,7 +58,7 @@ class Response
     }
 
     /**
-     * @return null|bool|object
+     * @return bool|object|null
      */
     public function object()
     {

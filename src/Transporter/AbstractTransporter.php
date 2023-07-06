@@ -7,7 +7,6 @@ declare(strict_types=1);
  * @link     https://github.com/friendsofhyperf/jet
  * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
  * @contact  huangdijia@gmail.com
- * @license  https://github.com/friendsofhyperf/jet/blob/main/LICENSE
  */
 namespace FriendsOfHyperf\Jet\Transporter;
 
@@ -33,7 +32,7 @@ abstract class AbstractTransporter implements TransporterInterface
     protected $timeout;
 
     /**
-     * @var null|LoadBalancerInterface
+     * @var LoadBalancerInterface|null
      */
     protected $loadBalancer;
 
@@ -57,7 +56,7 @@ abstract class AbstractTransporter implements TransporterInterface
     }
 
     /**
-     * @return (string|int)[]
+     * @return (int|string)[]
      * @throws InvalidArgumentException
      */
     protected function getTarget()

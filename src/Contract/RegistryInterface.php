@@ -7,7 +7,6 @@ declare(strict_types=1);
  * @link     https://github.com/friendsofhyperf/jet
  * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
  * @contact  huangdijia@gmail.com
- * @license  https://github.com/friendsofhyperf/jet/blob/main/LICENSE
  */
 namespace FriendsOfHyperf\Jet\Contract;
 
@@ -18,7 +17,7 @@ interface RegistryInterface
     public function setLoadBalancer(?LoadBalancerInterface $loadBalancer);
 
     /**
-     * @return null|LoadBalancerInterface
+     * @return LoadBalancerInterface|null
      */
     public function getLoadBalancer();
 
