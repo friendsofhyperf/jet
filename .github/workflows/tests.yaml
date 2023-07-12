@@ -6,6 +6,9 @@ on:
   schedule:
     - cron: '0 2 * * *'
 
+env:
+  PHP_CS_FIXER_IGNORE_ENV: 1
+
 jobs:
   ci:
     name: Test on PHP ${{ matrix.php-version }}
