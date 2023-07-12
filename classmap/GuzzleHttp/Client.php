@@ -7,6 +7,7 @@ declare(strict_types=1);
  * @link     https://github.com/friendsofhyperf/jet
  * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
  * @contact  huangdijia@gmail.com
+ * @license  https://github.com/friendsofhyperf/jet/blob/main/LICENSE
  */
 namespace GuzzleHttp;
 
@@ -217,7 +218,7 @@ class Client implements ClientInterface, \Psr\Http\Client\ClientInterface
      * (if utilized by the concrete client), and a "base_uri" if utilized by
      * the concrete client.
      *
-     * @param string|null $option the config option to retrieve
+     * @param null|string $option the config option to retrieve
      *
      * @return mixed
      *

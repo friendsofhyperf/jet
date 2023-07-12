@@ -7,6 +7,7 @@ declare(strict_types=1);
  * @link     https://github.com/friendsofhyperf/jet
  * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
  * @contact  huangdijia@gmail.com
+ * @license  https://github.com/friendsofhyperf/jet/blob/main/LICENSE
  */
 namespace FriendsOfHyperf\Jet;
 
@@ -23,7 +24,7 @@ use RuntimeException;
 class Metadata
 {
     /**
-     * @var TransporterInterface|null
+     * @var null|TransporterInterface
      */
     protected $transporter;
 
@@ -33,22 +34,22 @@ class Metadata
     protected $transporterConfig = [];
 
     /**
-     * @var PackerInterface|null
+     * @var null|PackerInterface
      */
     protected $packer;
 
     /**
-     * @var DataFormatterInterface|null
+     * @var null|DataFormatterInterface
      */
     protected $dataFormatter;
 
     /**
-     * @var PathGeneratorInterface|null
+     * @var null|PathGeneratorInterface
      */
     protected $pathGenerator;
 
     /**
-     * @var RegistryInterface|null
+     * @var null|RegistryInterface
      */
     protected $registry;
 
@@ -63,7 +64,7 @@ class Metadata
     protected $name;
 
     /**
-     * @var string|null
+     * @var null|string
      */
     protected $protocol;
 
@@ -108,7 +109,7 @@ class Metadata
 
     /**
      * Get protocol.
-     * @return string|null
+     * @return null|string
      */
     public function getProtocol()
     {
@@ -230,7 +231,7 @@ class Metadata
 
     /**
      * Get registry.
-     * @return RegistryInterface|null
+     * @return null|RegistryInterface
      */
     public function getRegistry()
     {

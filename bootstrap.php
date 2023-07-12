@@ -7,6 +7,7 @@ declare(strict_types=1);
  * @link     https://github.com/friendsofhyperf/jet
  * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
  * @contact  huangdijia@gmail.com
+ * @license  https://github.com/friendsofhyperf/jet/blob/main/LICENSE
  */
 ! defined('BASE_PATH') && define('BASE_PATH', __DIR__);
 
