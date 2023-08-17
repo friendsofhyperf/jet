@@ -9,11 +9,11 @@ declare(strict_types=1);
  * @contact  huangdijia@gmail.com
  * @license  https://github.com/friendsofhyperf/jet/blob/main/LICENSE
  */
+
 namespace FriendsOfHyperf\Jet;
 
 use FriendsOfHyperf\Jet\Contract\RegistryInterface;
 use FriendsOfHyperf\Jet\Exception\JetException;
-use InvalidArgumentException;
 
 class RegistryManager
 {
@@ -36,13 +36,13 @@ class RegistryManager
     /**
      * @param string $name
      * @param RegistryInterface $registry
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @throws JetException
      */
     public static function register($name, $registry, bool $force = false)
     {
-        if (! ($registry instanceof RegistryInterface)) {
-            throw new InvalidArgumentException('$registry must be instanceof RegistryInterface');
+        if (! $registry instanceof RegistryInterface) {
+            throw new \InvalidArgumentException('$registry must be instanceof RegistryInterface');
         }
 
         if (! $force && self::isRegistered($name)) {

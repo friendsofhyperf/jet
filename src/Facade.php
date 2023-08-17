@@ -9,11 +9,8 @@ declare(strict_types=1);
  * @contact  huangdijia@gmail.com
  * @license  https://github.com/friendsofhyperf/jet/blob/main/LICENSE
  */
-namespace FriendsOfHyperf\Jet;
 
-use Exception;
-use InvalidArgumentException;
-use RuntimeException;
+namespace FriendsOfHyperf\Jet;
 
 abstract class Facade
 {
@@ -34,8 +31,8 @@ abstract class Facade
     }
 
     /**
-     * @throws RuntimeException
      * @return Client
+     * @throws \RuntimeException
      */
     protected static function getFacadeRoot()
     {
@@ -44,9 +41,9 @@ abstract class Facade
 
     /**
      * @param mixed $name
-     * @throws InvalidArgumentException
-     * @throws Exception
      * @return mixed
+     * @throws \InvalidArgumentException
+     * @throws \Exception
      */
     protected static function resolveFacadeInstance($name)
     {
@@ -62,11 +59,11 @@ abstract class Facade
     }
 
     /**
-     * @throws RuntimeException
      * @return Client|string
+     * @throws \RuntimeException
      */
     protected static function getFacadeAccessor()
     {
-        throw new RuntimeException('Facade does not implement getFacadeAccessor method.');
+        throw new \RuntimeException('Facade does not implement getFacadeAccessor method.');
     }
 }

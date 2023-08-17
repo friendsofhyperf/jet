@@ -9,6 +9,7 @@ declare(strict_types=1);
  * @contact  huangdijia@gmail.com
  * @license  https://github.com/friendsofhyperf/jet/blob/main/LICENSE
  */
+
 namespace FriendsOfHyperf\Jet\Consul;
 
 use FriendsOfHyperf\Jet\Exception\ClientException;
@@ -18,10 +19,10 @@ use GuzzleHttp\Exception\GuzzleException;
 class Catalog extends Client
 {
     /**
+     * @return Response
      * @throws ServerException
      * @throws ClientException
      * @throws GuzzleException
-     * @return Response
      */
     public function services(array $options = [])
     {

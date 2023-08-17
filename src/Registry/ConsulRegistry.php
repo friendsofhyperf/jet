@@ -9,6 +9,7 @@ declare(strict_types=1);
  * @contact  huangdijia@gmail.com
  * @license  https://github.com/friendsofhyperf/jet/blob/main/LICENSE
  */
+
 namespace FriendsOfHyperf\Jet\Registry;
 
 use FriendsOfHyperf\Jet\Consul\Catalog;
@@ -21,7 +22,6 @@ use FriendsOfHyperf\Jet\Transporter\GrpcTransporter;
 use FriendsOfHyperf\Jet\Transporter\GuzzleHttpTransporter;
 use FriendsOfHyperf\Jet\Transporter\StreamSocketTransporter;
 use GuzzleHttp\Client;
-use RuntimeException;
 
 class ConsulRegistry implements RegistryInterface
 {
@@ -147,7 +147,7 @@ class ConsulRegistry implements RegistryInterface
         $nodes = $this->getServiceNodes($service, $protocol);
 
         if (count($nodes) <= 0) {
-            throw new RuntimeException('Service nodes not found!');
+            throw new \RuntimeException('Service nodes not found!');
         }
 
         $serviceBalancer = new RoundRobin($nodes);

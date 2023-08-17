@@ -9,11 +9,11 @@ declare(strict_types=1);
  * @contact  huangdijia@gmail.com
  * @license  https://github.com/friendsofhyperf/jet/blob/main/LICENSE
  */
+
 namespace FriendsOfHyperf\Jet\Transporter;
 
 use FriendsOfHyperf\Jet\Contract\LoadBalancerInterface;
 use FriendsOfHyperf\Jet\Contract\TransporterInterface;
-use InvalidArgumentException;
 
 abstract class AbstractTransporter implements TransporterInterface
 {
@@ -57,8 +57,8 @@ abstract class AbstractTransporter implements TransporterInterface
     }
 
     /**
-     * @throws InvalidArgumentException
-     * @return (string|int)[]
+     * @return (int|string)[]
+     * @throws \InvalidArgumentException
      */
     protected function getTarget()
     {
@@ -69,7 +69,7 @@ abstract class AbstractTransporter implements TransporterInterface
         }
 
         if (! $node->host || ! $node->port) {
-            throw new InvalidArgumentException(sprintf('Invalid host %s or port %s.', $node->host, $node->port));
+            throw new \InvalidArgumentException(sprintf('Invalid host %s or port %s.', $node->host, $node->port));
         }
 
         return [$node->host, $node->port];

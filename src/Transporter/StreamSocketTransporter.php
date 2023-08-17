@@ -9,15 +9,12 @@ declare(strict_types=1);
  * @contact  huangdijia@gmail.com
  * @license  https://github.com/friendsofhyperf/jet/blob/main/LICENSE
  */
+
 namespace FriendsOfHyperf\Jet\Transporter;
 
-use Exception;
 use FriendsOfHyperf\Jet\Exception\ConnectionException;
 use FriendsOfHyperf\Jet\Exception\ExceptionThrower;
 use FriendsOfHyperf\Jet\Exception\RecvFailedException;
-use InvalidArgumentException;
-use RuntimeException;
-use Throwable;
 
 class StreamSocketTransporter extends AbstractTransporter
 {
@@ -42,8 +39,8 @@ class StreamSocketTransporter extends AbstractTransporter
     }
 
     /**
-     * @throws InvalidArgumentException
-     * @throws RuntimeException
+     * @throws \InvalidArgumentException
+     * @throws \RuntimeException
      */
     public function send(string $data)
     {
@@ -52,14 +49,14 @@ class StreamSocketTransporter extends AbstractTransporter
     }
 
     /**
-     * @throws Throwable
      * @return string
+     * @throws \Throwable
      */
     public function recv()
     {
         try {
             return $this->receive();
-        } catch (Throwable $e) {
+        } catch (\Throwable $e) {
             $this->close();
             throw $e;
         }
@@ -110,8 +107,8 @@ class StreamSocketTransporter extends AbstractTransporter
     }
 
     /**
-     * @throws InvalidArgumentException
-     * @throws Exception
+     * @throws \InvalidArgumentException
+     * @throws \Exception
      */
     protected function connect()
     {

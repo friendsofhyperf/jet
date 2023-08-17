@@ -9,13 +9,13 @@ declare(strict_types=1);
  * @contact  huangdijia@gmail.com
  * @license  https://github.com/friendsofhyperf/jet/blob/main/LICENSE
  */
+
 namespace FriendsOfHyperf\Jet\Transporter;
 
 use FriendsOfHyperf\Jet\ClientFactory;
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\RequestOptions;
-use RuntimeException;
 
 class GuzzleHttpTransporter extends AbstractTransporter
 {
@@ -59,8 +59,8 @@ class GuzzleHttpTransporter extends AbstractTransporter
     }
 
     /**
-     * @throws RuntimeException
      * @return Client
+     * @throws \RuntimeException
      */
     protected function getClient()
     {

@@ -9,12 +9,12 @@ declare(strict_types=1);
  * @contact  huangdijia@gmail.com
  * @license  https://github.com/friendsofhyperf/jet/blob/main/LICENSE
  */
+
 namespace FriendsOfHyperf\Jet;
 
 use FriendsOfHyperf\Jet\Exception\RecvFailedException;
 use FriendsOfHyperf\Jet\Exception\ServerException;
 use FriendsOfHyperf\Jet\Transporter\GrpcTransporter;
-use Throwable;
 
 class Client
 {
@@ -36,8 +36,8 @@ class Client
     /**
      * @param string $name
      * @param array $arguments
-     * @throws Throwable
      * @return mixed
+     * @throws \Throwable
      */
     public function __call($name, $arguments)
     {

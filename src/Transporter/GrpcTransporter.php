@@ -9,9 +9,9 @@ declare(strict_types=1);
  * @contact  huangdijia@gmail.com
  * @license  https://github.com/friendsofhyperf/jet/blob/main/LICENSE
  */
+
 namespace FriendsOfHyperf\Jet\Transporter;
 
-use Closure;
 use FriendsOfHyperf\Jet\Contract\PackerInterface;
 use FriendsOfHyperf\Jet\Packer\GrpcPacker;
 use Grpc\BaseStub;
@@ -19,7 +19,7 @@ use Grpc\BaseStub;
 class GrpcTransporter extends AbstractTransporter
 {
     /**
-     * @var Closure
+     * @var \Closure
      */
     protected $clientFactory;
 
