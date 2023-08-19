@@ -16,7 +16,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        php-version: ['7.2', '7.3', '7.4', '8.0', '8.1', '8.2']
+        php-version: ['8.0', '8.1', '8.2']
       max-parallel: 6
     steps:
       - name: Checkout
@@ -30,17 +30,9 @@ jobs:
       - name: Setup Packages
         run: composer update -o
       - name: Run Cs Fixer
-        run: |
-          if [ "${{ matrix.php-version }}" == "7.2" ]; then
-            echo "Skip php-cs-fixer on PHP 7.2"
-          elif [ "${{ matrix.php-version }}" == "7.3" ]; then
-            echo "Skip php-cs-fixer on PHP 7.3"
-          else
-            ./vendor/bin/php-cs-fixer fix $1 --dry-run --diff --verbose --show-progress=dots
-          fi
+        run: ./vendor/bin/php-cs-fixer fix $1 --dry-run --diff --verbose --show-progress=dots
       - name: Run Analyse
-        run: |
-          composer analyse src
+        run: composer analyse src
       # - name: Setup Services
       #   run: |
       #     docker run -d --name jsonrpc -p 9501:9501 -p 9502:9502 -p 9503:9503 -p 9504:9504 limingxinleo/hyperf-jsonrpc-demo:latest
