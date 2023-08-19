@@ -5,10 +5,10 @@ declare(strict_types=1);
  * This file is part of jet.
  *
  * @link     https://github.com/friendsofhyperf/jet
- * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
- * @contact  huangdijia@gmail.com
- * @license  https://github.com/friendsofhyperf/jet/blob/main/LICENSE
+ * @document https://github.com/friendsofhyperf/jet/3.x/main/README.md
+ * @contact  Huangdijia@gmail.com
  */
+
 namespace FriendsOfHyperf\Jet\Transporter;
 
 use Exception;
@@ -22,7 +22,7 @@ use Throwable;
 class StreamSocketTransporter extends AbstractTransporter
 {
     /**
-     * @var null|resource
+     * @var resource|null
      */
     protected $client;
 

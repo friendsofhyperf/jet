@@ -5,10 +5,10 @@ declare(strict_types=1);
  * This file is part of jet.
  *
  * @link     https://github.com/friendsofhyperf/jet
- * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
- * @contact  huangdijia@gmail.com
- * @license  https://github.com/friendsofhyperf/jet/blob/main/LICENSE
+ * @document https://github.com/friendsofhyperf/jet/3.x/main/README.md
+ * @contact  Huangdijia@gmail.com
  */
+
 namespace GuzzleHttp;
 
 use Exception;
@@ -218,7 +218,7 @@ class Client implements ClientInterface, \Psr\Http\Client\ClientInterface
      * (if utilized by the concrete client), and a "base_uri" if utilized by
      * the concrete client.
      *
-     * @param null|string $option the config option to retrieve
+     * @param string|null $option the config option to retrieve
      *
      * @return mixed
      *

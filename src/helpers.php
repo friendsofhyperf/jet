@@ -5,9 +5,8 @@ declare(strict_types=1);
  * This file is part of jet.
  *
  * @link     https://github.com/friendsofhyperf/jet
- * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
- * @contact  huangdijia@gmail.com
- * @license  https://github.com/friendsofhyperf/jet/blob/main/LICENSE
+ * @document https://github.com/friendsofhyperf/jet/3.x/main/README.md
+ * @contact  Huangdijia@gmail.com
  */
 if (! function_exists('retry')) {
     /**
@@ -219,7 +218,7 @@ if (! function_exists('array_get')) {
      * Get an item from an array using "dot" notation.
      *
      * @param array|\ArrayAccess $array
-     * @param null|int|string $key
+     * @param int|string|null $key
      * @param mixed $default
      */
     function array_get($array, $key = null, $default = null)
@@ -253,7 +252,7 @@ if (! function_exists('array_has')) {
      * Check if an item or items exist in an array using "dot" notation.
      *
      * @param array|\ArrayAccess $array
-     * @param null|array|string $keys
+     * @param array|string|null $keys
      */
     function array_has($array, $keys)
     {
