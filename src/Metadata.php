@@ -2,12 +2,11 @@
 
 declare(strict_types=1);
 /**
- * This file is part of jet.
+ * This file is part of friendsofhyperf/jet.
  *
  * @link     https://github.com/friendsofhyperf/jet
- * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
+ * @document https://github.com/friendsofhyperf/jet/blob/4.x/README.md
  * @contact  huangdijia@gmail.com
- * @license  https://github.com/friendsofhyperf/jet/blob/main/LICENSE
  */
 
 namespace FriendsOfHyperf\Jet;
@@ -20,11 +19,12 @@ use FriendsOfHyperf\Jet\Contract\TransporterInterface;
 use FriendsOfHyperf\Jet\DataFormatter\DataFormatter;
 use FriendsOfHyperf\Jet\Packer\JsonEofPacker;
 use FriendsOfHyperf\Jet\PathGenerator\PathGenerator;
+use RuntimeException;
 
 class Metadata
 {
     /**
-     * @var null|TransporterInterface
+     * @var TransporterInterface|null
      */
     protected $transporter;
 
@@ -34,22 +34,22 @@ class Metadata
     protected $transporterConfig = [];
 
     /**
-     * @var null|PackerInterface
+     * @var PackerInterface|null
      */
     protected $packer;
 
     /**
-     * @var null|DataFormatterInterface
+     * @var DataFormatterInterface|null
      */
     protected $dataFormatter;
 
     /**
-     * @var null|PathGeneratorInterface
+     * @var PathGeneratorInterface|null
      */
     protected $pathGenerator;
 
     /**
-     * @var null|RegistryInterface
+     * @var RegistryInterface|null
      */
     protected $registry;
 
@@ -64,7 +64,7 @@ class Metadata
     protected $name;
 
     /**
-     * @var null|string
+     * @var string|null
      */
     protected $protocol;
 
@@ -109,7 +109,7 @@ class Metadata
 
     /**
      * Get protocol.
-     * @return null|string
+     * @return string|null
      */
     public function getProtocol()
     {
@@ -147,7 +147,7 @@ class Metadata
             );
         }
 
-        throw new \RuntimeException('Transporter not registered yet.');
+        throw new RuntimeException('Transporter not registered yet.');
     }
 
     /**
@@ -231,7 +231,7 @@ class Metadata
 
     /**
      * Get registry.
-     * @return null|RegistryInterface
+     * @return RegistryInterface|null
      */
     public function getRegistry()
     {

@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 /**
- * This file is part of jet.
+ * This file is part of friendsofhyperf/jet.
  *
  * @link     https://github.com/friendsofhyperf/jet
- * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
+ * @document https://github.com/friendsofhyperf/jet/blob/4.x/README.md
  * @contact  huangdijia@gmail.com
- * @license  https://github.com/friendsofhyperf/jet/blob/main/LICENSE
  */
 
 namespace FriendsOfHyperf\Jet\Transporter;
 
 use FriendsOfHyperf\Jet\Contract\LoadBalancerInterface;
 use FriendsOfHyperf\Jet\Contract\TransporterInterface;
+use InvalidArgumentException;
 
 abstract class AbstractTransporter implements TransporterInterface
 {
@@ -33,7 +33,7 @@ abstract class AbstractTransporter implements TransporterInterface
     protected $timeout;
 
     /**
-     * @var null|LoadBalancerInterface
+     * @var LoadBalancerInterface|null
      */
     protected $loadBalancer;
 
@@ -58,7 +58,7 @@ abstract class AbstractTransporter implements TransporterInterface
 
     /**
      * @return (int|string)[]
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     protected function getTarget()
     {
@@ -69,7 +69,7 @@ abstract class AbstractTransporter implements TransporterInterface
         }
 
         if (! $node->host || ! $node->port) {
-            throw new \InvalidArgumentException(sprintf('Invalid host %s or port %s.', $node->host, $node->port));
+            throw new InvalidArgumentException(sprintf('Invalid host %s or port %s.', $node->host, $node->port));
         }
 
         return [$node->host, $node->port];

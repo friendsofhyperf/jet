@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 /**
- * This file is part of jet.
+ * This file is part of friendsofhyperf/jet.
  *
  * @link     https://github.com/friendsofhyperf/jet
- * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
+ * @document https://github.com/friendsofhyperf/jet/blob/4.x/README.md
  * @contact  huangdijia@gmail.com
- * @license  https://github.com/friendsofhyperf/jet/blob/main/LICENSE
  */
 
 namespace FriendsOfHyperf\Jet\Consul;
 
+use Closure;
 use FriendsOfHyperf\Jet\Exception\ClientException;
 use FriendsOfHyperf\Jet\Exception\ServerException;
 use GuzzleHttp\ClientInterface;
@@ -27,11 +27,11 @@ class Client
      * and the closure should return a GuzzleHttp\ClientInterface instance.
      * $clientFactory(array $options).
      *
-     * @var \Closure
+     * @var Closure
      */
     private $clientFactory;
 
-    public function __construct(\Closure $clientFactory)
+    public function __construct(Closure $clientFactory)
     {
         $this->clientFactory = $clientFactory;
     }

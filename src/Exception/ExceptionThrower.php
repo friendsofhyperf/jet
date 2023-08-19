@@ -2,29 +2,30 @@
 
 declare(strict_types=1);
 /**
- * This file is part of jet.
+ * This file is part of friendsofhyperf/jet.
  *
  * @link     https://github.com/friendsofhyperf/jet
- * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
+ * @document https://github.com/friendsofhyperf/jet/blob/4.x/README.md
  * @contact  huangdijia@gmail.com
- * @license  https://github.com/friendsofhyperf/jet/blob/main/LICENSE
  */
 
 namespace FriendsOfHyperf\Jet\Exception;
 
+use Throwable;
+
 final class ExceptionThrower
 {
     /**
-     * @var \Throwable
+     * @var Throwable
      */
     private $throwable;
 
-    public function __construct(\Throwable $throwable)
+    public function __construct(Throwable $throwable)
     {
         $this->throwable = $throwable;
     }
 
-    public function getThrowable(): \Throwable
+    public function getThrowable(): Throwable
     {
         return $this->throwable;
     }

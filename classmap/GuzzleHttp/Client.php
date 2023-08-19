@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 /**
- * This file is part of jet.
+ * This file is part of friendsofhyperf/jet.
  *
  * @link     https://github.com/friendsofhyperf/jet
- * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
+ * @document https://github.com/friendsofhyperf/jet/blob/4.x/README.md
  * @contact  huangdijia@gmail.com
- * @license  https://github.com/friendsofhyperf/jet/blob/main/LICENSE
  */
 
 namespace GuzzleHttp;
 
+use Exception;
 use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\InvalidArgumentException;
@@ -22,6 +22,14 @@ use Hyperf\Utils\Coroutine;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\UriInterface;
+
+use const CURLAUTH_DIGEST;
+use const CURLAUTH_NTLM;
+use const CURLOPT_HTTPAUTH;
+use const CURLOPT_USERPWD;
+use const IDNA_DEFAULT;
+use const PHP_QUERY_RFC3986;
+use const PHP_SAPI;
 
 /**
  * @final
@@ -210,7 +218,7 @@ class Client implements ClientInterface, \Psr\Http\Client\ClientInterface
      * (if utilized by the concrete client), and a "base_uri" if utilized by
      * the concrete client.
      *
-     * @param null|string $option the config option to retrieve
+     * @param string|null $option the config option to retrieve
      *
      * @return mixed
      *
@@ -230,7 +238,7 @@ class Client implements ClientInterface, \Psr\Http\Client\ClientInterface
         }
 
         if (isset($config['idn_conversion']) && ($config['idn_conversion'] !== false)) {
-            $idnOptions = ($config['idn_conversion'] === true) ? \IDNA_DEFAULT : $config['idn_conversion'];
+            $idnOptions = ($config['idn_conversion'] === true) ? IDNA_DEFAULT : $config['idn_conversion'];
             $uri = Utils::idnUriConvert($uri, $idnOptions);
         }
 
@@ -256,7 +264,7 @@ class Client implements ClientInterface, \Psr\Http\Client\ClientInterface
         // We can only trust the HTTP_PROXY environment variable in a CLI
         // process due to the fact that PHP has no reliable mechanism to
         // get environment variables that start with "HTTP_".
-        if (\PHP_SAPI === 'cli' && ($proxy = Utils::getenv('HTTP_PROXY'))) {
+        if (PHP_SAPI === 'cli' && ($proxy = Utils::getenv('HTTP_PROXY'))) {
             $defaults['proxy']['http'] = $proxy;
         }
 
@@ -345,7 +353,7 @@ class Client implements ClientInterface, \Psr\Http\Client\ClientInterface
 
         try {
             return P\Create::promiseFor($handler($request, $options));
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return P\Create::rejectionFor($e);
         }
     }
@@ -420,12 +428,12 @@ class Client implements ClientInterface, \Psr\Http\Client\ClientInterface
                     break;
                 case 'digest':
                     // @todo: Do not rely on curl
-                    $options['curl'][\CURLOPT_HTTPAUTH] = \CURLAUTH_DIGEST;
-                    $options['curl'][\CURLOPT_USERPWD] = "{$value[0]}:{$value[1]}";
+                    $options['curl'][CURLOPT_HTTPAUTH] = CURLAUTH_DIGEST;
+                    $options['curl'][CURLOPT_USERPWD] = "{$value[0]}:{$value[1]}";
                     break;
                 case 'ntlm':
-                    $options['curl'][\CURLOPT_HTTPAUTH] = \CURLAUTH_NTLM;
-                    $options['curl'][\CURLOPT_USERPWD] = "{$value[0]}:{$value[1]}";
+                    $options['curl'][CURLOPT_HTTPAUTH] = CURLAUTH_NTLM;
+                    $options['curl'][CURLOPT_USERPWD] = "{$value[0]}:{$value[1]}";
                     break;
             }
         }
@@ -433,7 +441,7 @@ class Client implements ClientInterface, \Psr\Http\Client\ClientInterface
         if (isset($options['query'])) {
             $value = $options['query'];
             if (\is_array($value)) {
-                $value = \http_build_query($value, '', '&', \PHP_QUERY_RFC3986);
+                $value = \http_build_query($value, '', '&', PHP_QUERY_RFC3986);
             }
             if (! \is_string($value)) {
                 throw new InvalidArgumentException('query must be a string or array');

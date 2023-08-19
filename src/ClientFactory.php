@@ -2,17 +2,19 @@
 
 declare(strict_types=1);
 /**
- * This file is part of jet.
+ * This file is part of friendsofhyperf/jet.
  *
  * @link     https://github.com/friendsofhyperf/jet
- * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
+ * @document https://github.com/friendsofhyperf/jet/blob/4.x/README.md
  * @contact  huangdijia@gmail.com
- * @license  https://github.com/friendsofhyperf/jet/blob/main/LICENSE
  */
 
 namespace FriendsOfHyperf\Jet;
 
+use Closure;
+use Exception;
 use GuzzleHttp\ClientInterface;
+use InvalidArgumentException;
 
 class ClientFactory
 {
@@ -46,9 +48,9 @@ class ClientFactory
 
     /**
      * Create a client.
-     * @param \Closure|Metadata|string $service
-     * @throws \InvalidArgumentException
-     * @throws \Exception
+     * @param Closure|Metadata|string $service
+     * @throws InvalidArgumentException
+     * @throws Exception
      */
     public static function create($service): Client
     {
@@ -61,13 +63,13 @@ class ClientFactory
             return new Client($metadata);
         }
 
-        if ($service instanceof \Closure) {
+        if ($service instanceof Closure) {
             $metadata = $service();
             if ($metadata instanceof Metadata) {
                 return new Client($metadata);
             }
         }
 
-        throw new \InvalidArgumentException('$service must been instanced of string/Closure/Metadata');
+        throw new InvalidArgumentException('$service must been instanced of string/Closure/Metadata');
     }
 }

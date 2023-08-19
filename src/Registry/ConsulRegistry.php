@@ -2,12 +2,11 @@
 
 declare(strict_types=1);
 /**
- * This file is part of jet.
+ * This file is part of friendsofhyperf/jet.
  *
  * @link     https://github.com/friendsofhyperf/jet
- * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
+ * @document https://github.com/friendsofhyperf/jet/blob/4.x/README.md
  * @contact  huangdijia@gmail.com
- * @license  https://github.com/friendsofhyperf/jet/blob/main/LICENSE
  */
 
 namespace FriendsOfHyperf\Jet\Registry;
@@ -22,6 +21,7 @@ use FriendsOfHyperf\Jet\Transporter\GrpcTransporter;
 use FriendsOfHyperf\Jet\Transporter\GuzzleHttpTransporter;
 use FriendsOfHyperf\Jet\Transporter\StreamSocketTransporter;
 use GuzzleHttp\Client;
+use RuntimeException;
 
 class ConsulRegistry implements RegistryInterface
 {
@@ -31,7 +31,7 @@ class ConsulRegistry implements RegistryInterface
     protected $options;
 
     /**
-     * @var null|LoadBalancerInterface
+     * @var LoadBalancerInterface|null
      */
     protected $loadBalancer;
 
@@ -147,7 +147,7 @@ class ConsulRegistry implements RegistryInterface
         $nodes = $this->getServiceNodes($service, $protocol);
 
         if (count($nodes) <= 0) {
-            throw new \RuntimeException('Service nodes not found!');
+            throw new RuntimeException('Service nodes not found!');
         }
 
         $serviceBalancer = new RoundRobin($nodes);

@@ -2,15 +2,16 @@
 
 declare(strict_types=1);
 /**
- * This file is part of jet.
+ * This file is part of friendsofhyperf/jet.
  *
  * @link     https://github.com/friendsofhyperf/jet
- * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
+ * @document https://github.com/friendsofhyperf/jet/blob/4.x/README.md
  * @contact  huangdijia@gmail.com
- * @license  https://github.com/friendsofhyperf/jet/blob/main/LICENSE
  */
 
 namespace FriendsOfHyperf\Jet\Exception;
+
+use Throwable;
 
 class ServerException extends JetException
 {
@@ -19,7 +20,7 @@ class ServerException extends JetException
      */
     protected $error;
 
-    public function __construct(array $error = [], \Throwable $previous = null)
+    public function __construct(array $error = [], Throwable $previous = null)
     {
         $code = $error['code'] ?? 0;
         $message = $error['message'] ?? 'Server Error';
