@@ -33,7 +33,7 @@ class WeightedRoundRobin extends AbstractLoadBalancer
         while (true) {
             $this->lastNode = ($this->lastNode + 1) % $count;
             if ($this->lastNode === 0) {
-                $this->currentWeight = $this->currentWeight - $this->gcd($this->nodes);
+                $this->currentWeight -= $this->gcd($this->nodes);
                 if ($this->currentWeight <= 0) {
                     $this->currentWeight = $maxWeight;
                     if ($this->currentWeight == 0) {
