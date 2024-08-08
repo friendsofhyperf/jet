@@ -38,6 +38,11 @@
     "suggest": {
         "swoole": ">=4.6.0"
     },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "4.0-dev"
+        }
+    },
     "scripts": {
         "test": "phpunit -c phpunit.xml --colors=always",
         "analyse": "phpstan analyse --memory-limit 1024M -l 5 ",
