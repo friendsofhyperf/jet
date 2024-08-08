@@ -20,7 +20,7 @@ class ServerException extends JetException
      */
     protected $error;
 
-    public function __construct(array $error = [], Throwable $previous = null)
+    public function __construct(array $error = [], ?Throwable $previous = null)
     {
         $code = $error['code'] ?? 0;
         $message = $error['message'] ?? 'Server Error';
