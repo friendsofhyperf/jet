@@ -14,7 +14,7 @@ if (! function_exists('retry')) {
      * @return mixed
      * @throws Throwable
      */
-    function retry(int $times, callable $callback, int $sleep = 0, callable $when = null)
+    function retry(int $times, callable $callback, int $sleep = 0, ?callable $when = null)
     {
         $attempts = 0;
 
@@ -92,7 +92,7 @@ if (! function_exists('with')) {
      * @param mixed $value
      * @return mixed
      */
-    function with($value, callable $callback = null)
+    function with($value, ?callable $callback = null)
     {
         return is_null($callback) ? $value : $callback($value);
     }

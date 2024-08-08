@@ -41,7 +41,7 @@ class Response
      * @return mixed
      * @throws ServerException
      */
-    public function json(string $key = null, $default = null)
+    public function json(?string $key = null, $default = null)
     {
         if (is_null($this->decoded)) {
             if ($this->response->getHeaderLine('Content-Type') !== 'application/json') {
