@@ -26,7 +26,7 @@ composer require "friendsofhyperf/jet:^1.0"
 ### Register with metadata
 
 ~~~php
-$metadata = new JetMetadata();
+$metadata = new JetMetadata('Name');
 $metadata->setTransporter(new JetCurlHttpTransporter('127.0.0.1', 9502));
 $metadata->setRegistry(new JetConsulRegistry(array('uri' => 'http://127.0.0.1:8500')));
 
@@ -56,9 +56,9 @@ var_dump($client->add(1, 20));
  */
 class CalculatorService extends JetClient
 {
-    public function __construct($service = 'CalculatorService', $transporter = null, $packer = null, $dataFormatter = null, $pathGenerator = null, $tries = null)
+    public function __construct()
     {
-        $metadata = new JetMetadata();
+        $metadata = new JetMetadata('CalculatorService');
         $metadata->setTransporter(new JetCurlHttpTransporter('127.0.0.1', 9502));
         $metadata->setRegistry(new JetConsulRegistry(array('uri' => 'http://127.0.0.1:8500')));
 
