@@ -9,6 +9,7 @@ declare(strict_types=1);
  * @contact  huangdijia@gmail.com
  * @license  https://github.com/friendsofhyperf/jet/blob/main/LICENSE
  */
+
 namespace FriendsOfHyperf\Jet\LoadBalancer;
 
 use FriendsOfHyperf\Jet\Exception\NoNodesAvailableException;

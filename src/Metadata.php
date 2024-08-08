@@ -9,6 +9,7 @@ declare(strict_types=1);
  * @contact  huangdijia@gmail.com
  * @license  https://github.com/friendsofhyperf/jet/blob/main/LICENSE
  */
+
 namespace FriendsOfHyperf\Jet;
 
 use FriendsOfHyperf\Jet\Contract\DataFormatterInterface;
@@ -19,7 +20,6 @@ use FriendsOfHyperf\Jet\Contract\TransporterInterface;
 use FriendsOfHyperf\Jet\DataFormatter\DataFormatter;
 use FriendsOfHyperf\Jet\Packer\JsonEofPacker;
 use FriendsOfHyperf\Jet\PathGenerator\PathGenerator;
-use RuntimeException;
 
 class Metadata
 {
@@ -121,7 +121,7 @@ class Metadata
             return $this->registry->getTransporter($this->name, $this->protocol, $this->timeout);
         }
 
-        throw new RuntimeException('Transporter not registered yet.');
+        throw new \RuntimeException('Transporter not registered yet.');
     }
 
     /**

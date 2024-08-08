@@ -9,6 +9,7 @@ declare(strict_types=1);
  * @contact  huangdijia@gmail.com
  * @license  https://github.com/friendsofhyperf/jet/blob/main/LICENSE
  */
+
 namespace GuzzleHttp;
 
 use GuzzleHttp\Cookie\CookieJar;
@@ -63,7 +64,7 @@ class Client implements ClientInterface, \Psr\Http\Client\ClientInterface
      *
      * @param array $config client configuration settings
      *
-     * @see \GuzzleHttp\RequestOptions for a list of available request options.
+     * @see RequestOptions for a list of available request options.
      */
     public function __construct(array $config = [])
     {

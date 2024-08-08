@@ -9,9 +9,8 @@ declare(strict_types=1);
  * @contact  huangdijia@gmail.com
  * @license  https://github.com/friendsofhyperf/jet/blob/main/LICENSE
  */
-namespace FriendsOfHyperf\Jet;
 
-use InvalidArgumentException;
+namespace FriendsOfHyperf\Jet;
 
 class ServiceManager
 {
@@ -37,7 +36,7 @@ class ServiceManager
     }
 
     /**
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public static function register(string $service, Metadata $metadata)
     {

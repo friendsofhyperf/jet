@@ -9,15 +9,14 @@ declare(strict_types=1);
  * @contact  huangdijia@gmail.com
  * @license  https://github.com/friendsofhyperf/jet/blob/main/LICENSE
  */
+
 namespace FriendsOfHyperf\Jet;
 
-use Exception;
 use FriendsOfHyperf\Jet\Contract\DataFormatterInterface;
 use FriendsOfHyperf\Jet\Contract\PackerInterface;
 use FriendsOfHyperf\Jet\Contract\PathGeneratorInterface;
 use FriendsOfHyperf\Jet\Contract\TransporterInterface;
 use GuzzleHttp\ClientInterface;
-use InvalidArgumentException;
 
 class ClientFactory
 {
@@ -52,8 +51,8 @@ class ClientFactory
     /**
      * Create a client.
      * @param null|int|string|TransporterInterface $transporter transporter, protocol, timeout or null
-     * @throws InvalidArgumentException
-     * @throws Exception
+     * @throws \InvalidArgumentException
+     * @throws \Exception
      */
     public static function create(string $service, $transporter = null, ?PackerInterface $packer = null, ?DataFormatterInterface $dataFormatter = null, ?PathGeneratorInterface $pathGenerator = null, ?int $tries = null): Client
     {

@@ -12,10 +12,10 @@ declare(strict_types=1);
 if (! function_exists('retry')) {
     /**
      * Retry.
-     * @throws Throwable
      * @return mixed
+     * @throws Throwable
      */
-    function retry(int $times, callable $callback, int $sleep = 0, callable $when = null)
+    function retry(int $times, callable $callback, int $sleep = 0, ?callable $when = null)
     {
         $attempts = 0;
 
@@ -42,15 +42,15 @@ if (! function_exists('retry')) {
 if (! function_exists('throw_if')) {
     /**
      * @param mixed $condition
-     * @param string|\Throwable $exception
+     * @param string|Throwable $exception
+     * @return mixed
      * @throws InvalidArgumentException
      * @throws Exception
-     * @return mixed
      */
     function throw_if($condition, $exception, ...$parameters)
     {
         if ($condition) {
-            throw (is_string($exception) ? new $exception(...$parameters) : $exception);
+            throw is_string($exception) ? new $exception(...$parameters) : $exception;
         }
 
         return $condition;
@@ -93,7 +93,7 @@ if (! function_exists('with')) {
      * @param mixed $value
      * @return mixed
      */
-    function with($value, callable $callback = null)
+    function with($value, ?callable $callback = null)
     {
         return is_null($callback) ? $value : $callback($value);
     }
@@ -186,7 +186,7 @@ if (! function_exists('array_get')) {
     /**
      * Get an item from an array using "dot" notation.
      *
-     * @param array|\ArrayAccess $array
+     * @param array|ArrayAccess $array
      * @param null|int|string $key
      * @param mixed $default
      */
@@ -220,7 +220,7 @@ if (! function_exists('array_has')) {
     /**
      * Check if an item or items exist in an array using "dot" notation.
      *
-     * @param array|\ArrayAccess $array
+     * @param array|ArrayAccess $array
      * @param null|array|string $keys
      */
     function array_has($array, $keys)
