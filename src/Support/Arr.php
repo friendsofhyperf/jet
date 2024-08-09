@@ -12,6 +12,7 @@ class Arr
      * @param array|\ArrayAccess $array
      * @param null|int|string $key
      * @param mixed $default
+     * @return mixed
      */
     public static function get($array, $key = null, $default = null)
     {
@@ -43,6 +44,7 @@ class Arr
      *
      * @param array|\ArrayAccess $array
      * @param null|array|string $keys
+     * @return bool
      */
     public static function has($array, $keys)
     {
