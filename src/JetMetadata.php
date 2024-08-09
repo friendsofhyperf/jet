@@ -1,5 +1,16 @@
 <?php
 
+namespace Jet;
+
+use Jet\Contract\JetDataFormatterInterface;
+use Jet\Contract\JetPackerInterface;
+use Jet\Contract\JetPathGeneratorInterface;
+use Jet\Contract\JetRegistryInterface;
+use Jet\Contract\JetTransporterInterface;
+use Jet\DataFormatter\JetDataFormatter;
+use Jet\Packer\JetJsonEofPacker;
+use Jet\PathGenerator\JetPathGenerator;
+
 class JetMetadata
 {
     /**
@@ -88,7 +99,7 @@ class JetMetadata
      * Set transporter.
      * @param JetTransporterInterface $transporter
      * @return $this
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function setTransporter($transporter)
     {
@@ -113,14 +124,14 @@ class JetMetadata
             return $this->registry->getTransporter($this->name, $this->protocol, $this->timeout);
         }
 
-        throw new RuntimeException('Transporter not registered yet.');
+        throw new \RuntimeException('Transporter not registered yet.');
     }
 
     /**
      * Set packer.
      * @param JetPackerInterface $packer
      * @return $this
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function setPacker($packer)
     {
@@ -148,7 +159,7 @@ class JetMetadata
      * Set data formatter.
      * @param JetDataFormatterInterface $dataFormatter
      * @return $this
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function setDataFormatter($dataFormatter)
     {
@@ -176,7 +187,7 @@ class JetMetadata
      * Set path generator.
      * @param JetPathGeneratorInterface $pathGenerator
      * @return $this
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function setPathGenerator($pathGenerator)
     {
@@ -204,7 +215,7 @@ class JetMetadata
      * Set registry.
      * @param JetRegistryInterface $registry
      * @return $this
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function setRegistry($registry)
     {
@@ -228,7 +239,7 @@ class JetMetadata
      * Set tries.
      * @param int $tries
      * @return $this
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function setTries($tries)
     {
@@ -254,7 +265,7 @@ class JetMetadata
      * Set timeout.
      * @param int $timeout
      * @return $this
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function setTimeout($timeout)
     {

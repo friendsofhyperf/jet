@@ -1,5 +1,9 @@
 <?php
 
+namespace Jet\PathGenerator;
+
+use Jet\Contract\JetPathGeneratorInterface;
+
 class JetFullPathGenerator implements JetPathGeneratorInterface
 {
     /**

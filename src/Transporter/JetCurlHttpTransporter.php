@@ -1,5 +1,10 @@
 <?php
 
+namespace Jet\Transporter;
+
+use Jet\JetClientFactory;
+use Jet\Util as JetUtil;
+
 class JetCurlHttpTransporter extends AbstractJetTransporter
 {
     /**
@@ -9,8 +14,8 @@ class JetCurlHttpTransporter extends AbstractJetTransporter
 
     /**
      * @return array
-     * @throws InvalidArgumentException
-     * @throws Exception
+     * @throws \InvalidArgumentException
+     * @throws \Exception
      */
     protected function getTarget()
     {
@@ -22,7 +27,7 @@ class JetCurlHttpTransporter extends AbstractJetTransporter
 
         JetUtil::throwIf(
             !$node->host || !$node->port,
-            new InvalidArgumentException(sprintf('Invalid host %s or port %s.', $node->host, $node->port))
+            new \InvalidArgumentException(sprintf('Invalid host %s or port %s.', $node->host, $node->port))
         );
 
         return array($node->host, $node->port);
@@ -31,8 +36,8 @@ class JetCurlHttpTransporter extends AbstractJetTransporter
     /**
      * @param string $data 
      * @return void 
-     * @throws InvalidArgumentException 
-     * @throws Exception 
+     * @throws \InvalidArgumentException 
+     * @throws \Exception 
      */
     public function send($data)
     {
@@ -62,7 +67,7 @@ class JetCurlHttpTransporter extends AbstractJetTransporter
 
         $response = curl_exec($ch);
 
-        JetUtil::throwIf(curl_errno($ch), new RuntimeException(curl_error($ch)));
+        JetUtil::throwIf(curl_errno($ch), new \RuntimeException(curl_error($ch)));
 
         $this->response = $response;
     }

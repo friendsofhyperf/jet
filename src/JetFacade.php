@@ -1,5 +1,7 @@
 <?php
 
+namespace Jet;
+
 abstract class JetFacade
 {
     /**
@@ -9,9 +11,9 @@ abstract class JetFacade
 
     /**
      * @return JetClient
-     * @throws RuntimeException
-     * @throws InvalidArgumentException
-     * @throws Exception
+     * @throws \RuntimeException
+     * @throws \InvalidArgumentException
+     * @throws \Exception
      */
     protected static function getFacadeRoot()
     {
@@ -21,8 +23,8 @@ abstract class JetFacade
     /**
      * @param JetClient|string $name
      * @return JetClient
-     * @throws InvalidArgumentException
-     * @throws Exception
+     * @throws \InvalidArgumentException
+     * @throws \Exception
      */
     protected static function resolveFacadeInstance($name)
     {
@@ -39,11 +41,11 @@ abstract class JetFacade
 
     /**
      * @return JetClient|string
-     * @throws RuntimeException
+     * @throws \RuntimeException
      */
     protected static function getFacadeAccessor()
     {
-        throw new RuntimeException('Facade does not implement getFacadeAccessor method.');
+        throw new \RuntimeException('Facade does not implement getFacadeAccessor method.');
     }
 
     /**

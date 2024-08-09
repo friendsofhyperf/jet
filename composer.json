@@ -12,9 +12,9 @@
         "ext-curl": "*"
     },
     "autoload": {
-        "classmap": [
-            "src/"
-        ],
+        "psr-4": {
+            "Jet\\": "src/"
+        },
         "files": [
             "src/bootstrap.php"
         ]

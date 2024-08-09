@@ -1,6 +1,11 @@
 <?php
 
-class JetConsulResponse implements ArrayAccess
+namespace Jet\Consul;
+
+use Jet\Exception\JetException;
+use Jet\Util as JetUtil;
+
+class Response implements \ArrayAccess
 {
     /**
      * The result coming from curl_getinfo().
@@ -48,7 +53,7 @@ class JetConsulResponse implements ArrayAccess
             $this->content = $this->parseBody($response, $this->info['header_size']);
             $this->cookies = $this->parseCookies($this->header('Set-Cookie'));
         } else {
-            throw new RuntimeException(curl_error($ch));
+            throw new \RuntimeException(curl_error($ch));
         }
 
         curl_close($ch);
@@ -179,7 +184,7 @@ class JetConsulResponse implements ArrayAccess
      */
     protected function parseHeaders($response, $headerSize)
     {
-        $headers       = substr($response, 0, $headerSize);
+        $headers = substr($response, 0, $headerSize);
         $parsedHeaders = array();
 
         foreach (explode("\r\n", $headers) as $header) {
@@ -193,7 +198,7 @@ class JetConsulResponse implements ArrayAccess
     }
 
     /**
-     * Parse the cookiess of this response instance.
+     * Parse the cookies of this response instance.
      * @param string $cookieJar
      * @return array
      */
@@ -310,7 +315,7 @@ class JetConsulResponse implements ArrayAccess
     public function throwIf()
     {
         if ($this->failed()) {
-            throw new Exception($this->body());
+            throw new \Exception($this->body());
         }
 
         return $this;
@@ -377,7 +382,7 @@ class JetConsulResponse implements ArrayAccess
      */
     public function offsetSet($offset, $value)
     {
-        throw new LogicException('Response data may not be mutated using array access.');
+        throw new \LogicException('Response data may not be mutated using array access.');
     }
 
     /**
@@ -390,7 +395,7 @@ class JetConsulResponse implements ArrayAccess
      */
     public function offsetUnset($offset)
     {
-        throw new LogicException('Response data may not be mutated using array access.');
+        throw new \LogicException('Response data may not be mutated using array access.');
     }
 
     /**

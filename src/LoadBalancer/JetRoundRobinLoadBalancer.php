@@ -1,5 +1,7 @@
 <?php
 
+namespace Jet\LoadBalancer;
+
 class JetRoundRobinLoadBalancer extends AbstractJetLoadBalancer
 {
     /**
@@ -16,7 +18,7 @@ class JetRoundRobinLoadBalancer extends AbstractJetLoadBalancer
         $count = count($this->nodes);
 
         if ($count <= 0) {
-            throw new RuntimeException('Nodes missing.');
+            throw new \RuntimeException('Nodes missing.');
         }
 
         $item = $this->nodes[self::$current % $count];

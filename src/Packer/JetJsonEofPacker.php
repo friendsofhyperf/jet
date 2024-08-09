@@ -1,5 +1,9 @@
 <?php
 
+namespace Jet\Packer;
+
+use Jet\Contract\JetPackerInterface;
+
 class JetJsonEofPacker implements JetPackerInterface
 {
     /**

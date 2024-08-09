@@ -1,5 +1,7 @@
 <?php
 
+namespace Jet\Contract;
+
 interface JetPackerInterface
 {
     public function pack($data);

@@ -1,6 +1,12 @@
 <?php
 
-class JetConsulClient
+namespace Jet\Consul;
+
+use Jet\Util as JetUtil;
+
+use \Jet\Exception\JetClientException;
+
+class Client
 {
     protected $baseUri;
     protected $timeout;
@@ -37,7 +43,7 @@ class JetConsulClient
      * @param string $method
      * @param string $uri
      * @param array $options
-     * @return JetConsulResponse
+     * @return Response
      */
     public function request($method = 'GET', $uri = '', $options = array())
     {
@@ -119,6 +125,6 @@ class JetConsulClient
 
         curl_setopt($ch, CURLOPT_URL, $url);
 
-        return new JetConsulResponse($ch);
+        return new Response($ch);
     }
 }

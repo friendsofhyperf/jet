@@ -1,5 +1,13 @@
 <?php
 
+namespace Jet;
+
+use Jet\Contract\JetDataFormatterInterface;
+use Jet\Contract\JetPackerInterface;
+use Jet\Contract\JetPathGeneratorInterface;
+use Jet\Contract\JetTransporterInterface;
+use Jet\Exception\JetClientException;
+
 class JetClientFactory
 {
     /**

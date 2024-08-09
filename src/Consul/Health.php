@@ -1,12 +1,14 @@
 <?php
 
-class JetConsulHealth extends JetConsulClient
+namespace Jet\Consul;
+
+class Health extends Client
 {
     /**
      * Get service
      * @param string $service
      * @param array $options
-     * @return JetConsulResponse
+     * @return Response
      */
     public function service($service = '', $options = array())
     {

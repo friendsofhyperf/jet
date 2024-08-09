@@ -1,5 +1,11 @@
 <?php
 
+namespace Jet;
+
+use Jet\Exception\JetRecvFailedException;
+use Jet\Exception\JetServerException;
+use Jet\Util as JetUtil;
+
 class JetClient
 {
     /**
@@ -15,8 +21,8 @@ class JetClient
     /**
      * @param JetMetadata $metadata
      * @return void
-     * @throws InvalidArgumentException
-     * @throws Exception
+     * @throws \InvalidArgumentException
+     * @throws \Exception
      */
     public function __construct($metadata)
     {

@@ -1,5 +1,7 @@
 <?php
 
+namespace Jet\LoadBalancer;
+
 class JetRandomLoadBalancer extends AbstractJetLoadBalancer
 {
     /**

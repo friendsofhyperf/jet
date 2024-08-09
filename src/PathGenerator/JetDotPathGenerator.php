@@ -1,5 +1,10 @@
 <?php
 
+namespace Jet\PathGenerator;
+
+use Jet\Contract\JetPathGeneratorInterface;
+use Jet\Util as JetUtil;
+
 class JetDotPathGenerator implements JetPathGeneratorInterface
 {
     /**

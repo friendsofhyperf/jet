@@ -1,5 +1,12 @@
 <?php
 
+namespace Jet\Transporter;
+
+use Jet\Exception\JetConnectionException;
+use Jet\Exception\JetExceptionThrower;
+use Jet\Exception\JetRecvFailedException;
+use Jet\Util as JetUtil;
+
 class JetStreamSocketTransporter extends AbstractJetTransporter
 {
     /**
@@ -28,9 +35,9 @@ class JetStreamSocketTransporter extends AbstractJetTransporter
     /**
      * @param string $data
      * @return void
-     * @throws InvalidArgumentException
-     * @throws Exception
-     * @throws RuntimeException
+     * @throws \InvalidArgumentException
+     * @throws \Exception
+     * @throws \RuntimeException
      */
     public function send($data)
     {
@@ -40,13 +47,13 @@ class JetStreamSocketTransporter extends AbstractJetTransporter
 
     /**
      * @return string 
-     * @throws Exception 
+     * @throws \Exception 
      */
     public function recv()
     {
         try {
             return $this->receive();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->close();
             throw $e;
         }
@@ -101,8 +108,8 @@ class JetStreamSocketTransporter extends AbstractJetTransporter
 
     /**
      * @return array
-     * @throws InvalidArgumentException
-     * @throws Exception
+     * @throws \InvalidArgumentException
+     * @throws \Exception
      */
     protected function getTarget()
     {
@@ -114,7 +121,7 @@ class JetStreamSocketTransporter extends AbstractJetTransporter
 
         JetUtil::throwIf(
             !$node->host || !$node->port,
-            new InvalidArgumentException(sprintf('Invalid host %s or port %s.', $node->host, $node->port))
+            new \InvalidArgumentException(sprintf('Invalid host %s or port %s.', $node->host, $node->port))
         );
 
         return array($node->host, $node->port);
@@ -122,9 +129,9 @@ class JetStreamSocketTransporter extends AbstractJetTransporter
 
     /**
      * @return void
-     * @throws InvalidArgumentException
-     * @throws Exception
-     * @throws RuntimeException
+     * @throws \InvalidArgumentException
+     * @throws \Exception
+     * @throws \RuntimeException
      */
     protected function connect()
     {
@@ -140,7 +147,7 @@ class JetStreamSocketTransporter extends AbstractJetTransporter
 
         $client = stream_socket_client("tcp://{$host}:{$port}", $errno, $errstr, $this->timeout);
 
-        JetUtil::throwIf($client === false, new RuntimeException(sprintf('[%d] %s', $errno, $errstr)));
+        JetUtil::throwIf($client === false, new \RuntimeException(sprintf('[%d] %s', $errno, $errstr)));
 
         $this->client      = $client;
         $this->isConnected = true;

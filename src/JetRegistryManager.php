@@ -1,5 +1,9 @@
 <?php
 
+namespace Jet;
+
+use Jet\Contract\JetRegistryInterface;
+
 class JetRegistryManager
 {
     const DEFAULT_REGISTRY = 'default';
@@ -23,17 +27,17 @@ class JetRegistryManager
      * @param JetRegistryInterface $registry 
      * @param bool $force 
      * @return void 
-     * @throws InvalidArgumentException 
-     * @throws RuntimeException 
+     * @throws \InvalidArgumentException 
+     * @throws \RuntimeException 
      */
     public static function register($name, $registry, $force = false)
     {
         if (!($registry instanceof JetRegistryInterface)) {
-            throw new InvalidArgumentException('$registry must be instanceof JetRegistryInterface');
+            throw new \InvalidArgumentException('$registry must be instanceof JetRegistryInterface');
         }
 
         if (!$force && self::isRegistered($name)) {
-            throw new RuntimeException($name . ' has registered');
+            throw new \RuntimeException($name . ' has registered');
         }
 
         self::$registries[$name] = $registry;

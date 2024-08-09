@@ -1,10 +1,12 @@
 <?php
 
-class JetConsulAgent extends JetConsulClient
+namespace Jet\Consul;
+
+class Agent extends Client
 {
     /**
      * @param array $service
-     * @return JetConsulResponse
+     * @return Response
      */
     public function registerService($service = array())
     {
@@ -17,7 +19,7 @@ class JetConsulAgent extends JetConsulClient
 
     /**
      * @param string $serviceId 
-     * @return JetConsulResponse 
+     * @return Response 
      */
     public function deregisterService($serviceId)
     {

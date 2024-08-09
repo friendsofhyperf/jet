@@ -1,5 +1,9 @@
 <?php
 
+namespace Jet\Exception;
+
+use Jet\Util as JetUtil;
+
 class JetServerException extends JetException
 {
     /**

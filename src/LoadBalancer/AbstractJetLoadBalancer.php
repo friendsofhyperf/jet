@@ -1,5 +1,9 @@
 <?php
 
+namespace Jet\LoadBalancer;
+
+use Jet\Contract\JetLoadBalancerInterface;
+
 abstract class AbstractJetLoadBalancer implements JetLoadBalancerInterface
 {
     /**

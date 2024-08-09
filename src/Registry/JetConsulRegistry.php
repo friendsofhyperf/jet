@@ -1,5 +1,18 @@
 <?php
 
+namespace Jet\Registry;
+
+use Jet\Consul\Catalog;
+use Jet\Consul\Health;
+use Jet\Contract\JetLoadBalancerInterface;
+use Jet\Contract\JetRegistryInterface;
+use Jet\LoadBalancer\JetLoadBalancerNode;
+use Jet\LoadBalancer\JetRandomLoadBalancer;
+use Jet\LoadBalancer\JetRoundRobinLoadBalancer;
+use Jet\Transporter\JetCurlHttpTransporter;
+use Jet\Transporter\JetStreamSocketTransporter;
+use Jet\Util as JetUtil;
+
 class JetConsulRegistry implements JetRegistryInterface
 {
     /**
@@ -54,7 +67,7 @@ class JetConsulRegistry implements JetRegistryInterface
                 );
             }
 
-            $consulCatalog = new JetConsulCatalog($options);
+            $consulCatalog = new Catalog($options);
 
             return JetUtil::with($consulCatalog->services()->throwIf()->json(), function ($services) {
                 return array_keys($services);
@@ -79,7 +92,7 @@ class JetConsulRegistry implements JetRegistryInterface
                 );
             }
 
-            $consulHealth = new JetConsulHealth($options);
+            $consulHealth = new Health($options);
 
             return JetUtil::with($consulHealth->service($service)->throwIf()->json(), function ($serviceNodes) use ($protocol) {
                 /** @var array $serviceNodes */
@@ -114,7 +127,7 @@ class JetConsulRegistry implements JetRegistryInterface
     {
         $nodes = $this->getServiceNodes($service, $protocol);
 
-        JetUtil::throwIf(count($nodes) <= 0, new RuntimeException('Service nodes not found!'));
+        JetUtil::throwIf(count($nodes) <= 0, new \RuntimeException('Service nodes not found!'));
 
         $serviceBalancer = new JetRandomLoadBalancer($nodes);
         $node            = $serviceBalancer->select();

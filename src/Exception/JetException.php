@@ -1,6 +1,8 @@
 <?php
 
-class JetException extends RuntimeException
+namespace Jet\Exception;
+
+class JetException extends \RuntimeException
 {
     //
 }

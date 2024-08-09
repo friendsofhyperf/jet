@@ -1,5 +1,9 @@
 <?php
 
+namespace Jet\Contract;
+
+use Jet\LoadBalancer\JetLoadBalancerNode;
+
 interface JetLoadBalancerInterface
 {
     /**

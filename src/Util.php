@@ -1,13 +1,15 @@
 <?php
 
-class JetUtil
+namespace Jet;
+
+class Util
 {
     /**
      * Retry
      * @param int $times
-     * @param Closure $callback
+     * @param \Closure $callback
      * @param int $sleep
-     * @param null|Closure $when
+     * @param null|\Closure $when
      * @return mixed
      */
     public static function retry($times, $callback, $sleep = 0, $when = null)
@@ -21,7 +23,7 @@ class JetUtil
 
         try {
             return $callback($attempts);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             if ($times < 1 || ($when && !$when($e))) {
                 throw $e;
             }
@@ -36,15 +38,15 @@ class JetUtil
 
     /**
      * @param mixed $value
-     * @param Exception $exception
+     * @param \Exception $exception
      * @return mixed
-     * @throws InvalidArgumentException
-     * @throws Exception
+     * @throws \InvalidArgumentException
+     * @throws \Exception
      */
     public static function throwIf($value, $exception)
     {
-        if (!($exception instanceof Exception)) {
-            throw new InvalidArgumentException('$exception is not instanceof Exception');
+        if (!($exception instanceof \Exception)) {
+            throw new \InvalidArgumentException('$exception is not instanceof Exception');
         }
 
         if ($value) {
@@ -56,7 +58,7 @@ class JetUtil
 
     /**
      * @param mixed $value
-     * @param Closure|null $callback
+     * @param \Closure|null $callback
      * @return mixed
      */
     public static function tap($value, $callback = null)
@@ -70,7 +72,7 @@ class JetUtil
 
     /**
      * @param mixed $value
-     * @param Closure|null $callback
+     * @param \Closure|null $callback
      * @return mixed
      */
     public static function with($value, $callback)
@@ -160,7 +162,7 @@ class JetUtil
      */
     public static function value($value)
     {
-        return $value instanceof Closure ? $value() : $value;
+        return $value instanceof \Closure ? $value() : $value;
     }
 
     /**
@@ -240,7 +242,7 @@ class JetUtil
      */
     public static function exists($array, $key)
     {
-        if ($array instanceof ArrayAccess) {
+        if ($array instanceof \ArrayAccess) {
             return $array->offsetExists($key);
         }
 
@@ -253,6 +255,6 @@ class JetUtil
      */
     public static function accessible($value)
     {
-        return is_array($value) || $value instanceof ArrayAccess;
+        return is_array($value) || $value instanceof \ArrayAccess;
     }
 }

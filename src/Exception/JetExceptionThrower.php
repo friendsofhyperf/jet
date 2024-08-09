@@ -1,5 +1,7 @@
 <?php
 
+namespace Jet\Exception;
+
 final class JetExceptionThrower
 {
     /**
@@ -7,13 +9,13 @@ final class JetExceptionThrower
      */
     private $e;
 
-    public function __construct(Exception $e)
+    public function __construct(\Exception $e)
     {
         $this->e = $e;
     }
 
     /**
-     * @return Exception 
+     * @return \Exception 
      */
     public function getThrowable()
     {

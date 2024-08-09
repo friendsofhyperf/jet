@@ -1,5 +1,9 @@
 <?php
 
+namespace Jet\DataFormatter;
+
+use Jet\Contract\JetDataFormatterInterface;
+
 class JetDataFormatter implements JetDataFormatterInterface
 {
     public function formatRequest($data)
@@ -30,7 +34,7 @@ class JetDataFormatter implements JetDataFormatterInterface
     {
         list($id, $code, $message, $data) = $data;
 
-        if (isset($data) && $data instanceof Exception) {
+        if (isset($data) && $data instanceof \Exception) {
             $data = array(
                 'class'   => get_class($data),
                 'code'    => $data->getCode(),

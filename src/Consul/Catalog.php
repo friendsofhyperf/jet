@@ -1,10 +1,12 @@
 <?php
 
-class JetConsulCatalog extends JetConsulClient
+namespace Jet\Consul;
+
+class Catalog extends Client
 {
     /**
      * @param array $options
-     * @return JetConsulResponse
+     * @return Response
      * @throws InvalidArgumentException
      * @throws Exception
      */

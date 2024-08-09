@@ -1,5 +1,13 @@
 <?php
 
+namespace Jet;
+
+use Jet\Contract\JetDataFormatterInterface;
+use Jet\Contract\JetPackerInterface;
+use Jet\Contract\JetPathGeneratorInterface;
+use Jet\Contract\JetRegistryInterface;
+use Jet\Contract\JetTransporterInterface;
+
 class JetServiceManager
 {
     /**
@@ -29,7 +37,7 @@ class JetServiceManager
      * @param string $service
      * @param JetMetadata $metadata
      * @return void
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public static function register($service, $metadata)
     {
@@ -50,7 +58,7 @@ class JetServiceManager
      * @param JetRegistryInterface $registry
      * @param bool $force
      * @return void
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public static function registerDefaultRegistry($registry, $force = false)
     {
@@ -69,18 +77,18 @@ class JetServiceManager
 
     /**
      * @param mixed $transporter
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public static function assertTransporter($transporter)
     {
         if (!is_null($transporter) && !($transporter instanceof JetTransporterInterface)) {
-            throw new InvalidArgumentException(sprintf('Service\'s transporter must be instanceof %s.', 'JetTransporterInterface'));
+            throw new \InvalidArgumentException(sprintf('Service\'s transporter must be instanceof %s.', 'JetTransporterInterface'));
         }
     }
 
     /**
      * @param mixed $registry
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public static function assertRegistry($registry)
     {
@@ -90,76 +98,76 @@ class JetServiceManager
 
         if (is_string($registry)) {
             if (!JetRegistryManager::isRegistered($registry)) {
-                throw new InvalidArgumentException(sprintf('REGISTRY %s does not registered yet.', $registry));
+                throw new \InvalidArgumentException(sprintf('REGISTRY %s does not registered yet.', $registry));
             }
         } elseif (!($registry instanceof JetRegistryInterface)) {
-            throw new InvalidArgumentException(sprintf('REGISTRY must be instanceof %s.', 'JetRegistryInterface'));
+            throw new \InvalidArgumentException(sprintf('REGISTRY must be instanceof %s.', 'JetRegistryInterface'));
         }
     }
 
     /**
      * @param mixed $packer
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public static function assertPacker($packer)
     {
         if (!is_null($packer) && !($packer instanceof JetPackerInterface)) {
-            throw new InvalidArgumentException(sprintf('PACKER of service must be instanceof %s.', 'JetPackerInterface'));
+            throw new \InvalidArgumentException(sprintf('PACKER of service must be instanceof %s.', 'JetPackerInterface'));
         }
     }
 
     /**
      * @param mixed $dataFormatter
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public static function assertDataFormatter($dataFormatter)
     {
         if (!is_null($dataFormatter) && !($dataFormatter instanceof JetDataFormatterInterface)) {
-            throw new InvalidArgumentException(sprintf('DATA_FORMATTER of service must be instanceof %s.', 'JetDataFormatterInterface'));
+            throw new \InvalidArgumentException(sprintf('DATA_FORMATTER of service must be instanceof %s.', 'JetDataFormatterInterface'));
         }
     }
 
     /**
      * @param mixed $pathGenerator
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public static function assertPathGenerator($pathGenerator)
     {
         if (!is_null($pathGenerator) && !($pathGenerator instanceof JetPathGeneratorInterface)) {
-            throw new InvalidArgumentException(sprintf('PATH_GENERATOR of service must be instanceof %s.', 'JetPathGeneratorInterface'));
+            throw new \InvalidArgumentException(sprintf('PATH_GENERATOR of service must be instanceof %s.', 'JetPathGeneratorInterface'));
         }
     }
 
     /**
      * @param mixed $tries
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public static function assertTries($tries)
     {
         if (!is_null($tries) && !is_int($tries)) {
-            throw new InvalidArgumentException('TRIES of service must be int.');
+            throw new \InvalidArgumentException('TRIES of service must be int.');
         }
     }
 
     /**
      * @param mixed $timeout
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public static function assertTimeout($timeout)
     {
         if (!is_null($timeout) && !is_int($timeout)) {
-            throw new InvalidArgumentException('TIMEOUT of service must be int.');
+            throw new \InvalidArgumentException('TIMEOUT of service must be int.');
         }
     }
 
     /**
      * @param mixed $protocol
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public static function assertProtocol($protocol)
     {
         if (!is_null($protocol) && !is_string($protocol) && !in_array($protocol, array('jsonrpc', 'jsonrpc-http'))) {
-            throw new InvalidArgumentException('PROTOCOL of service must be jsonrpc or jsonrpc-http.');
+            throw new \InvalidArgumentException('PROTOCOL of service must be jsonrpc or jsonrpc-http.');
         }
     }
 }
