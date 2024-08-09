@@ -6,12 +6,12 @@ class Util
 {
     /**
      * Retry
-     * @template T
+     * @template TReturn
      * @param int $times
-     * @param callable(int):T $callback
+     * @param callable(int):TReturn $callback
      * @param int $sleep
      * @param null|(callable(\Exception)) $when
-     * @return T
+     * @return TReturn
      */
     public static function retry($times, $callback, $sleep = 0, $when = null)
     {
@@ -39,6 +39,7 @@ class Util
 
     /**
      * @template TValue
+     * 
      * @param TValue $value
      * @param \Exception $exception
      * @return TValue
@@ -59,6 +60,7 @@ class Util
 
     /**
      * @template TValue
+     * 
      * @param TValue $value
      * @param null|(callable(TValue)) $callback
      * @return TValue
@@ -73,11 +75,12 @@ class Util
     }
 
     /**
-     * @template T
      * @template TValue
+     * @template TReturn
+     * 
      * @param mixed $value
-     * @param null|(callable(TValue):T) $callback
-     * @return ($callback is null ? TValue : T)
+     * @param null|(callable(TValue):TReturn) $callback
+     * @return ($callback is null ? TValue : TReturn)
      */
     public static function with($value, $callback)
     {
@@ -89,10 +92,11 @@ class Util
     }
 
     /**
-     * @template T
      * @template TValue
-     * @param TValue|(\Closure(): T) $value
-     * @return ($value is \Closure ? T : TValue)
+     * @template TReturn
+     *
+     * @param TValue|(\Closure(): TReturn) $value
+     * @return ($value is \Closure ? TReturn : TValue)
      */
     public static function value($value)
     {
