@@ -3,6 +3,7 @@ require_once __DIR__ . '/../src/bootstrap.php';
 
 use Jet\Client;
 use Jet\ClientFactory;
+use Jet\Facade;
 use Jet\Metadata;
 use Jet\Transporter\CurlHttpTransporter;
 use Jet\Transporter\StreamSocketTransporter;
@@ -33,7 +34,7 @@ echo "Create with facade\n";
 /**
  * @method static int add(int $a, int $b)
  */
-class Calculator extends JetFacade
+class Calculator extends Facade
 {
     protected static function getFacadeAccessor()
     {
