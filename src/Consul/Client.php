@@ -8,8 +8,19 @@ use \Jet\Exception\ClientException;
 
 class Client
 {
+    /**
+     * @var string
+     */
     protected $baseUri;
+
+    /**
+     * @var int
+     */
     protected $timeout;
+
+    /**
+     * @var array
+     */
     protected $headers;
 
     public function __construct($options = array())
