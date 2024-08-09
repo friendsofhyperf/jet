@@ -11,7 +11,11 @@ declare(strict_types=1);
 if (! function_exists('retry')) {
     /**
      * Retry.
-     * @return mixed
+     * @template T
+     *
+     * @param callable(int):T $callback
+     * @param (callable(Throwable):mixed)|null $when
+     * @return T
      * @throws Throwable
      */
     function retry(int $times, callable $callback, int $sleep = 0, ?callable $when = null)
@@ -24,7 +28,7 @@ if (! function_exists('retry')) {
 
         try {
             return $callback($attempts);
-        } catch (Exception $e) {
+        } catch (Throwable $e) {
             if ($times < 1 || ($when && ! $when($e))) {
                 throw $e;
             }
@@ -35,14 +39,18 @@ if (! function_exists('retry')) {
 
             goto beginning;
         }
+
+        return null;
     }
 }
 
 if (! function_exists('throw_if')) {
     /**
-     * @param mixed $condition
+     * @template TValue
+     *
+     * @param TValue $condition
      * @param string|\Throwable $exception
-     * @return mixed
+     * @return TValue
      * @throws InvalidArgumentException
      * @throws Exception
      */
@@ -58,8 +66,11 @@ if (! function_exists('throw_if')) {
 
 if (! function_exists('tap')) {
     /**
-     * @param mixed $value
-     * @return mixed
+     * @template TValue
+     *
+     * @param TValue $value
+     * @param (callable(TValue):mixed)|null $callback
+     * @return TValue
      */
     function tap($value, ?callable $callback = null)
     {
@@ -89,8 +100,12 @@ if (! function_exists('tap')) {
 
 if (! function_exists('with')) {
     /**
-     * @param mixed $value
-     * @return mixed
+     * @template TValue
+     * @template TReturn
+     *
+     * @param TValue $value
+     * @param callable(TValue):TReturn|null $callback
+     * @return ($callback is null ? TValue : TReturn)
      */
     function with($value, ?callable $callback = null)
     {
@@ -204,8 +219,12 @@ if (! function_exists('str_replace_array')) {
 
 if (! function_exists('value')) {
     /**
-     * @param mixed $value
-     * @return mixed
+     * @template TValue
+     * @template TReturn
+     *
+     * @param TValue|(Closure():TReturn) $value
+     * @param TValue $value
+     * @return ($value is Closure ? TReturn : TValue)
      */
     function value($value)
     {
