@@ -16,6 +16,7 @@ class JsonMultiplexPacker implements PackerInterface
      */
     public function pack($data)
     {
+        $data = json_encode($data);
         return sprintf(
             '%s%s%s',
             pack('N', strlen($data) + 4),
@@ -31,8 +32,8 @@ class JsonMultiplexPacker implements PackerInterface
      */
     public function unpack($data)
     {
-        $unpacked = unpack('Nid', substr($data, 4, 4));
+        // $unpacked = unpack('Nid', substr($data, 4, 4));
         $body = substr($data, 8);
-        return [$unpacked['id'], $body];
+        return json_decode($body, true);
     }
 }
