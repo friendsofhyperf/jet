@@ -6,11 +6,12 @@ class Util
 {
     /**
      * Retry
+     * @template T
      * @param int $times
-     * @param \Closure $callback
+     * @param callable(int):T $callback
      * @param int $sleep
-     * @param null|\Closure $when
-     * @return mixed
+     * @param null|(callable(\Exception)) $when
+     * @return T
      */
     public static function retry($times, $callback, $sleep = 0, $when = null)
     {
@@ -37,11 +38,11 @@ class Util
     }
 
     /**
-     * @param mixed $value
+     * @template TValue
+     * @param TValue $value
      * @param \Exception $exception
-     * @return mixed
+     * @return TValue
      * @throws \InvalidArgumentException
-     * @throws \Exception
      */
     public static function throwIf($value, $exception)
     {
@@ -57,9 +58,10 @@ class Util
     }
 
     /**
-     * @param mixed $value
-     * @param \Closure|null $callback
-     * @return mixed
+     * @template TValue
+     * @param TValue $value
+     * @param null|(callable(TValue)) $callback
+     * @return TValue
      */
     public static function tap($value, $callback = null)
     {
@@ -71,9 +73,11 @@ class Util
     }
 
     /**
+     * @template T
+     * @template TValue
      * @param mixed $value
-     * @param \Closure|null $callback
-     * @return mixed
+     * @param null|(callable(TValue):T) $callback
+     * @return ($callback is null ? TValue : T)
      */
     public static function with($value, $callback)
     {
@@ -85,8 +89,10 @@ class Util
     }
 
     /**
-     * @param mixed $value
-     * @return mixed
+     * @template T
+     * @template TValue
+     * @param TValue|(\Closure(): T) $value
+     * @return ($value is \Closure ? T : TValue)
      */
     public static function value($value)
     {
