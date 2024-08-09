@@ -3,7 +3,7 @@
 namespace FriendsOfHyperf\Jet\PathGenerator;
 
 use FriendsOfHyperf\Jet\Contract\PathGeneratorInterface;
-use FriendsOfHyperf\Jet\Util;
+use FriendsOfHyperf\Jet\Support\Str;
 
 class DotPathGenerator implements PathGeneratorInterface
 {
@@ -15,9 +15,9 @@ class DotPathGenerator implements PathGeneratorInterface
     public function generate($service, $method)
     {
         $handledNamespace = explode('\\', $service);
-        $handledNamespace = Util::replaceArray('\\', ['/'], end($handledNamespace));
-        $path = Util::studly($handledNamespace);
+        $handledNamespace = Str::replaceArray('\\', ['/'], end($handledNamespace));
+        $path = Str::studly($handledNamespace);
 
-        return $path . '.' . Util::studly($method);
+        return $path . '.' . Str::studly($method);
     }
 }

@@ -3,7 +3,7 @@
 namespace FriendsOfHyperf\Jet\PathGenerator;
 
 use FriendsOfHyperf\Jet\Contract\PathGeneratorInterface;
-use FriendsOfHyperf\Jet\Util;
+use FriendsOfHyperf\Jet\Support\Str;
 
 class PathGenerator implements PathGeneratorInterface
 {
@@ -17,7 +17,7 @@ class PathGenerator implements PathGeneratorInterface
         $handledNamespace = explode('\\', $service);
         $handledNamespace = str_replace('\\', '/', end($handledNamespace));
         $handledNamespace = str_replace('Service', '', $handledNamespace);
-        $path = Util::snake($handledNamespace);
+        $path = Str::snake($handledNamespace);
 
         if ($path[0] !== '/') {
             $path = '/' . $path;

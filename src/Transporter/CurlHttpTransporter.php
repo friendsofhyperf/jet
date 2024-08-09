@@ -3,7 +3,7 @@
 namespace FriendsOfHyperf\Jet\Transporter;
 
 use FriendsOfHyperf\Jet\ClientFactory;
-use FriendsOfHyperf\Jet\Util;
+use FriendsOfHyperf\Jet\Support\Util;
 
 class CurlHttpTransporter extends AbstractTransporter
 {

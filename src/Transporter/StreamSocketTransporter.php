@@ -5,7 +5,7 @@ namespace FriendsOfHyperf\Jet\Transporter;
 use FriendsOfHyperf\Jet\Exception\ConnectionException;
 use FriendsOfHyperf\Jet\Exception\ExceptionThrower;
 use FriendsOfHyperf\Jet\Exception\RecvFailedException;
-use FriendsOfHyperf\Jet\Util;
+use FriendsOfHyperf\Jet\Support\Util;
 
 class StreamSocketTransporter extends AbstractTransporter
 {
