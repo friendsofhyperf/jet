@@ -63,12 +63,16 @@ class JetMetadata
 
     /**
      * Set protocol.
+     * @param string $protocol
+     * @return $this
      */
     public function setProtocol($protocol)
     {
         JetServiceManager::assertProtocol($protocol);
 
         $this->protocol = $protocol;
+
+        return $this;
     }
 
     /**
@@ -83,6 +87,7 @@ class JetMetadata
     /**
      * Set transporter.
      * @param JetTransporterInterface $transporter
+     * @return $this
      * @throws InvalidArgumentException
      */
     public function setTransporter($transporter)
@@ -90,6 +95,8 @@ class JetMetadata
         JetServiceManager::assertTransporter($transporter);
 
         $this->transporter = $transporter;
+
+        return $this;
     }
 
     /**
@@ -112,6 +119,7 @@ class JetMetadata
     /**
      * Set packer.
      * @param JetPackerInterface $packer
+     * @return $this
      * @throws InvalidArgumentException
      */
     public function setPacker($packer)
@@ -119,6 +127,8 @@ class JetMetadata
         JetServiceManager::assertPacker($packer);
 
         $this->packer = $packer;
+        
+        return $this;
     }
 
     /**
@@ -137,6 +147,7 @@ class JetMetadata
     /**
      * Set data formatter.
      * @param JetDataFormatterInterface $dataFormatter
+     * @return $this
      * @throws InvalidArgumentException
      */
     public function setDataFormatter($dataFormatter)
@@ -144,6 +155,8 @@ class JetMetadata
         JetServiceManager::assertDataFormatter($dataFormatter);
 
         $this->dataFormatter = $dataFormatter;
+
+        return $this;
     }
 
     /**
@@ -162,6 +175,7 @@ class JetMetadata
     /**
      * Set path generator.
      * @param JetPathGeneratorInterface $pathGenerator
+     * @return $this
      * @throws InvalidArgumentException
      */
     public function setPathGenerator($pathGenerator)
@@ -169,6 +183,8 @@ class JetMetadata
         JetServiceManager::assertPathGenerator($pathGenerator);
 
         $this->pathGenerator = $pathGenerator;
+
+        return $this;
     }
 
     /**
@@ -187,6 +203,7 @@ class JetMetadata
     /**
      * Set registry.
      * @param JetRegistryInterface $registry
+     * @return $this
      * @throws InvalidArgumentException
      */
     public function setRegistry($registry)
@@ -194,6 +211,8 @@ class JetMetadata
         JetServiceManager::assertRegistry($registry);
 
         $this->registry = $registry;
+
+        return $this;
     }
 
     /**
@@ -208,6 +227,7 @@ class JetMetadata
     /**
      * Set tries.
      * @param int $tries
+     * @return $this
      * @throws InvalidArgumentException
      */
     public function setTries($tries)
@@ -217,6 +237,8 @@ class JetMetadata
         if (!is_null($tries)) {
             $this->tries = (int) $tries;
         }
+
+        return $this;
     }
 
     /**
@@ -231,6 +253,7 @@ class JetMetadata
     /**
      * Set timeout.
      * @param int $timeout
+     * @return $this
      * @throws InvalidArgumentException
      */
     public function setTimeout($timeout)
@@ -240,6 +263,8 @@ class JetMetadata
         if (!is_null($timeout)) {
             $this->timeout = (int) $timeout;
         }
+
+        return $this;
     }
 
     /**
