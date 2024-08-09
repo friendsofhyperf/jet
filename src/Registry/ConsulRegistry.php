@@ -9,9 +9,10 @@ use FriendsOfHyperf\Jet\Contract\RegistryInterface;
 use FriendsOfHyperf\Jet\LoadBalancer\LoadBalancerNode;
 use FriendsOfHyperf\Jet\LoadBalancer\RandomLoadBalancer;
 use FriendsOfHyperf\Jet\LoadBalancer\RoundRobinLoadBalancer;
+use FriendsOfHyperf\Jet\Support\Arr;
 use FriendsOfHyperf\Jet\Transporter\CurlHttpTransporter;
 use FriendsOfHyperf\Jet\Transporter\StreamSocketTransporter;
-use FriendsOfHyperf\Jet\Util;
+use FriendsOfHyperf\Jet\Support\Util;
 
 class ConsulRegistry implements RegistryInterface
 {
@@ -99,21 +100,21 @@ class ConsulRegistry implements RegistryInterface
                 $nodes = array();
 
                 foreach ($serviceNodes as $node) {
-                    if (Util::arrayGet($node, 'Checks.1.Status') != 'passing') {
+                    if (Arr::get($node, 'Checks.1.Status') != 'passing') {
                         continue;
                     }
 
-                    if (!is_null($protocol) && $protocol != Util::arrayGet($node, 'Service.Meta.Protocol')) {
+                    if (!is_null($protocol) && $protocol != Arr::get($node, 'Service.Meta.Protocol')) {
                         continue;
                     }
 
                     $nodes[] = new LoadBalancerNode(
-                        Util::arrayGet($node, 'Service.Address'),
-                        Util::arrayGet($node, 'Service.Port'),
+                        Arr::get($node, 'Service.Address'),
+                        Arr::get($node, 'Service.Port'),
                         1,
                         array(
-                            'type' => Util::arrayGet($node, 'Checks.1.Type'),
-                            'protocol' => Util::arrayGet($node, 'Service.Meta.Protocol'),
+                            'type' => Arr::get($node, 'Checks.1.Type'),
+                            'protocol' => Arr::get($node, 'Service.Meta.Protocol'),
                         )
                     );
                 }

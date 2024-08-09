@@ -5,12 +5,12 @@ use FriendsOfHyperf\Jet\Consul\Catalog;
 use FriendsOfHyperf\Jet\Contract\RegistryInterface;
 use FriendsOfHyperf\Jet\Registry\ConsulRegistry;
 use FriendsOfHyperf\Jet\RegistryManager;
-use FriendsOfHyperf\Jet\Util;
+use FriendsOfHyperf\Jet\Support\Arr;
 
 $configFile = is_file(__DIR__ . '/config.php') ? __DIR__ . '/config.php' : __DIR__ . '/config.php.dist';
 $configs = include $configFile;
 
-$uri = Util::arrayGet($configs, 'consul.uri', 'http://127.0.0.1:8500');
+$uri = Arr::get($configs, 'consul.uri', 'http://127.0.0.1:8500');
 
 echo sprintf("CONSUL_URI: %s\n", $uri);
 

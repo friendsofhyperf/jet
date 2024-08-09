@@ -2,9 +2,8 @@
 
 namespace FriendsOfHyperf\Jet\Consul;
 
-use FriendsOfHyperf\Jet\Util;
-
 use \FriendsOfHyperf\Jet\Exception\ClientException;
+use FriendsOfHyperf\Jet\Support\Arr;
 
 class Client
 {
@@ -31,9 +30,9 @@ class Client
             'headers' => array(), // array('X-Consul-Token' => 'your-token')
         ), $options);
 
-        $this->baseUri = rtrim(Util::arrayGet($options, 'uri', ''), '/');
-        $this->timeout = Util::arrayGet($options, 'timeout', 1);
-        $this->headers = Util::arrayGet($options, 'headers', array());
+        $this->baseUri = rtrim(Arr::get($options, 'uri', ''), '/');
+        $this->timeout = Arr::get($options, 'timeout', 1);
+        $this->headers = Arr::get($options, 'headers', array());
     }
 
     /**
@@ -76,11 +75,11 @@ class Client
             case 'POST':
                 curl_setopt($ch, CURLOPT_POST, 1);
                 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
-                curl_setopt($ch, CURLOPT_POSTFIELDS, Util::arrayGet($options, 'form_params', array()));
+                curl_setopt($ch, CURLOPT_POSTFIELDS, Arr::get($options, 'form_params', array()));
                 break;
             case 'PUT':
-                if (Util::arrayHas($options, 'body')) {
-                    $body = json_encode(Util::arrayGet($options, 'body', array()));
+                if (Arr::has($options, 'body')) {
+                    $body = json_encode(Arr::get($options, 'body', array()));
                     $headers = array_merge_recursive($headers, array(
                         'Content-Type' => 'application/json',
                         'Content-Length' => strlen($body),
@@ -97,8 +96,8 @@ class Client
                 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
                 break;
             case 'DELETE':
-                if (Util::arrayHas($options, 'body')) {
-                    $body = json_encode(Util::arrayGet($options, 'body', array()));
+                if (Arr::has($options, 'body')) {
+                    $body = json_encode(Arr::get($options, 'body', array()));
                     $headers = array_merge_recursive($headers, array(
                         'Content-Type' => 'application/json',
                         'Content-Length' => strlen($body),
@@ -114,7 +113,7 @@ class Client
                 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
                 break;
             case 'GET':
-                $url .= (strpos($url, '?') === false ? '?' : '&') . http_build_query(Util::arrayGet($options, 'query'));
+                $url .= (strpos($url, '?') === false ? '?' : '&') . http_build_query(Arr::get($options, 'query'));
                 curl_setopt($ch, CURLOPT_HTTPGET, true);
                 break;
             default:

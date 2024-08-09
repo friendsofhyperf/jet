@@ -4,7 +4,7 @@ namespace FriendsOfHyperf\Jet;
 
 use FriendsOfHyperf\Jet\Exception\RecvFailedException;
 use FriendsOfHyperf\Jet\Exception\ServerException;
-use FriendsOfHyperf\Jet\Util;
+use FriendsOfHyperf\Jet\Support\Util;
 
 class Client
 {

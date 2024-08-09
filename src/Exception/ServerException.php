@@ -2,7 +2,7 @@
 
 namespace FriendsOfHyperf\Jet\Exception;
 
-use FriendsOfHyperf\Jet\Util;
+use FriendsOfHyperf\Jet\Support\Arr;
 
 class ServerException extends Exception
 {
@@ -18,8 +18,8 @@ class ServerException extends Exception
      */
     public function __construct($error = array(), $previous = null)
     {
-        $code = Util::arrayGet($error, 'code', 0);
-        $message = Util::arrayGet($error, 'message', 'Server Error');
+        $code = Arr::get($error, 'code', 0);
+        $message = Arr::get($error, 'message', 'Server Error');
 
         $this->error = $error;
 

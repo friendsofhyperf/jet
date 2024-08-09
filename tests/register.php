@@ -4,13 +4,13 @@ require_once __DIR__ . '/../src/bootstrap.php';
 
 use FriendsOfHyperf\Jet\Consul\Agent;
 use FriendsOfHyperf\Jet\Consul\Health;
-use FriendsOfHyperf\Jet\Util;
+use FriendsOfHyperf\Jet\Support\Arr;
 
 $configFile = is_file(__DIR__ . '/config.php') ? __DIR__ . '/config.php' : __DIR__ . '/config.php.dist';
 $configs = include $configFile;
 
-$consulHost = Util::arrayGet($configs, 'consul.host', '127.0.0.1');
-$consulPort = Util::arrayGet($configs, 'consul.port', 8500);
+$consulHost = Arr::get($configs, 'consul.host', '127.0.0.1');
+$consulPort = Arr::get($configs, 'consul.port', 8500);
 echo sprintf("CONSUL_URI: http://%s:%s\n", $consulHost, $consulPort);
 
 $agent = new Agent(array(

@@ -3,7 +3,7 @@
 namespace FriendsOfHyperf\Jet\Consul;
 
 use FriendsOfHyperf\Jet\Exception\Exception;
-use FriendsOfHyperf\Jet\Util;
+use FriendsOfHyperf\Jet\Support\Arr;
 
 class Response implements \ArrayAccess
 {
@@ -274,7 +274,7 @@ class Response implements \ArrayAccess
             return $data;
         }
 
-        return Util::arrayGet($data, $key, $default);
+        return Arr::get($data, $key, $default);
     }
 
     /**
@@ -342,7 +342,7 @@ class Response implements \ArrayAccess
             return $this->cookies;
         }
 
-        return Util::arrayGet($this->cookies, $key, $default);
+        return Arr::get($this->cookies, $key, $default);
     }
 
     /**

@@ -5,18 +5,18 @@ use FriendsOfHyperf\Jet\Client;
 use FriendsOfHyperf\Jet\ClientFactory;
 use FriendsOfHyperf\Jet\Facade;
 use FriendsOfHyperf\Jet\Metadata;
+use FriendsOfHyperf\Jet\Support\Arr;
 use FriendsOfHyperf\Jet\Transporter\CurlHttpTransporter;
 use FriendsOfHyperf\Jet\Transporter\StreamSocketTransporter;
-use FriendsOfHyperf\Jet\Util;
 
 $configFile = is_file(__DIR__ . '/config.php') ? __DIR__ . '/config.php' : __DIR__ . '/config.php.dist';
 $config = include $configFile;
 
-$consulUri = Util::arrayGet($config, 'consul.uri', 'http://127.0.0.1:8500');
-$jsonrpcHttpHost = Util::arrayGet($config, 'jsonrpc.http.host', '127.0.0.1');
-$jsonrpcHttpPort = Util::arrayGet($config, 'jsonrpc.http.port', 9502);
-$jsonrpcTcpHost = Util::arrayGet($config, 'jsonrpc.tcp.host', '127.0.0.1');
-$jsonrpcTcpPort = Util::arrayGet($config, 'jsonrpc.tcp.port', 9503);
+$consulUri = Arr::get($config, 'consul.uri', 'http://127.0.0.1:8500');
+$jsonrpcHttpHost = Arr::get($config, 'jsonrpc.http.host', '127.0.0.1');
+$jsonrpcHttpPort = Arr::get($config, 'jsonrpc.http.port', 9502);
+$jsonrpcTcpHost = Arr::get($config, 'jsonrpc.tcp.host', '127.0.0.1');
+$jsonrpcTcpPort = Arr::get($config, 'jsonrpc.tcp.port', 9503);
 
 echo sprintf("CONSUL_URI: %s\n", $consulUri);
 
