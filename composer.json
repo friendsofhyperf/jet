@@ -19,6 +19,11 @@
             "src/bootstrap.php"
         ]
     },
+    "extra": {
+        "branch-alias": {
+            "dev-1.x-namespace": "1.3-dev"
+        }
+    },
     "scripts": {
         "test": [
             "php tests/RegistryTest.php",
