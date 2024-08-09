@@ -1,17 +1,17 @@
 <?php
 
-namespace Jet\Registry;
+namespace FriendsOfHyperf\Jet\Registry;
 
-use Jet\Consul\Catalog;
-use Jet\Consul\Health;
-use Jet\Contract\LoadBalancerInterface;
-use Jet\Contract\RegistryInterface;
-use Jet\LoadBalancer\LoadBalancerNode;
-use Jet\LoadBalancer\RandomLoadBalancer;
-use Jet\LoadBalancer\RoundRobinLoadBalancer;
-use Jet\Transporter\CurlHttpTransporter;
-use Jet\Transporter\StreamSocketTransporter;
-use Jet\Util;
+use FriendsOfHyperf\Jet\Consul\Catalog;
+use FriendsOfHyperf\Jet\Consul\Health;
+use FriendsOfHyperf\Jet\Contract\LoadBalancerInterface;
+use FriendsOfHyperf\Jet\Contract\RegistryInterface;
+use FriendsOfHyperf\Jet\LoadBalancer\LoadBalancerNode;
+use FriendsOfHyperf\Jet\LoadBalancer\RandomLoadBalancer;
+use FriendsOfHyperf\Jet\LoadBalancer\RoundRobinLoadBalancer;
+use FriendsOfHyperf\Jet\Transporter\CurlHttpTransporter;
+use FriendsOfHyperf\Jet\Transporter\StreamSocketTransporter;
+use FriendsOfHyperf\Jet\Util;
 
 class ConsulRegistry implements RegistryInterface
 {

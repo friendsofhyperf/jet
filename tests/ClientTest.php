@@ -1,13 +1,13 @@
 <?php
 require_once __DIR__ . '/../src/bootstrap.php';
 
-use Jet\Client;
-use Jet\ClientFactory;
-use Jet\Facade;
-use Jet\Metadata;
-use Jet\Transporter\CurlHttpTransporter;
-use Jet\Transporter\StreamSocketTransporter;
-use Jet\Util;
+use FriendsOfHyperf\Jet\Client;
+use FriendsOfHyperf\Jet\ClientFactory;
+use FriendsOfHyperf\Jet\Facade;
+use FriendsOfHyperf\Jet\Metadata;
+use FriendsOfHyperf\Jet\Transporter\CurlHttpTransporter;
+use FriendsOfHyperf\Jet\Transporter\StreamSocketTransporter;
+use FriendsOfHyperf\Jet\Util;
 
 $configFile = is_file(__DIR__ . '/config.php') ? __DIR__ . '/config.php' : __DIR__ . '/config.php.dist';
 $config = include $configFile;

@@ -1,9 +1,9 @@
 <?php
 
-namespace Jet\PathGenerator;
+namespace FriendsOfHyperf\Jet\PathGenerator;
 
-use Jet\Contract\PathGeneratorInterface;
-use Jet\Util;
+use FriendsOfHyperf\Jet\Contract\PathGeneratorInterface;
+use FriendsOfHyperf\Jet\Util;
 
 class PathGenerator implements PathGeneratorInterface
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace Jet;
+namespace FriendsOfHyperf\Jet;
 
-use Jet\Exception\RecvFailedException;
-use Jet\Exception\ServerException;
-use Jet\Util;
+use FriendsOfHyperf\Jet\Exception\RecvFailedException;
+use FriendsOfHyperf\Jet\Exception\ServerException;
+use FriendsOfHyperf\Jet\Util;
 
 class Client
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace Jet\Transporter;
+namespace FriendsOfHyperf\Jet\Transporter;
 
-use Jet\Exception\ConnectionException;
-use Jet\Exception\ExceptionThrower;
-use Jet\Exception\RecvFailedException;
-use Jet\Util;
+use FriendsOfHyperf\Jet\Exception\ConnectionException;
+use FriendsOfHyperf\Jet\Exception\ExceptionThrower;
+use FriendsOfHyperf\Jet\Exception\RecvFailedException;
+use FriendsOfHyperf\Jet\Util;
 
 class StreamSocketTransporter extends AbstractTransporter
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Jet\DataFormatter;
+namespace FriendsOfHyperf\Jet\DataFormatter;
 
-use Jet\Contract\DataFormatterInterface;
+use FriendsOfHyperf\Jet\Contract\DataFormatterInterface;
 
 class DataFormatter implements DataFormatterInterface
 {

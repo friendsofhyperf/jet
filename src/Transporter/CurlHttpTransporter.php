@@ -1,9 +1,9 @@
 <?php
 
-namespace Jet\Transporter;
+namespace FriendsOfHyperf\Jet\Transporter;
 
-use Jet\ClientFactory;
-use Jet\Util;
+use FriendsOfHyperf\Jet\ClientFactory;
+use FriendsOfHyperf\Jet\Util;
 
 class CurlHttpTransporter extends AbstractTransporter
 {

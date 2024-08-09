@@ -1,9 +1,9 @@
 <?php
 
-namespace Jet\Consul;
+namespace FriendsOfHyperf\Jet\Consul;
 
-use Jet\Exception\Exception;
-use Jet\Util;
+use FriendsOfHyperf\Jet\Exception\Exception;
+use FriendsOfHyperf\Jet\Util;
 
 class Response implements \ArrayAccess
 {

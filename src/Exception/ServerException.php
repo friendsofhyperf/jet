@@ -1,8 +1,8 @@
 <?php
 
-namespace Jet\Exception;
+namespace FriendsOfHyperf\Jet\Exception;
 
-use Jet\Util;
+use FriendsOfHyperf\Jet\Util;
 
 class ServerException extends Exception
 {

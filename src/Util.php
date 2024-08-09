@@ -1,6 +1,6 @@
 <?php
 
-namespace Jet;
+namespace FriendsOfHyperf\Jet;
 
 class Util
 {

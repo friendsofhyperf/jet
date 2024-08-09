@@ -1,6 +1,6 @@
 <?php
 
-namespace Jet\Consul;
+namespace FriendsOfHyperf\Jet\Consul;
 
 class Agent extends Client
 {

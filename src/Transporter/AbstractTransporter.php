@@ -1,9 +1,9 @@
 <?php
 
-namespace Jet\Transporter;
+namespace FriendsOfHyperf\Jet\Transporter;
 
-use Jet\Contract\LoadBalancerInterface;
-use Jet\Contract\TransporterInterface;
+use FriendsOfHyperf\Jet\Contract\LoadBalancerInterface;
+use FriendsOfHyperf\Jet\Contract\TransporterInterface;
 
 abstract class AbstractTransporter implements TransporterInterface
 {

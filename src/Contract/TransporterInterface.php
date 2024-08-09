@@ -1,6 +1,6 @@
 <?php
 
-namespace Jet\Contract;
+namespace FriendsOfHyperf\Jet\Contract;
 
 interface TransporterInterface
 {

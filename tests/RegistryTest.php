@@ -1,11 +1,11 @@
 <?php
 require_once __DIR__ . '/../src/bootstrap.php';
 
-use Jet\Consul\Catalog;
-use Jet\Contract\RegistryInterface;
-use Jet\Registry\ConsulRegistry;
-use Jet\RegistryManager;
-use Jet\Util;
+use FriendsOfHyperf\Jet\Consul\Catalog;
+use FriendsOfHyperf\Jet\Contract\RegistryInterface;
+use FriendsOfHyperf\Jet\Registry\ConsulRegistry;
+use FriendsOfHyperf\Jet\RegistryManager;
+use FriendsOfHyperf\Jet\Util;
 
 $configFile = is_file(__DIR__ . '/config.php') ? __DIR__ . '/config.php' : __DIR__ . '/config.php.dist';
 $configs = include $configFile;

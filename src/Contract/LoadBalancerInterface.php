@@ -1,8 +1,8 @@
 <?php
 
-namespace Jet\Contract;
+namespace FriendsOfHyperf\Jet\Contract;
 
-use Jet\LoadBalancer\LoadBalancerNode;
+use FriendsOfHyperf\Jet\LoadBalancer\LoadBalancerNode;
 
 interface LoadBalancerInterface
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Jet;
+namespace FriendsOfHyperf\Jet;
 
-use Jet\Contract\RegistryInterface;
+use FriendsOfHyperf\Jet\Contract\RegistryInterface;
 
 class RegistryManager
 {

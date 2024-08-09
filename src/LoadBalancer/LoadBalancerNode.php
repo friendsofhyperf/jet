@@ -1,6 +1,6 @@
 <?php
 
-namespace Jet\LoadBalancer;
+namespace FriendsOfHyperf\Jet\LoadBalancer;
 
 class LoadBalancerNode
 {

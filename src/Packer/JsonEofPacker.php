@@ -1,8 +1,8 @@
 <?php
 
-namespace Jet\Packer;
+namespace FriendsOfHyperf\Jet\Packer;
 
-use Jet\Contract\PackerInterface;
+use FriendsOfHyperf\Jet\Contract\PackerInterface;
 
 class JsonEofPacker implements PackerInterface
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Jet;
+namespace FriendsOfHyperf\Jet;
 
 abstract class Facade
 {

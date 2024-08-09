@@ -1,12 +1,12 @@
 <?php
 
-namespace Jet;
+namespace FriendsOfHyperf\Jet;
 
-use Jet\Contract\DataFormatterInterface;
-use Jet\Contract\PackerInterface;
-use Jet\Contract\PathGeneratorInterface;
-use Jet\Contract\RegistryInterface;
-use Jet\Contract\TransporterInterface;
+use FriendsOfHyperf\Jet\Contract\DataFormatterInterface;
+use FriendsOfHyperf\Jet\Contract\PackerInterface;
+use FriendsOfHyperf\Jet\Contract\PathGeneratorInterface;
+use FriendsOfHyperf\Jet\Contract\RegistryInterface;
+use FriendsOfHyperf\Jet\Contract\TransporterInterface;
 
 class ServiceManager
 {

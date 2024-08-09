@@ -1,8 +1,8 @@
 <?php
 
-namespace Jet\LoadBalancer;
+namespace FriendsOfHyperf\Jet\LoadBalancer;
 
-use Jet\Contract\LoadBalancerInterface;
+use FriendsOfHyperf\Jet\Contract\LoadBalancerInterface;
 
 abstract class AbstractLoadBalancer implements LoadBalancerInterface
 {

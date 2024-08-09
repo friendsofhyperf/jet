@@ -1,6 +1,6 @@
 <?php
 
-namespace Jet\Exception;
+namespace FriendsOfHyperf\Jet\Exception;
 
 class ConnectionException extends Exception
 {

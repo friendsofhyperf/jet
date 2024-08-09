@@ -2,9 +2,9 @@
 
 require_once __DIR__ . '/../src/bootstrap.php';
 
-use Jet\Consul\Agent;
-use Jet\Consul\Health;
-use Jet\Util;
+use FriendsOfHyperf\Jet\Consul\Agent;
+use FriendsOfHyperf\Jet\Consul\Health;
+use FriendsOfHyperf\Jet\Util;
 
 $configFile = is_file(__DIR__ . '/config.php') ? __DIR__ . '/config.php' : __DIR__ . '/config.php.dist';
 $configs = include $configFile;

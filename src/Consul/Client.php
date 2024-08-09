@@ -1,10 +1,10 @@
 <?php
 
-namespace Jet\Consul;
+namespace FriendsOfHyperf\Jet\Consul;
 
-use Jet\Util;
+use FriendsOfHyperf\Jet\Util;
 
-use \Jet\Exception\ClientException;
+use \FriendsOfHyperf\Jet\Exception\ClientException;
 
 class Client
 {

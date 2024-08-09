@@ -1,15 +1,15 @@
 <?php
 
-namespace Jet;
+namespace FriendsOfHyperf\Jet;
 
-use Jet\Contract\DataFormatterInterface;
-use Jet\Contract\PackerInterface;
-use Jet\Contract\PathGeneratorInterface;
-use Jet\Contract\RegistryInterface;
-use Jet\Contract\TransporterInterface;
-use Jet\DataFormatter\DataFormatter;
-use Jet\Packer\JsonEofPacker;
-use Jet\PathGenerator\PathGenerator;
+use FriendsOfHyperf\Jet\Contract\DataFormatterInterface;
+use FriendsOfHyperf\Jet\Contract\PackerInterface;
+use FriendsOfHyperf\Jet\Contract\PathGeneratorInterface;
+use FriendsOfHyperf\Jet\Contract\RegistryInterface;
+use FriendsOfHyperf\Jet\Contract\TransporterInterface;
+use FriendsOfHyperf\Jet\DataFormatter\DataFormatter;
+use FriendsOfHyperf\Jet\Packer\JsonEofPacker;
+use FriendsOfHyperf\Jet\PathGenerator\PathGenerator;
 
 class Metadata
 {

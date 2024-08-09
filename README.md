@@ -26,10 +26,10 @@ composer require "friendsofhyperf/jet:^1.0"
 ### Register with metadata
 
 ```php
-use Jet\Metadata;
-use Jet\Transporter\CurlHttpTransporter;
-use Jet\Registry\ConsulRegistry;
-use Jet\ServiceManager;
+use FriendsOfHyperf\Jet\Metadata;
+use FriendsOfHyperf\Jet\Transporter\CurlHttpTransporter;
+use FriendsOfHyperf\Jet\Registry\ConsulRegistry;
+use FriendsOfHyperf\Jet\ServiceManager;
 
 $metadata = (new Metadata('Name'))
     ->setTransporter(new CurlHttpTransporter('127.0.0.1', 9502))
@@ -49,7 +49,7 @@ RegistryManager::register(RegistryManager::DEFAULT_REGISTRY, new ConsulRegistry(
 ### Call by ClientFactory
 
 ```php
-use Jet\ClientFactory;
+use FriendsOfHyperf\Jet\ClientFactory;
 
 $client = ClientFactory::create('CalculatorService');
 var_dump($client->add(1, 20));
@@ -58,10 +58,10 @@ var_dump($client->add(1, 20));
 ### Call by custom client
 
 ```php
-use Jet\Client;
-use Jet\Metadata;
-use Jet\Transporter\CurlHttpTransporter;
-use Jet\Registry\ConsulRegistry;
+use FriendsOfHyperf\Jet\Client;
+use FriendsOfHyperf\Jet\Metadata;
+use FriendsOfHyperf\Jet\Transporter\CurlHttpTransporter;
+use FriendsOfHyperf\Jet\Registry\ConsulRegistry;
 
 /**
  * @method int add(int $a, int $b)
@@ -85,7 +85,7 @@ var_dump($service->add(3, 10));
 ### Call by custom facade
 
 ```php
-use Jet\Facade;
+use FriendsOfHyperf\Jet\Facade;
 
 /**
  * @method static int add(int $a, int $b)
