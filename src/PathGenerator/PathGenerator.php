@@ -3,7 +3,7 @@
 namespace Jet\PathGenerator;
 
 use Jet\Contract\PathGeneratorInterface;
-use Jet\Util as JetUtil;
+use Jet\Util;
 
 class PathGenerator implements PathGeneratorInterface
 {
@@ -17,7 +17,7 @@ class PathGenerator implements PathGeneratorInterface
         $handledNamespace = explode('\\', $service);
         $handledNamespace = str_replace('\\', '/', end($handledNamespace));
         $handledNamespace = str_replace('Service', '', $handledNamespace);
-        $path = JetUtil::snake($handledNamespace);
+        $path = Util::snake($handledNamespace);
 
         if ($path[0] !== '/') {
             $path = '/' . $path;

@@ -4,7 +4,7 @@ namespace Jet;
 
 use Jet\Exception\RecvFailedException;
 use Jet\Exception\ServerException;
-use Jet\Util as JetUtil;
+use Jet\Util;
 
 class Client
 {
@@ -52,9 +52,9 @@ class Client
 
             $ret = $transporter->recv();
 
-            JetUtil::throwIf(!is_string($ret), new RecvFailedException('Recv failed'));
+            Util::throwIf(!is_string($ret), new RecvFailedException('Recv failed'));
 
-            return JetUtil::with($packer->unpack($ret), function ($data) {
+            return Util::with($packer->unpack($ret), function ($data) {
                 if (array_key_exists('result', $data)) {
                     return $data['result'];
                 }
@@ -63,6 +63,6 @@ class Client
             });
         };
 
-        return JetUtil::retry($tries, $callback);
+        return Util::retry($tries, $callback);
     }
 }

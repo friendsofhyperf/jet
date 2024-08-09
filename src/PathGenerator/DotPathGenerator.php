@@ -3,7 +3,7 @@
 namespace Jet\PathGenerator;
 
 use Jet\Contract\PathGeneratorInterface;
-use Jet\Util as JetUtil;
+use Jet\Util;
 
 class DotPathGenerator implements PathGeneratorInterface
 {
@@ -15,9 +15,9 @@ class DotPathGenerator implements PathGeneratorInterface
     public function generate($service, $method)
     {
         $handledNamespace = explode('\\', $service);
-        $handledNamespace = JetUtil::replaceArray('\\', ['/'], end($handledNamespace));
-        $path = JetUtil::studly($handledNamespace);
+        $handledNamespace = Util::replaceArray('\\', ['/'], end($handledNamespace));
+        $path = Util::studly($handledNamespace);
 
-        return $path . '.' . JetUtil::studly($method);
+        return $path . '.' . Util::studly($method);
     }
 }

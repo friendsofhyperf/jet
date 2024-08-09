@@ -5,7 +5,7 @@ namespace Jet\Transporter;
 use Jet\Exception\ConnectionException;
 use Jet\Exception\ExceptionThrower;
 use Jet\Exception\RecvFailedException;
-use Jet\Util as JetUtil;
+use Jet\Util;
 
 class StreamSocketTransporter extends AbstractTransporter
 {
@@ -73,7 +73,7 @@ class StreamSocketTransporter extends AbstractTransporter
         // The maximum number of retries is 12, and 1000 microseconds is the minimum waiting time.
         // The waiting time is doubled each time until the server writes data to the buffer.
         // Usually, the data can be obtained within 1 microsecond.
-        $result = JetUtil::retry(12, function () use (&$buf, &$timeout, $client) {
+        $result = Util::retry(12, function () use (&$buf, &$timeout, $client) {
             $read = array($client);
             $write = null;
             $except = null;
@@ -119,7 +119,7 @@ class StreamSocketTransporter extends AbstractTransporter
             $node = $this;
         }
 
-        JetUtil::throwIf(
+        Util::throwIf(
             !$node->host || !$node->port,
             new \InvalidArgumentException(sprintf('Invalid host %s or port %s.', $node->host, $node->port))
         );
@@ -147,7 +147,7 @@ class StreamSocketTransporter extends AbstractTransporter
 
         $client = stream_socket_client("tcp://{$host}:{$port}", $errno, $errstr, $this->timeout);
 
-        JetUtil::throwIf($client === false, new \RuntimeException(sprintf('[%d] %s', $errno, $errstr)));
+        Util::throwIf($client === false, new \RuntimeException(sprintf('[%d] %s', $errno, $errstr)));
 
         $this->client = $client;
         $this->isConnected = true;

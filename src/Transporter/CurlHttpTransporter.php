@@ -3,7 +3,7 @@
 namespace Jet\Transporter;
 
 use Jet\ClientFactory;
-use Jet\Util as JetUtil;
+use Jet\Util;
 
 class CurlHttpTransporter extends AbstractTransporter
 {
@@ -25,7 +25,7 @@ class CurlHttpTransporter extends AbstractTransporter
             $node = $this;
         }
 
-        JetUtil::throwIf(
+        Util::throwIf(
             !$node->host || !$node->port,
             new \InvalidArgumentException(sprintf('Invalid host %s or port %s.', $node->host, $node->port))
         );
@@ -67,7 +67,7 @@ class CurlHttpTransporter extends AbstractTransporter
 
         $response = curl_exec($ch);
 
-        JetUtil::throwIf(curl_errno($ch), new \RuntimeException(curl_error($ch)));
+        Util::throwIf(curl_errno($ch), new \RuntimeException(curl_error($ch)));
 
         $this->response = $response;
     }

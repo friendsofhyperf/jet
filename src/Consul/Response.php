@@ -3,7 +3,7 @@
 namespace Jet\Consul;
 
 use Jet\Exception\Exception;
-use Jet\Util as JetUtil;
+use Jet\Util;
 
 class Response implements \ArrayAccess
 {
@@ -274,7 +274,7 @@ class Response implements \ArrayAccess
             return $data;
         }
 
-        return JetUtil::arrayGet($data, $key, $default);
+        return Util::arrayGet($data, $key, $default);
     }
 
     /**
@@ -342,7 +342,7 @@ class Response implements \ArrayAccess
             return $this->cookies;
         }
 
-        return JetUtil::arrayGet($this->cookies, $key, $default);
+        return Util::arrayGet($this->cookies, $key, $default);
     }
 
     /**

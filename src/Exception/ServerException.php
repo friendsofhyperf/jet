@@ -2,7 +2,7 @@
 
 namespace Jet\Exception;
 
-use Jet\Util as JetUtil;
+use Jet\Util;
 
 class ServerException extends Exception
 {
@@ -18,8 +18,8 @@ class ServerException extends Exception
      */
     public function __construct($error = array(), $previous = null)
     {
-        $code = JetUtil::arrayGet($error, 'code', 0);
-        $message = JetUtil::arrayGet($error, 'message', 'Server Error');
+        $code = Util::arrayGet($error, 'code', 0);
+        $message = Util::arrayGet($error, 'message', 'Server Error');
 
         $this->error = $error;
 

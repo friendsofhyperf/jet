@@ -2,7 +2,7 @@
 
 namespace Jet\Consul;
 
-use Jet\Util as JetUtil;
+use Jet\Util;
 
 use \Jet\Exception\ClientException;
 
@@ -31,9 +31,9 @@ class Client
             'headers' => array(), // array('X-Consul-Token' => 'your-token')
         ), $options);
 
-        $this->baseUri = rtrim(JetUtil::arrayGet($options, 'uri', ''), '/');
-        $this->timeout = JetUtil::arrayGet($options, 'timeout', 1);
-        $this->headers = JetUtil::arrayGet($options, 'headers', array());
+        $this->baseUri = rtrim(Util::arrayGet($options, 'uri', ''), '/');
+        $this->timeout = Util::arrayGet($options, 'timeout', 1);
+        $this->headers = Util::arrayGet($options, 'headers', array());
     }
 
     /**
@@ -76,11 +76,11 @@ class Client
             case 'POST':
                 curl_setopt($ch, CURLOPT_POST, 1);
                 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
-                curl_setopt($ch, CURLOPT_POSTFIELDS, JetUtil::arrayGet($options, 'form_params', array()));
+                curl_setopt($ch, CURLOPT_POSTFIELDS, Util::arrayGet($options, 'form_params', array()));
                 break;
             case 'PUT':
-                if (JetUtil::arrayHas($options, 'body')) {
-                    $body = json_encode(JetUtil::arrayGet($options, 'body', array()));
+                if (Util::arrayHas($options, 'body')) {
+                    $body = json_encode(Util::arrayGet($options, 'body', array()));
                     $headers = array_merge_recursive($headers, array(
                         'Content-Type' => 'application/json',
                         'Content-Length' => strlen($body),
@@ -97,8 +97,8 @@ class Client
                 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
                 break;
             case 'DELETE':
-                if (JetUtil::arrayHas($options, 'body')) {
-                    $body = json_encode(JetUtil::arrayGet($options, 'body', array()));
+                if (Util::arrayHas($options, 'body')) {
+                    $body = json_encode(Util::arrayGet($options, 'body', array()));
                     $headers = array_merge_recursive($headers, array(
                         'Content-Type' => 'application/json',
                         'Content-Length' => strlen($body),
@@ -114,7 +114,7 @@ class Client
                 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
                 break;
             case 'GET':
-                $url .= (strpos($url, '?') === false ? '?' : '&') . http_build_query(JetUtil::arrayGet($options, 'query'));
+                $url .= (strpos($url, '?') === false ? '?' : '&') . http_build_query(Util::arrayGet($options, 'query'));
                 curl_setopt($ch, CURLOPT_HTTPGET, true);
                 break;
             default:

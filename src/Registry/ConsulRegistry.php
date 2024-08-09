@@ -11,7 +11,7 @@ use Jet\LoadBalancer\RandomLoadBalancer;
 use Jet\LoadBalancer\RoundRobinLoadBalancer;
 use Jet\Transporter\CurlHttpTransporter;
 use Jet\Transporter\StreamSocketTransporter;
-use Jet\Util as JetUtil;
+use Jet\Util;
 
 class ConsulRegistry implements RegistryInterface
 {
@@ -54,7 +54,7 @@ class ConsulRegistry implements RegistryInterface
     {
         $loadBalancer = $this->getLoadBalancer();
 
-        return JetUtil::retry(count($loadBalancer->getNodes()), function () use ($loadBalancer) {
+        return Util::retry(count($loadBalancer->getNodes()), function () use ($loadBalancer) {
             $node = $loadBalancer->select();
             $options = array();
 
@@ -69,7 +69,7 @@ class ConsulRegistry implements RegistryInterface
 
             $consulCatalog = new Catalog($options);
 
-            return JetUtil::with($consulCatalog->services()->throwIf()->json(), function ($services) {
+            return Util::with($consulCatalog->services()->throwIf()->json(), function ($services) {
                 return array_keys($services);
             });
         });
@@ -79,7 +79,7 @@ class ConsulRegistry implements RegistryInterface
     {
         $loadBalancer = $this->getLoadBalancer();
 
-        return JetUtil::retry(count($loadBalancer->getNodes()), function () use ($loadBalancer, $service, $protocol) {
+        return Util::retry(count($loadBalancer->getNodes()), function () use ($loadBalancer, $service, $protocol) {
             $node = $loadBalancer->select();
             $options = array();
 
@@ -94,26 +94,26 @@ class ConsulRegistry implements RegistryInterface
 
             $consulHealth = new Health($options);
 
-            return JetUtil::with($consulHealth->service($service)->throwIf()->json(), function ($serviceNodes) use ($protocol) {
+            return Util::with($consulHealth->service($service)->throwIf()->json(), function ($serviceNodes) use ($protocol) {
                 /** @var array $serviceNodes */
                 $nodes = array();
 
                 foreach ($serviceNodes as $node) {
-                    if (JetUtil::arrayGet($node, 'Checks.1.Status') != 'passing') {
+                    if (Util::arrayGet($node, 'Checks.1.Status') != 'passing') {
                         continue;
                     }
 
-                    if (!is_null($protocol) && $protocol != JetUtil::arrayGet($node, 'Service.Meta.Protocol')) {
+                    if (!is_null($protocol) && $protocol != Util::arrayGet($node, 'Service.Meta.Protocol')) {
                         continue;
                     }
 
                     $nodes[] = new LoadBalancerNode(
-                        JetUtil::arrayGet($node, 'Service.Address'),
-                        JetUtil::arrayGet($node, 'Service.Port'),
+                        Util::arrayGet($node, 'Service.Address'),
+                        Util::arrayGet($node, 'Service.Port'),
                         1,
                         array(
-                            'type' => JetUtil::arrayGet($node, 'Checks.1.Type'),
-                            'protocol' => JetUtil::arrayGet($node, 'Service.Meta.Protocol'),
+                            'type' => Util::arrayGet($node, 'Checks.1.Type'),
+                            'protocol' => Util::arrayGet($node, 'Service.Meta.Protocol'),
                         )
                     );
                 }
@@ -127,7 +127,7 @@ class ConsulRegistry implements RegistryInterface
     {
         $nodes = $this->getServiceNodes($service, $protocol);
 
-        JetUtil::throwIf(count($nodes) <= 0, new \RuntimeException('Service nodes not found!'));
+        Util::throwIf(count($nodes) <= 0, new \RuntimeException('Service nodes not found!'));
 
         $serviceBalancer = new RandomLoadBalancer($nodes);
         $node = $serviceBalancer->select();
