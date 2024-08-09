@@ -1,0 +1,289 @@
+<?php
+
+namespace Jet;
+
+use Jet\Contract\DataFormatterInterface;
+use Jet\Contract\PackerInterface;
+use Jet\Contract\PathGeneratorInterface;
+use Jet\Contract\RegistryInterface;
+use Jet\Contract\TransporterInterface;
+use Jet\DataFormatter\DataFormatter;
+use Jet\Packer\JsonEofPacker;
+use Jet\PathGenerator\PathGenerator;
+
+class Metadata
+{
+    /**
+     * @var null|TransporterInterface
+     */
+    protected $transporter;
+
+    /**
+     * @var null|PackerInterface
+     */
+    protected $packer;
+
+    /**
+     * @var null|DataFormatterInterface
+     */
+    protected $dataFormatter;
+
+    /**
+     * @var null|PathGeneratorInterface
+     */
+    protected $pathGenerator;
+
+    /**
+     * @var null|RegistryInterface
+     */
+    protected $registry;
+
+    /**
+     * @var int
+     */
+    protected $tries = 0;
+
+    /**
+     * @var string
+     */
+    protected $name;
+
+    /**
+     * @var null|string
+     */
+    protected $protocol;
+
+    /**
+     * @var int
+     */
+    protected $timeout = 3;
+
+    public function __construct($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * Get name.
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set protocol.
+     * @param string $protocol
+     * @return $this
+     */
+    public function setProtocol($protocol)
+    {
+        ServiceManager::assertProtocol($protocol);
+
+        $this->protocol = $protocol;
+
+        return $this;
+    }
+
+    /**
+     * Get protocol.
+     * @return null|string
+     */
+    public function getProtocol()
+    {
+        return $this->protocol;
+    }
+
+    /**
+     * Set transporter.
+     * @param TransporterInterface $transporter
+     * @return $this
+     * @throws \InvalidArgumentException
+     */
+    public function setTransporter($transporter)
+    {
+        ServiceManager::assertTransporter($transporter);
+
+        $this->transporter = $transporter;
+
+        return $this;
+    }
+
+    /**
+     * Get transporter.
+     * @return TransporterInterface
+     */
+    public function getTransporter()
+    {
+        if ($this->transporter) {
+            return $this->transporter;
+        }
+
+        if ($this->registry) {
+            return $this->registry->getTransporter($this->name, $this->protocol, $this->timeout);
+        }
+
+        throw new \RuntimeException('Transporter not registered yet.');
+    }
+
+    /**
+     * Set packer.
+     * @param PackerInterface $packer
+     * @return $this
+     * @throws \InvalidArgumentException
+     */
+    public function setPacker($packer)
+    {
+        ServiceManager::assertPacker($packer);
+
+        $this->packer = $packer;
+        
+        return $this;
+    }
+
+    /**
+     * Get packer.
+     * @return PackerInterface
+     */
+    public function getPacker()
+    {
+        if (is_null($this->packer)) {
+            $this->packer = new JsonEofPacker();
+        }
+
+        return $this->packer;
+    }
+
+    /**
+     * Set data formatter.
+     * @param DataFormatterInterface $dataFormatter
+     * @return $this
+     * @throws \InvalidArgumentException
+     */
+    public function setDataFormatter($dataFormatter)
+    {
+        ServiceManager::assertDataFormatter($dataFormatter);
+
+        $this->dataFormatter = $dataFormatter;
+
+        return $this;
+    }
+
+    /**
+     * Get data formatter.
+     * @return DataFormatterInterface
+     */
+    public function getDataFormatter()
+    {
+        if (is_null($this->dataFormatter)) {
+            $this->dataFormatter = new DataFormatter();
+        }
+
+        return $this->dataFormatter;
+    }
+
+    /**
+     * Set path generator.
+     * @param PathGeneratorInterface $pathGenerator
+     * @return $this
+     * @throws \InvalidArgumentException
+     */
+    public function setPathGenerator($pathGenerator)
+    {
+        ServiceManager::assertPathGenerator($pathGenerator);
+
+        $this->pathGenerator = $pathGenerator;
+
+        return $this;
+    }
+
+    /**
+     * Get path generator.
+     * @return PathGeneratorInterface
+     */
+    public function getPathGenerator()
+    {
+        if (is_null($this->pathGenerator)) {
+            $this->pathGenerator = new PathGenerator();
+        }
+
+        return $this->pathGenerator;
+    }
+
+    /**
+     * Set registry.
+     * @param RegistryInterface $registry
+     * @return $this
+     * @throws \InvalidArgumentException
+     */
+    public function setRegistry($registry)
+    {
+        ServiceManager::assertRegistry($registry);
+
+        $this->registry = $registry;
+
+        return $this;
+    }
+
+    /**
+     * Get registry.
+     * @return null|RegistryInterface
+     */
+    public function getRegistry()
+    {
+        return $this->registry;
+    }
+
+    /**
+     * Set tries.
+     * @param int $tries
+     * @return $this
+     * @throws \InvalidArgumentException
+     */
+    public function setTries($tries)
+    {
+        ServiceManager::assertTries($tries);
+
+        if (!is_null($tries)) {
+            $this->tries = (int) $tries;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get tries.
+     * @return int
+     */
+    public function getTries()
+    {
+        return (int) $this->tries;
+    }
+
+    /**
+     * Set timeout.
+     * @param int $timeout
+     * @return $this
+     * @throws \InvalidArgumentException
+     */
+    public function setTimeout($timeout)
+    {
+        ServiceManager::assertTimeout($timeout);
+
+        if (!is_null($timeout)) {
+            $this->timeout = (int) $timeout;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get timeout.
+     * @return int
+     */
+    public function getTimeout()
+    {
+        return (int) $this->timeout;
+    }
+}

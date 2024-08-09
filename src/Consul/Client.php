@@ -4,7 +4,7 @@ namespace Jet\Consul;
 
 use Jet\Util as JetUtil;
 
-use \Jet\Exception\JetClientException;
+use \Jet\Exception\ClientException;
 
 class Client
 {
@@ -107,7 +107,7 @@ class Client
                 curl_setopt($ch, CURLOPT_HTTPGET, true);
                 break;
             default:
-                throw new JetClientException("Not support method: {$method}");
+                throw new ClientException("Not support method: {$method}");
                 break;
         }
 

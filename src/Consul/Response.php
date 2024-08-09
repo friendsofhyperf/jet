@@ -2,7 +2,7 @@
 
 namespace Jet\Consul;
 
-use Jet\Exception\JetException;
+use Jet\Exception\Exception;
 use Jet\Util as JetUtil;
 
 class Response implements \ArrayAccess
@@ -260,12 +260,12 @@ class Response implements \ArrayAccess
      * @param string|int|null $key
      * @param mixed $default
      * @return mixed
-     * @throws JetException
+     * @throws Exception
      */
     public function json($key = null, $default = null)
     {
         if ($this->header('Content-Type') !== 'application/json') {
-            throw new JetException('The Content-Type of response is not equal application/json');
+            throw new Exception('The Content-Type of response is not equal application/json');
         }
 
         $data = json_decode((string) $this->body(), true);
