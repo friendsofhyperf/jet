@@ -26,41 +26,53 @@ composer require "friendsofhyperf/jet:^1.0"
 ### Register with metadata
 
 ```php
-$metadata = (new JetMetadata('Name'))
-    ->setTransporter(new JetCurlHttpTransporter('127.0.0.1', 9502))
-    ->setRegistry(new JetConsulRegistry(array('uri' => 'http://127.0.0.1:8500')));
+use Jet\Metadata;
+use Jet\Transporter\CurlHttpTransporter;
+use Jet\Registry\ConsulRegistry;
+use Jet\ServiceManager;
 
-JetServiceManager::register('CalculatorService', $metadata);
+$metadata = (new Metadata('Name'))
+    ->setTransporter(new CurlHttpTransporter('127.0.0.1', 9502))
+    ->setRegistry(new ConsulRegistry(array('uri' => 'http://127.0.0.1:8500')));
+
+ServiceManager::register('CalculatorService', $metadata);
 ```
 
 ### Register default registry
 
 ```php
-JetRegistryManager::register(JetRegistryManager::DEFAULT_REGISTRY, new JetConsulRegistry(array('uri' => 'http://127.0.0.1:8500')));
+RegistryManager::register(RegistryManager::DEFAULT_REGISTRY, new ConsulRegistry(array('uri' => 'http://127.0.0.1:8500')));
 ```
 
 ## Call RPC method
 
-### Call by JetClientFactory
+### Call by ClientFactory
 
 ```php
-$client = JetClientFactory::create('CalculatorService');
+use Jet\ClientFactory;
+
+$client = ClientFactory::create('CalculatorService');
 var_dump($client->add(1, 20));
 ```
 
 ### Call by custom client
 
 ```php
+use Jet\Client;
+use Jet\Metadata;
+use Jet\Transporter\CurlHttpTransporter;
+use Jet\Registry\ConsulRegistry;
+
 /**
  * @method int add(int $a, int $b)
  */
-class CalculatorService extends JetClient
+class CalculatorService extends Client
 {
     public function __construct()
     {
-        $metadata = (new JetMetadata('CalculatorService'))
-            ->setTransporter(new JetCurlHttpTransporter('127.0.0.1', 9502))
-            ->setRegistry(new JetConsulRegistry(array('uri' => 'http://127.0.0.1:8500')));
+        $metadata = (new Metadata('CalculatorService'))
+            ->setTransporter(new CurlHttpTransporter('127.0.0.1', 9502))
+            ->setRegistry(new ConsulRegistry(array('uri' => 'http://127.0.0.1:8500')));
 
         parent::__construct($metadata);
     }
@@ -73,14 +85,16 @@ var_dump($service->add(3, 10));
 ### Call by custom facade
 
 ```php
+use Jet\Facade;
+
 /**
  * @method static int add(int $a, int $b)
  */
-class Calculator extends JetFacade
+class Calculator extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        // return JetClientFactory::create('CalculatorService');
+        // return ClientFactory::create('CalculatorService');
         return 'CalculatorService';
     }
 }
