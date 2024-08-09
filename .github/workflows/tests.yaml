@@ -1,4 +1,4 @@
-name: tests-1.x
+name: tests
 
 on: [push, pull_request]
 
