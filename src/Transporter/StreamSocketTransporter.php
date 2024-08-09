@@ -15,11 +15,6 @@ class StreamSocketTransporter extends AbstractTransporter
     protected $client;
 
     /**
-     * @var float
-     */
-    protected $timeout;
-
-    /**
      * @var bool
      */
     protected $isConnected = false;
