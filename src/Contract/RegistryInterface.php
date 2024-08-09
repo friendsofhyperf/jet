@@ -33,5 +33,5 @@ interface RegistryInterface
      * @param int $timeout
      * @return TransporterInterface
      */
-    public function getTransporter($service, $protocol = null, $timeout  = 1);
+    public function getTransporter($service, $protocol = null, $timeout = 1);
 }

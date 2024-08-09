@@ -43,7 +43,7 @@ class CurlHttpTransporter extends AbstractTransporter
     {
         list($host, $port) = $this->getTarget();
 
-        $url     = sprintf('http://%s:%d', $host, $port);
+        $url = sprintf('http://%s:%d', $host, $port);
         $headers = array(
             'Content-Type: application/json',
             'X-Real-Ip: ' . (isset($_SERVER['SERVER_ADDR']) ? $_SERVER['SERVER_ADDR'] : ''),

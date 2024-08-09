@@ -64,9 +64,9 @@ class StreamSocketTransporter extends AbstractTransporter
      */
     public function receive()
     {
-        $buf     = '';
+        $buf = '';
         $timeout = 1000;
-        $client  = $this->client;
+        $client = $this->client;
 
         stream_set_blocking($this->client, false);
 
@@ -74,8 +74,8 @@ class StreamSocketTransporter extends AbstractTransporter
         // The waiting time is doubled each time until the server writes data to the buffer.
         // Usually, the data can be obtained within 1 microsecond.
         $result = JetUtil::retry(12, function () use (&$buf, &$timeout, $client) {
-            $read   = array($client);
-            $write  = null;
+            $read = array($client);
+            $write = null;
             $except = null;
 
             while (stream_select($read, $write, $except, 0, $timeout)) {
@@ -149,7 +149,7 @@ class StreamSocketTransporter extends AbstractTransporter
 
         JetUtil::throwIf($client === false, new \RuntimeException(sprintf('[%d] %s', $errno, $errstr)));
 
-        $this->client      = $client;
+        $this->client = $client;
         $this->isConnected = true;
     }
 

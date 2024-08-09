@@ -34,8 +34,8 @@ abstract class AbstractTransporter implements TransporterInterface
      */
     public function __construct($host = '127.0.0.1', $port = 9502, $timeout = 1.0)
     {
-        $this->host    = $host;
-        $this->port    = $port;
+        $this->host = $host;
+        $this->port = $port;
         $this->timeout = $timeout;
     }
 

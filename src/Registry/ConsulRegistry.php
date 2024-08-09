@@ -27,9 +27,9 @@ class ConsulRegistry implements RegistryInterface
     public function __construct($options = array())
     {
         $this->options = array_merge(array(
-            'uri'     => 'http://127.0.0.1:8500',
+            'uri' => 'http://127.0.0.1:8500',
             'timeout' => 1,
-            'token'   => '',
+            'token' => '',
         ), $options);
     }
 
@@ -55,10 +55,10 @@ class ConsulRegistry implements RegistryInterface
         $loadBalancer = $this->getLoadBalancer();
 
         return JetUtil::retry(count($loadBalancer->getNodes()), function () use ($loadBalancer) {
-            $node    = $loadBalancer->select();
+            $node = $loadBalancer->select();
             $options = array();
 
-            $options['uri']     = isset($node->options['uri']) ? $node->options['uri'] : 'http://127.0.0.1:8500';
+            $options['uri'] = isset($node->options['uri']) ? $node->options['uri'] : 'http://127.0.0.1:8500';
             $options['timeout'] = isset($node->options['timeout']) ? $node->options['timeout'] : 1;
 
             if (!empty($node->options['token'])) {
@@ -83,7 +83,7 @@ class ConsulRegistry implements RegistryInterface
             $node = $loadBalancer->select();
             $options = array();
 
-            $options['uri']     = isset($node->options['uri']) ? $node->options['uri'] : 'http://127.0.0.1:8500';
+            $options['uri'] = isset($node->options['uri']) ? $node->options['uri'] : 'http://127.0.0.1:8500';
             $options['timeout'] = isset($node->options['timeout']) ? $node->options['timeout'] : 1;
 
             if (!empty($node->options['token'])) {
@@ -112,7 +112,7 @@ class ConsulRegistry implements RegistryInterface
                         JetUtil::arrayGet($node, 'Service.Port'),
                         1,
                         array(
-                            'type'     => JetUtil::arrayGet($node, 'Checks.1.Type'),
+                            'type' => JetUtil::arrayGet($node, 'Checks.1.Type'),
                             'protocol' => JetUtil::arrayGet($node, 'Service.Meta.Protocol'),
                         )
                     );
@@ -130,7 +130,7 @@ class ConsulRegistry implements RegistryInterface
         JetUtil::throwIf(count($nodes) <= 0, new \RuntimeException('Service nodes not found!'));
 
         $serviceBalancer = new RandomLoadBalancer($nodes);
-        $node            = $serviceBalancer->select();
+        $node = $serviceBalancer->select();
 
         if ($node->options['type'] == 'tcp') {
             $transporter = new StreamSocketTransporter($node->host, $node->port, $timeout);

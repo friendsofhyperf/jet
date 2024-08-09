@@ -28,7 +28,7 @@ class JsonLengthPacker implements PackerInterface
     {
         $options = array_merge($this->defaultOptions, $options);
 
-        $this->type   = $options['package_length_type'];
+        $this->type = $options['package_length_type'];
         $this->length = $options['package_body_offset'];
     }
 

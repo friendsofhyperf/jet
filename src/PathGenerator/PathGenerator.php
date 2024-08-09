@@ -17,7 +17,7 @@ class PathGenerator implements PathGeneratorInterface
         $handledNamespace = explode('\\', $service);
         $handledNamespace = str_replace('\\', '/', end($handledNamespace));
         $handledNamespace = str_replace('Service', '', $handledNamespace);
-        $path             = JetUtil::snake($handledNamespace);
+        $path = JetUtil::snake($handledNamespace);
 
         if ($path[0] !== '/') {
             $path = '/' . $path;

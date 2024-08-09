@@ -12,10 +12,10 @@ class DataFormatter implements DataFormatterInterface
 
         return array(
             'jsonrpc' => '2.0',
-            'method'  => $path,
-            'params'  => $params,
-            'id'      => $id,
-            'data'    => array(),
+            'method' => $path,
+            'params' => $params,
+            'id' => $id,
+            'data' => array(),
         );
     }
 
@@ -25,8 +25,8 @@ class DataFormatter implements DataFormatterInterface
 
         return array(
             'jsonrpc' => '2.0',
-            'id'      => $id,
-            'result'  => $result,
+            'id' => $id,
+            'result' => $result,
         );
     }
 
@@ -36,19 +36,19 @@ class DataFormatter implements DataFormatterInterface
 
         if (isset($data) && $data instanceof \Exception) {
             $data = array(
-                'class'   => get_class($data),
-                'code'    => $data->getCode(),
+                'class' => get_class($data),
+                'code' => $data->getCode(),
                 'message' => $data->getMessage(),
             );
         }
 
         return array(
             'jsonrpc' => '2.0',
-            'id'      => isset($id) ? $id : null,
-            'error'   => array(
-                'code'    => $code,
+            'id' => isset($id) ? $id : null,
+            'error' => array(
+                'code' => $code,
                 'message' => $message,
-                'data'    => $data,
+                'data' => $data,
             ),
         );
     }

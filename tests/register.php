@@ -2,37 +2,41 @@
 
 require_once __DIR__ . '/../src/bootstrap.php';
 
-$configFile = is_file(__DIR__ . '/config.php') ? __DIR__ . '/config.php' : __DIR__ . '/config.php.dist';
-$configs    = include $configFile;
+use Jet\Consul\Agent;
+use Jet\Consul\Health;
+use Jet\Util;
 
-$consulHost = JetUtil::arrayGet($configs, 'consul.host', '127.0.0.1');
-$consulPort = JetUtil::arrayGet($configs, 'consul.port', 8500);
+$configFile = is_file(__DIR__ . '/config.php') ? __DIR__ . '/config.php' : __DIR__ . '/config.php.dist';
+$configs = include $configFile;
+
+$consulHost = Util::arrayGet($configs, 'consul.host', '127.0.0.1');
+$consulPort = Util::arrayGet($configs, 'consul.port', 8500);
 echo sprintf("CONSUL_URI: http://%s:%s\n", $consulHost, $consulPort);
 
-$agent = new JetConsulAgent(array(
-    'uri'     => sprintf('http://%s:%s', $consulHost, $consulPort),
+$agent = new Agent(array(
+    'uri' => sprintf('http://%s:%s', $consulHost, $consulPort),
     'timeout' => 2,
 ));
 
-$health = new JetConsulHealth(array(
-    'uri'     => sprintf('http://%s:%s', $consulHost, $consulPort),
+$health = new Health(array(
+    'uri' => sprintf('http://%s:%s', $consulHost, $consulPort),
     'timeout' => 2,
 ));
 
 $protocols = array('jsonrpc-http', 'jsonrpc');
-$ports     = array(9502, 9503);
-$host      = PHP_OS === 'Darwin' ? getHostByName(getHostName()) : '127.0.0.1';
+$ports = array(9502, 9503);
+$host = PHP_OS === 'Darwin' ? getHostByName(getHostName()) : '127.0.0.1';
 
 foreach ($protocols as $i => $protocol) {
     echo "Registering {$protocol} ...\n";
 
     // $agent
     $requestBody = array(
-        'Name'    => 'CalculatorService',
-        'ID'      => 'CalculatorService-' . $protocol,
+        'Name' => 'CalculatorService',
+        'ID' => 'CalculatorService-' . $protocol,
         'Address' => $host,
-        'Port'    => $ports[$i],
-        'Meta'    => array(
+        'Port' => $ports[$i],
+        'Meta' => array(
             'Protocol' => $protocol,
         ),
     );
@@ -41,16 +45,16 @@ foreach ($protocols as $i => $protocol) {
         case 'jsonrpc-http':
             $requestBody['Check'] = array(
                 'DeregisterCriticalServiceAfter' => '90m',
-                'HTTP'                           => "http://{$host}:{$ports[$i]}/",
-                'Interval'                       => '1s',
+                'HTTP' => "http://{$host}:{$ports[$i]}/",
+                'Interval' => '1s',
             );
             break;
         case 'jsonrpc':
         case 'jsonrpc-tcp-length-check':
             $requestBody['Check'] = array(
                 'DeregisterCriticalServiceAfter' => '90m',
-                'TCP'                            => "{$host}:{$ports[$i]}",
-                'Interval'                       => '1s',
+                'TCP' => "{$host}:{$ports[$i]}",
+                'Interval' => '1s',
             );
             break;
     }

@@ -31,12 +31,12 @@ class Client
 
     public function __call($name, $arguments)
     {
-        $tries         = $this->metadata->getTries();
+        $tries = $this->metadata->getTries();
         $pathGenerator = $this->metadata->getPathGenerator();
-        $transporter   = $this->metadata->getTransporter();
+        $transporter = $this->metadata->getTransporter();
         $dataFormatter = $this->metadata->getDataFormatter();
-        $packer        = $this->metadata->getPacker();
-        $path          = $pathGenerator->generate($this->metadata->getName(), $name);
+        $packer = $this->metadata->getPacker();
+        $path = $pathGenerator->generate($this->metadata->getName(), $name);
 
         // if ($transporter->getLoadBalancer()) {
         //     $nodeCount = count($transporter->getLoadBalancer()->getNodes());

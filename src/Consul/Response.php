@@ -48,7 +48,7 @@ class Response implements \ArrayAccess
         $response = curl_exec($ch);
 
         if (!curl_errno($ch)) {
-            $this->info    = curl_getinfo($ch);
+            $this->info = curl_getinfo($ch);
             $this->headers = $this->parseHeaders($response, $this->info['header_size']);
             $this->content = $this->parseBody($response, $this->info['header_size']);
             $this->cookies = $this->parseCookies($this->header('Set-Cookie'));
@@ -189,7 +189,7 @@ class Response implements \ArrayAccess
 
         foreach (explode("\r\n", $headers) as $header) {
             if (strpos($header, ':')) {
-                $nestedHeader                              = explode(':', $header);
+                $nestedHeader = explode(':', $header);
                 $parsedHeaders[array_shift($nestedHeader)] = trim(implode(':', $nestedHeader));
             }
         }

@@ -15,7 +15,7 @@ class Client
     public function __construct($options = array())
     {
         $options = array_merge(array(
-            'uri'     => 'http://127.0.0.1:8500',
+            'uri' => 'http://127.0.0.1:8500',
             'timeout' => 2,
             'headers' => array(), // array('X-Consul-Token' => 'your-token')
         ), $options);
@@ -48,8 +48,8 @@ class Client
     public function request($method = 'GET', $uri = '', $options = array())
     {
         $headers = array_merge_recursive($this->headers, isset($options['headers']) ? $options['headers'] : array());
-        $url     = $this->baseUri . '/' . ltrim($uri, '/');
-        $ch      = curl_init();
+        $url = $this->baseUri . '/' . ltrim($uri, '/');
+        $ch = curl_init();
 
         curl_setopt($ch, CURLOPT_TIMEOUT, $this->timeout);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -69,16 +69,16 @@ class Client
                 break;
             case 'PUT':
                 if (JetUtil::arrayHas($options, 'body')) {
-                    $body    = json_encode(JetUtil::arrayGet($options, 'body', array()));
+                    $body = json_encode(JetUtil::arrayGet($options, 'body', array()));
                     $headers = array_merge_recursive($headers, array(
-                        'Content-Type'   => 'application/json',
+                        'Content-Type' => 'application/json',
                         'Content-Length' => strlen($body),
                     ));
 
                     curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
                 } else {
                     $headers = array_merge_recursive($headers, array(
-                        'Content-Type'   => 'application/json',
+                        'Content-Type' => 'application/json',
                         'Content-Length' => 0,
                     ));
                 }
@@ -87,15 +87,15 @@ class Client
                 break;
             case 'DELETE':
                 if (JetUtil::arrayHas($options, 'body')) {
-                    $body    = json_encode(JetUtil::arrayGet($options, 'body', array()));
+                    $body = json_encode(JetUtil::arrayGet($options, 'body', array()));
                     $headers = array_merge_recursive($headers, array(
-                        'Content-Type'   => 'application/json',
+                        'Content-Type' => 'application/json',
                         'Content-Length' => strlen($body),
                     ));
                     curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
                 } else {
                     $headers = array_merge_recursive($headers, array(
-                        'Content-Type'   => 'application/json',
+                        'Content-Type' => 'application/json',
                         'Content-Length' => 0,
                     ));
                 }
