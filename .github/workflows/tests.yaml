@@ -10,7 +10,7 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         php-version: ['7.1', '7.2', '7.3', '7.4', '8.0']
-      max-parallel: 3
+      max-parallel: 20
     steps:
       - name: Checkout
         uses: actions/checkout@v2
