@@ -6,10 +6,6 @@ use FriendsOfHyperf\Jet\Contract\PackerInterface;
 
 class JsonMultiplexPacker implements PackerInterface
 {
-    public function __construct()
-    {
-    }
-
     /**
      * @param mixed $data
      * @return string
