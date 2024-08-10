@@ -18,7 +18,10 @@ class Assert
      */
     public static function assertTransporter($transporter)
     {
-        if (!is_null($transporter) && !($transporter instanceof TransporterInterface)) {
+        if (
+            !is_null($transporter)
+            && !($transporter instanceof TransporterInterface)
+        ) {
             throw new \InvalidArgumentException(sprintf('Service\'s transporter must be instanceof %s.', 'JetTransporterInterface'));
         }
     }
@@ -48,7 +51,10 @@ class Assert
      */
     public static function assertPacker($packer)
     {
-        if (!is_null($packer) && !($packer instanceof PackerInterface)) {
+        if (
+            !is_null($packer)
+            && !($packer instanceof PackerInterface)
+        ) {
             throw new \InvalidArgumentException(sprintf('PACKER of service must be instanceof %s.', 'JetPackerInterface'));
         }
     }
@@ -59,7 +65,10 @@ class Assert
      */
     public static function assertDataFormatter($dataFormatter)
     {
-        if (!is_null($dataFormatter) && !($dataFormatter instanceof DataFormatterInterface)) {
+        if (
+            !is_null($dataFormatter)
+            && !($dataFormatter instanceof DataFormatterInterface)
+        ) {
             throw new \InvalidArgumentException(sprintf('DATA_FORMATTER of service must be instanceof %s.', 'JetDataFormatterInterface'));
         }
     }
@@ -70,7 +79,10 @@ class Assert
      */
     public static function assertPathGenerator($pathGenerator)
     {
-        if (!is_null($pathGenerator) && !($pathGenerator instanceof PathGeneratorInterface)) {
+        if (
+            !is_null($pathGenerator)
+            && !($pathGenerator instanceof PathGeneratorInterface)
+        ) {
             throw new \InvalidArgumentException(sprintf('PATH_GENERATOR of service must be instanceof %s.', 'JetPathGeneratorInterface'));
         }
     }
@@ -103,7 +115,11 @@ class Assert
      */
     public static function assertProtocol($protocol)
     {
-        if (!is_null($protocol) && !is_string($protocol) && !in_array($protocol, array('jsonrpc', 'jsonrpc-http'))) {
+        if (
+            !is_null($protocol) 
+            && !is_string($protocol) 
+            && !in_array($protocol, array('jsonrpc', 'jsonrpc-http'))
+        ) {
             throw new \InvalidArgumentException('PROTOCOL of service must be jsonrpc or jsonrpc-http.');
         }
     }
