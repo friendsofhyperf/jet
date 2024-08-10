@@ -12,7 +12,7 @@ Another jet client for Hyperf
 ### Composer
 
 ```shell
-composer require "friendsofhyperf/jet:^3.0"
+composer require "friendsofhyperf/jet:^4.0"
 ```
 
 ## QuickStart
