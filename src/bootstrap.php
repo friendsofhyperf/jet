@@ -29,6 +29,7 @@ $classMap = array(
     'FriendsOfHyperf\Jet\Consul\Response' => $baseDir . '/Consul/Response.php',
     'FriendsOfHyperf\Jet\Consul\Client' => $baseDir . '/Consul/Client.php',
     'FriendsOfHyperf\Jet\Support\Str' => $baseDir . '/Support/Str.php',
+    'FriendsOfHyperf\Jet\Support\Assert' => $baseDir . '/Support/Assert.php',
     'FriendsOfHyperf\Jet\Support\Util' => $baseDir . '/Support/Util.php',
     'FriendsOfHyperf\Jet\Support\Arr' => $baseDir . '/Support/Arr.php',
     'FriendsOfHyperf\Jet\Registry\ConsulRegistry' => $baseDir . '/Registry/ConsulRegistry.php',
@@ -39,9 +40,11 @@ $classMap = array(
     'FriendsOfHyperf\Jet\Exception\RecvFailedException' => $baseDir . '/Exception/RecvFailedException.php',
     'FriendsOfHyperf\Jet\Exception\Exception' => $baseDir . '/Exception/Exception.php',
     'FriendsOfHyperf\Jet\DataFormatter\DataFormatter' => $baseDir . '/DataFormatter/DataFormatter.php',
+    'FriendsOfHyperf\Jet\DataFormatter\MultiplexDataFormatter' => $baseDir . '/DataFormatter/MultiplexDataFormatter.php',
     'FriendsOfHyperf\Jet\Client' => $baseDir . '/Client.php',
     'FriendsOfHyperf\Jet\Packer\JsonEofPacker' => $baseDir . '/Packer/JsonEofPacker.php',
     'FriendsOfHyperf\Jet\Packer\JsonLengthPacker' => $baseDir . '/Packer/JsonLengthPacker.php',
+    'FriendsOfHyperf\Jet\Packer\JsonMultiplexPacker' => $baseDir . '/Packer/JsonMultiplexPacker.php',
     'FriendsOfHyperf\Jet\Facade' => $baseDir . '/Facade.php',
 );
 
