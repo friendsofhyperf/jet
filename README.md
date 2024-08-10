@@ -11,15 +11,15 @@ Another jet client for Hyperf
 
 ### Composer
 
-~~~php
+```shell
 composer require "friendsofhyperf/jet:^3.0"
-~~~
+```
 
-## Quickstart
+## QuickStart
 
 ### Register with metadata
 
-~~~php
+```php
 use FriendsOfHyperf\Jet\Metadata;
 use FriendsOfHyperf\Jet\ServiceManager;
 use FriendsOfHyperf\Jet\Registry\ConsulRegistry;
@@ -31,16 +31,16 @@ $metadata->setTransporter(new GuzzleHttpTransporter('127.0.0.1', 9502));
 $metadata->setRegistry(new ConsulRegistry(['uri' => 'http://127.0.0.1:8500']));
 
 ServiceManager::register('CalculatorService', $metadata);
-~~~
+```
 
 ### Register default registry
 
-~~~php
+```php
 use FriendsOfHyperf\Jet\RegistryManager;
 use FriendsOfHyperf\Jet\Registry\ConsulRegistry;
 
 RegistryManager::register(RegistryManager::DEFAULT, new ConsulRegistry(['uri' => $uri, 'timeout' => 1]));
-~~~
+```
 
 > In Laravel project, Add to `boot()` in `App/Providers/AppServiceProvider.php`
 
@@ -48,16 +48,16 @@ RegistryManager::register(RegistryManager::DEFAULT, new ConsulRegistry(['uri' =>
 
 ### Call by ClientFactory
 
-~~~php
+```php
 use FriendsOfHyperf\Jet\ClientFactory;
 
 $client = ClientFactory::create('CalculatorService');
 var_dump($client->add(1, 20));
-~~~
+```
 
 ### Call by ClientFactory Using Grpc
 
-~~~php
+```php
 use FriendsOfHyperf\Jet\ClientFactory;
 
 return ClientFactory::create(function() {
@@ -76,11 +76,11 @@ return ClientFactory::create(function() {
             'path' => 'calculator.CalCulator',
         ]));
 });
-~~~
+```
 
 ### Call by custom client
 
-~~~php
+```php
 use FriendsOfHyperf\Jet\Client;
 use FriendsOfHyperf\Jet\Transporter\GuzzleHttpTransporter;
 use FriendsOfHyperf\Jet\Registry\ConsulRegistry;
@@ -104,11 +104,11 @@ class CalculatorService extends Client
 
 $service = new CalculatorService;
 var_dump($service->add(3, 10));
-~~~
+```
 
 ### Call by custom facade
 
-~~~php
+```php
 use FriendsOfHyperf\Jet\Facade;
 use FriendsOfHyperf\Jet\ClientFactory;
 
@@ -125,22 +125,4 @@ class Calculator extends Facade
 }
 
 var_dump(Calculator::add(rand(0, 100), rand(0, 100)));
-~~~
-
-## Coroutine support in Hyperf
-
-~~~php
-// config/autoload/annotations.php
-<?php
-
-declare(strict_types=1);
-
-return [
-    'scan' => [
-        // ...
-        'class_map' => [
-            GuzzleHttp\Client::class => BASE_PATH . '/vendor/friendsofhyperf/jet/classmap/GuzzleHttp/Client.php',
-        ],
-    ],
-];
-~~~
+```
