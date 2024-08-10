@@ -10,6 +10,7 @@ use FriendsOfHyperf\Jet\Contract\TransporterInterface;
 use FriendsOfHyperf\Jet\DataFormatter\DataFormatter;
 use FriendsOfHyperf\Jet\Packer\JsonEofPacker;
 use FriendsOfHyperf\Jet\PathGenerator\PathGenerator;
+use FriendsOfHyperf\Jet\Support\Assert;
 
 class Metadata
 {
@@ -79,7 +80,7 @@ class Metadata
      */
     public function setProtocol($protocol)
     {
-        ServiceManager::assertProtocol($protocol);
+        Assert::assertProtocol($protocol);
 
         $this->protocol = $protocol;
 
@@ -103,7 +104,7 @@ class Metadata
      */
     public function setTransporter($transporter)
     {
-        ServiceManager::assertTransporter($transporter);
+        Assert::assertTransporter($transporter);
 
         $this->transporter = $transporter;
 
@@ -135,7 +136,7 @@ class Metadata
      */
     public function setPacker($packer)
     {
-        ServiceManager::assertPacker($packer);
+        Assert::assertPacker($packer);
 
         $this->packer = $packer;
         
@@ -163,7 +164,7 @@ class Metadata
      */
     public function setDataFormatter($dataFormatter)
     {
-        ServiceManager::assertDataFormatter($dataFormatter);
+        Assert::assertDataFormatter($dataFormatter);
 
         $this->dataFormatter = $dataFormatter;
 
@@ -191,7 +192,7 @@ class Metadata
      */
     public function setPathGenerator($pathGenerator)
     {
-        ServiceManager::assertPathGenerator($pathGenerator);
+        Assert::assertPathGenerator($pathGenerator);
 
         $this->pathGenerator = $pathGenerator;
 
@@ -219,7 +220,7 @@ class Metadata
      */
     public function setRegistry($registry)
     {
-        ServiceManager::assertRegistry($registry);
+        Assert::assertRegistry($registry);
 
         $this->registry = $registry;
 
@@ -243,7 +244,7 @@ class Metadata
      */
     public function setTries($tries)
     {
-        ServiceManager::assertTries($tries);
+        Assert::assertTries($tries);
 
         if (!is_null($tries)) {
             $this->tries = (int) $tries;
@@ -269,7 +270,7 @@ class Metadata
      */
     public function setTimeout($timeout)
     {
-        ServiceManager::assertTimeout($timeout);
+        Assert::assertTimeout($timeout);
 
         if (!is_null($timeout)) {
             $this->timeout = (int) $timeout;
