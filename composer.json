@@ -49,8 +49,8 @@
         "swoole": ">=4.6.0"
     },
     "scripts": {
-        "test": "phpunit -c phpunit.xml --colors=always",
-        "analyse": "phpstan analyse --memory-limit 1024M -l 5 ",
-        "cs-fix": "php-cs-fixer fix $1"
+        "analyse": "vendor/bin/phpstan analyse --memory-limit 1024M -l 5 ",
+        "cs-fix": "vendor/bin/php-cs-fixer fix $1",
+        "test": "vendor/bin/phpunit -c phpunit.xml --colors=always"
     }
 }
