@@ -24,10 +24,7 @@ class GuzzleHttpTransporterAspect extends AbstractAspect
         'FriendsOfHyperf\Jet\Transporter\GuzzleHttpTransporter::getClient',
     ];
 
-    /**
-     * @var ClientFactory
-     */
-    protected $clientFactory;
+    protected ClientFactory $clientFactory;
 
     public function __construct(ClientFactory $clientFactory)
     {
