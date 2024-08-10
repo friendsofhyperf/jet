@@ -3,7 +3,7 @@
 SCRIPT_PATH=$(dirname $(realpath $0))
 BASE_PATH=$(dirname ${SCRIPT_PATH})
 BOOTSTRAP=${BASE_PATH}/src/bootstrap.php
-NS="FriendsOfHyperf\\Jet\\"
+NAMESPACE="FriendsOfHyperf\\Jet\\"
 
 cd $BASE_PATH
 # echo $BASE_PATH
@@ -22,10 +22,10 @@ for FILE in `find ./src -type f -name "*.php"`; do
         continue
     fi
 
-    REALPATH=`echo ${FILE} |sed -r "s/^\.\/src//"`
-    BASENAME="${REALPATH%.php}"
-    CLASS="${NS}${BASENAME//\//\\}"
-    CLASSMAP="'${CLASS}' => \$baseDir . '${REALPATH}',"
+    RELATIVE_PATH=`echo ${FILE} | sed -r "s/^\.\/src//"`
+    BASENAME="${RELATIVE_PATH%.php}"
+    CLASS="${NAMESPACE}${BASENAME//\//\\}"
+    CLASSMAP="'${CLASS}' => \$baseDir . '${RELATIVE_PATH}',"
 
     echo "    ${CLASSMAP}" >> ${BOOTSTRAP}
 
