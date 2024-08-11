@@ -2,10 +2,12 @@
 
 namespace FriendsOfHyperf\Jet\Registry;
 
+use Exception;
 use FriendsOfHyperf\Jet\Consul\Catalog;
 use FriendsOfHyperf\Jet\Consul\Health;
 use FriendsOfHyperf\Jet\Contract\LoadBalancerInterface;
 use FriendsOfHyperf\Jet\Contract\RegistryInterface;
+use FriendsOfHyperf\Jet\Contract\TransporterInterface;
 use FriendsOfHyperf\Jet\LoadBalancer\LoadBalancerNode;
 use FriendsOfHyperf\Jet\LoadBalancer\RandomLoadBalancer;
 use FriendsOfHyperf\Jet\LoadBalancer\RoundRobinLoadBalancer;
@@ -25,6 +27,9 @@ class ConsulRegistry implements RegistryInterface
      */
     protected $loadBalancer;
 
+    /**
+     * @param array $options
+     */
     public function __construct($options = array())
     {
         $this->options = array_merge(array(
@@ -34,11 +39,18 @@ class ConsulRegistry implements RegistryInterface
         ), $options);
     }
 
+    /**
+     * @param LoadBalancerInterface $loadBalancer
+     * @return void
+     */
     public function setLoadBalancer($loadBalancer)
     {
         $this->loadBalancer = $loadBalancer;
     }
 
+    /**
+     * @return LoadBalancerInterface
+     */
     public function getLoadBalancer()
     {
         if (!$this->loadBalancer) {
@@ -51,6 +63,9 @@ class ConsulRegistry implements RegistryInterface
         return $this->loadBalancer;
     }
 
+    /**
+     * @return array 
+     */
     public function getServices()
     {
         $loadBalancer = $this->getLoadBalancer();
@@ -76,6 +91,11 @@ class ConsulRegistry implements RegistryInterface
         });
     }
 
+    /**
+     * @param string $service
+     * @param string|null $protocol
+     * @return array 
+     */
     public function getServiceNodes($service, $protocol = null)
     {
         $loadBalancer = $this->getLoadBalancer();
@@ -124,6 +144,13 @@ class ConsulRegistry implements RegistryInterface
         });
     }
 
+    /**
+     * @param string $service
+     * @param string|null $protocol
+     * @param int $timeout
+     * @return TransporterInterface
+     * @throws Exception
+     */
     public function getTransporter($service, $protocol = null, $timeout = 1)
     {
         $nodes = $this->getServiceNodes($service, $protocol);

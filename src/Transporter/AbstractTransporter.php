@@ -18,7 +18,8 @@ abstract class AbstractTransporter implements TransporterInterface
     public $port = 9502;
 
     /**
-     * @var float
+     * The seconds of timeout
+     * @var int
      */
     public $timeout = 1;
 
@@ -30,9 +31,9 @@ abstract class AbstractTransporter implements TransporterInterface
     /**
      * @param string $host
      * @param int $port
-     * @param float $timeout
+     * @param int $timeout
      */
-    public function __construct($host = '127.0.0.1', $port = 9502, $timeout = 1.0)
+    public function __construct($host = '127.0.0.1', $port = 9502, $timeout = 1)
     {
         $this->host = $host;
         $this->port = $port;
