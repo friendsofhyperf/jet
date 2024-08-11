@@ -11,41 +11,6 @@ use FriendsOfHyperf\Jet\Exception\ClientException;
 class ClientFactory
 {
     /**
-     * @var string
-     */
-    protected static $userAgent;
-
-    /**
-     * Set user-agent
-     * @param string $userAgent
-     * @return void
-     */
-    public static function setUserAgent($userAgent)
-    {
-        self::$userAgent = $userAgent;
-    }
-
-    /**
-     * Get user-agent
-     * @return string
-     */
-    public static function getUserAgent()
-    {
-        if (!is_null(self::$userAgent)) {
-            return self::$userAgent;
-        }
-
-        $version = curl_version();
-
-        return self::$userAgent = sprintf(
-            'jet/%s php/%s curl/%s',
-            Client::MAJOR_VERSION,
-            PHP_VERSION,
-            $version['version']
-        );
-    }
-
-    /**
      * Create a client
      * @param string $service
      * @param TransporterInterface|string|int|null $transporter
