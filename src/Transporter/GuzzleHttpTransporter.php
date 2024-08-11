@@ -40,13 +40,13 @@ class GuzzleHttpTransporter extends AbstractTransporter
         $this->config = array_replace([
             'http_errors' => false,
             'timeout' => $this->timeout,
-        ], $this->config);
+        ], $config);
         $this->config['headers'] = array_replace([
             'Content-Type' => 'application/json',
             'X-Real-Ip' => $_SERVER['SERVER_ADDR'] ?? '',
             'X-Forwarded-For' => $_SERVER['REMOTE_ADDR'] ?? '',
             'User-Agent' => UserAgent::get(),
-        ], $this->config['headers'] ?? []);
+        ], $config['headers'] ?? []);
     }
 
     public function send(string $data)
