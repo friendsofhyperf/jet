@@ -40,9 +40,6 @@
     "extra": {
         "branch-alias": {
             "dev-main": "4.0-dev"
-        },
-        "hyperf": {
-            "config": "FriendsOfHyperf\\Jet\\ConfigProvider"
         }
     },
     "suggest": {
