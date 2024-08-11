@@ -13,8 +13,10 @@ declare(strict_types=1);
 namespace FriendsOfHyperf\Jet;
 
 /**
- * Retry.
- * @return mixed
+ * @template TReturn
+ *
+ * @param callable(int):TReturn $callback
+ * @return TReturn
  * @throws \Throwable
  */
 function retry(int $times, callable $callback, int $sleep = 0, ?callable $when = null)
@@ -38,13 +40,16 @@ function retry(int $times, callable $callback, int $sleep = 0, ?callable $when =
 
         goto beginning;
     }
+
+    return null;
 }
 
 /**
- * @param mixed $condition
- * @param string|\Throwable $exception
- * @return mixed
- * @throws \InvalidArgumentException
+ * @template TValue
+ *
+ * @param TValue $condition
+ * @param class-string<\Throwable>|\Throwable $exception
+ * @return TValue
  * @throws \Throwable
  */
 function throw_if($condition, $exception, ...$parameters)
@@ -57,8 +62,10 @@ function throw_if($condition, $exception, ...$parameters)
 }
 
 /**
- * @param mixed $value
- * @return mixed
+ * @template TValue
+ *
+ * @param TValue $value
+ * @return TValue
  */
 function tap($value, ?callable $callback = null)
 {
@@ -86,8 +93,12 @@ function tap($value, ?callable $callback = null)
 }
 
 /**
- * @param mixed $value
- * @return mixed
+ * @template TValue
+ * @template TReturn
+ *
+ * @param TValue $value
+ * @param null|(callable(TValue):TReturn) $callback
+ * @return ($callback is null ? TValue : TReturn)
  */
 function with($value, ?callable $callback = null)
 {

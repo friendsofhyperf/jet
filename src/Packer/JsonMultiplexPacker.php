@@ -31,7 +31,6 @@ class JsonMultiplexPacker implements PackerInterface
     }
 
     /**
-     * @param string $data
      * @return array
      */
     public function unpack(string $data)
