@@ -54,4 +54,4 @@
             require_once $classMap[$class];
         }
     });
-})();
+})->call((object) array());
