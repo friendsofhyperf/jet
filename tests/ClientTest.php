@@ -15,6 +15,8 @@ use FriendsOfHyperf\Jet\ClientFactory;
 use FriendsOfHyperf\Jet\Metadata;
 use FriendsOfHyperf\Jet\RegistryManager;
 
+use function FriendsOfHyperf\Jet\tap;
+
 /**
  * @internal
  * @coversNothing
