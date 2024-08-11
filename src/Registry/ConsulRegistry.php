@@ -17,13 +17,13 @@ use FriendsOfHyperf\Jet\Contract\LoadBalancerInterface;
 use FriendsOfHyperf\Jet\Contract\RegistryInterface;
 use FriendsOfHyperf\Jet\LoadBalancer\Node;
 use FriendsOfHyperf\Jet\LoadBalancer\RoundRobin;
+use FriendsOfHyperf\Jet\Support\Arr;
 use FriendsOfHyperf\Jet\Transporter\GrpcTransporter;
 use FriendsOfHyperf\Jet\Transporter\GuzzleHttpTransporter;
 use FriendsOfHyperf\Jet\Transporter\StreamSocketTransporter;
 use GuzzleHttp\Client;
 use RuntimeException;
 
-use function FriendsOfHyperf\Jet\array_get;
 use function FriendsOfHyperf\Jet\retry;
 use function FriendsOfHyperf\Jet\with;
 
@@ -116,21 +116,21 @@ class ConsulRegistry implements RegistryInterface
                 $nodes = [];
 
                 foreach ($serviceNodes as $node) {
-                    if (array_get($node, 'Checks.1.Status') != 'passing') {
+                    if (Arr::get($node, 'Checks.1.Status') != 'passing') {
                         continue;
                     }
 
-                    if (! is_null($protocol) && $protocol != array_get($node, 'Service.Meta.Protocol')) {
+                    if (! is_null($protocol) && $protocol != Arr::get($node, 'Service.Meta.Protocol')) {
                         continue;
                     }
 
                     $nodes[] = new Node(
-                        array_get($node, 'Service.Address'),
-                        (int) array_get($node, 'Service.Port'),
+                        Arr::get($node, 'Service.Address'),
+                        (int) Arr::get($node, 'Service.Port'),
                         1,
                         [
-                            'type' => array_get($node, 'Checks.1.Type'),
-                            'protocol' => array_get($node, 'Service.Meta.Protocol'),
+                            'type' => Arr::get($node, 'Checks.1.Type'),
+                            'protocol' => Arr::get($node, 'Service.Meta.Protocol'),
                         ]
                     );
                 }

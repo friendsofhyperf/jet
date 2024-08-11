@@ -14,9 +14,8 @@ namespace FriendsOfHyperf\Jet\Transporter;
 use Closure;
 use FriendsOfHyperf\Jet\Contract\PackerInterface;
 use FriendsOfHyperf\Jet\Packer\GrpcPacker;
+use FriendsOfHyperf\Jet\Support\Str;
 use Grpc\BaseStub;
-
-use function FriendsOfHyperf\Jet\str_start;
 
 class GrpcTransporter extends AbstractTransporter
 {
@@ -79,7 +78,7 @@ class GrpcTransporter extends AbstractTransporter
     public function send(string $data)
     {
         $data = $this->packer->unpack($data);
-        $method = str_start($this->path, '/') . $data['method'];
+        $method = Str::start($this->path, '/') . $data['method'];
         $argument = (object) $data['params'][0];
         $deserialize = $data['params'][1];
 
