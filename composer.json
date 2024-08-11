@@ -26,7 +26,7 @@
             "FriendsOfHyperf\\Jet\\": "src/"
         },
         "files": [
-            "src/helpers.php"
+            "src/Functions.php"
         ]
     },
     "autoload-dev": {

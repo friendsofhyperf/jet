@@ -18,30 +18,15 @@ use InvalidArgumentException;
 abstract class AbstractTransporter implements TransporterInterface
 {
     /**
-     * @var string
-     */
-    protected $host;
-
-    /**
-     * @var int
-     */
-    protected $port;
-
-    /**
-     * @var int
-     */
-    protected $timeout;
-
-    /**
      * @var LoadBalancerInterface|null
      */
     protected $loadBalancer;
 
-    public function __construct(string $host = '127.0.0.1', int $port = 9502, int $timeout = 1)
-    {
-        $this->host = $host;
-        $this->port = $port;
-        $this->timeout = $timeout;
+    public function __construct(
+        protected string $host = '127.0.0.1',
+        protected int $port = 9502,
+        protected int $timeout = 1
+    ) {
     }
 
     public function getLoadBalancer(): ?LoadBalancerInterface

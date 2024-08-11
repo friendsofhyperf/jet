@@ -23,17 +23,15 @@ use FriendsOfHyperf\Jet\Transporter\StreamSocketTransporter;
 use GuzzleHttp\Client;
 use RuntimeException;
 
+use function FriendsOfHyperf\Jet\array_get;
+use function FriendsOfHyperf\Jet\retry;
+use function FriendsOfHyperf\Jet\with;
+
 class ConsulRegistry implements RegistryInterface
 {
-    /**
-     * @var array
-     */
-    protected $options;
+    protected array $options;
 
-    /**
-     * @var LoadBalancerInterface|null
-     */
-    protected $loadBalancer;
+    protected ?LoadBalancerInterface $loadBalancer;
 
     /**
      * @param array $options ['uri' => 'http://127.0.0.1:8500', 'timeout' => 1]
@@ -47,12 +45,12 @@ class ConsulRegistry implements RegistryInterface
         ], $options);
     }
 
-    public function setLoadBalancer(?LoadBalancerInterface $loadBalancer)
+    public function setLoadBalancer(?LoadBalancerInterface $loadBalancer): void
     {
         $this->loadBalancer = $loadBalancer;
     }
 
-    public function getLoadBalancer()
+    public function getLoadBalancer(): LoadBalancerInterface
     {
         if (! $this->loadBalancer) {
             $this->loadBalancer = new RoundRobin();

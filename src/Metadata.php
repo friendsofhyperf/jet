@@ -23,59 +23,26 @@ use RuntimeException;
 
 class Metadata
 {
-    /**
-     * @var TransporterInterface|null
-     */
-    protected $transporter;
+    protected ?TransporterInterface $transporter;
 
-    /**
-     * @var array
-     */
-    protected $transporterConfig = [];
+    protected array $transporterConfig = [];
 
-    /**
-     * @var PackerInterface|null
-     */
-    protected $packer;
+    protected ?PackerInterface $packer;
 
-    /**
-     * @var DataFormatterInterface|null
-     */
-    protected $dataFormatter;
+    protected ?DataFormatterInterface $dataFormatter;
 
-    /**
-     * @var PathGeneratorInterface|null
-     */
-    protected $pathGenerator;
+    protected ?PathGeneratorInterface $pathGenerator;
 
-    /**
-     * @var RegistryInterface|null
-     */
-    protected $registry;
+    protected ?RegistryInterface $registry;
 
-    /**
-     * @var int
-     */
-    protected $tries = 0;
+    protected int $tries = 0;
 
-    /**
-     * @var string
-     */
-    protected $name;
+    protected ?string $protocol;
 
-    /**
-     * @var string|null
-     */
-    protected $protocol;
+    protected int $timeout = 3;
 
-    /**
-     * @var int
-     */
-    protected $timeout = 3;
-
-    public function __construct(string $name = '')
+    public function __construct(protected string $name = '')
     {
-        $this->name = $name;
     }
 
     /**
@@ -90,9 +57,8 @@ class Metadata
 
     /**
      * Get name.
-     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -109,9 +75,8 @@ class Metadata
 
     /**
      * Get protocol.
-     * @return string|null
      */
-    public function getProtocol()
+    public function getProtocol(): ?string
     {
         return $this->protocol;
     }
@@ -128,9 +93,8 @@ class Metadata
 
     /**
      * Get transporter.
-     * @return TransporterInterface
      */
-    public function getTransporter()
+    public function getTransporter(): TransporterInterface
     {
         if ($this->transporter) {
             return $this->transporter;
@@ -162,9 +126,8 @@ class Metadata
 
     /**
      * Get packer.
-     * @return PackerInterface
      */
-    public function getPacker()
+    public function getPacker(): PackerInterface
     {
         if (is_null($this->packer)) {
             $this->packer = new JsonEofPacker();
@@ -185,9 +148,8 @@ class Metadata
 
     /**
      * Get data formatter.
-     * @return DataFormatterInterface
      */
-    public function getDataFormatter()
+    public function getDataFormatter(): DataFormatterInterface
     {
         if (is_null($this->dataFormatter)) {
             $this->dataFormatter = new DataFormatter();
@@ -208,9 +170,8 @@ class Metadata
 
     /**
      * Get path generator.
-     * @return PathGeneratorInterface
      */
-    public function getPathGenerator()
+    public function getPathGenerator(): PathGeneratorInterface
     {
         if (is_null($this->pathGenerator)) {
             $this->pathGenerator = new PathGenerator();
@@ -231,9 +192,8 @@ class Metadata
 
     /**
      * Get registry.
-     * @return RegistryInterface|null
      */
-    public function getRegistry()
+    public function getRegistry(): ?RegistryInterface
     {
         return $this->registry;
     }
@@ -250,11 +210,10 @@ class Metadata
 
     /**
      * Get tries.
-     * @return int
      */
-    public function getTries()
+    public function getTries(): int
     {
-        return (int) $this->tries;
+        return $this->tries;
     }
 
     /**
@@ -269,11 +228,10 @@ class Metadata
 
     /**
      * Get timeout.
-     * @return int
      */
-    public function getTimeout()
+    public function getTimeout(): int
     {
-        return (int) $this->timeout;
+        return $this->timeout;
     }
 
     /**
@@ -288,10 +246,9 @@ class Metadata
 
     /**
      * Get transporter config.
-     * @return array
      */
-    public function getTransporterConfig()
+    public function getTransporterConfig(): array
     {
-        return (array) $this->transporterConfig;
+        return $this->transporterConfig;
     }
 }

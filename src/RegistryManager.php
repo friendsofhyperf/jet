@@ -13,38 +13,26 @@ namespace FriendsOfHyperf\Jet;
 
 use FriendsOfHyperf\Jet\Contract\RegistryInterface;
 use FriendsOfHyperf\Jet\Exception\JetException;
-use InvalidArgumentException;
 
 class RegistryManager
 {
     public const DEFAULT = 'default';
 
     /**
-     * @var array
+     * @var array<string, RegistryInterface>
      */
     protected static $registries = [];
 
-    /**
-     * @param string $name
-     * @return RegistryInterface|null
-     */
-    public static function get($name = self::DEFAULT)
+    public static function get(string $name = self::DEFAULT): ?RegistryInterface
     {
         return isset(self::$registries[$name]) ? self::$registries[$name] : null;
     }
 
     /**
-     * @param string $name
-     * @param RegistryInterface $registry
-     * @throws InvalidArgumentException
      * @throws JetException
      */
-    public static function register($name, $registry, bool $force = false)
+    public static function register(string $name, RegistryInterface $registry, bool $force = false): void
     {
-        if (! $registry instanceof RegistryInterface) {
-            throw new InvalidArgumentException('$registry must be instanceof RegistryInterface');
-        }
-
         if (! $force && self::isRegistered($name)) {
             throw new JetException(sprintf('Registry %s has registered', $name));
         }
@@ -52,19 +40,12 @@ class RegistryManager
         self::$registries[$name] = $registry;
     }
 
-    /**
-     * @param string $name
-     * @return bool
-     */
-    public static function isRegistered($name)
+    public static function isRegistered(string $name): bool
     {
         return isset(self::$registries[$name]);
     }
 
-    /**
-     * @param string $name
-     */
-    public static function deregister($name)
+    public static function deregister(string $name): void
     {
         unset(static::$registries[$name]);
     }

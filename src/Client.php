@@ -23,12 +23,7 @@ class Client
      */
     public const MAJOR_VERSION = 3;
 
-    /**
-     * @var Metadata
-     */
-    protected $metadata;
-
-    public function __construct(Metadata $metadata)
+    public function __construct(protected Metadata $metadata)
     {
         $this->metadata = $metadata;
     }
