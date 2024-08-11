@@ -2,9 +2,6 @@
 
 namespace FriendsOfHyperf\Jet;
 
-use FriendsOfHyperf\Jet\Contract\RegistryInterface;
-use FriendsOfHyperf\Jet\Support\Assert;
-
 class ServiceManager
 {
     /**
