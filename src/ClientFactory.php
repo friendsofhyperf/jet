@@ -37,7 +37,12 @@ class ClientFactory
 
         $version = curl_version();
 
-        return self::$userAgent = sprintf('jet/%s php/%s curl/%s', Client::MAJOR_VERSION, PHP_VERSION, $version['version']);
+        return self::$userAgent = sprintf(
+            'jet/%s php/%s curl/%s',
+            Client::MAJOR_VERSION,
+            PHP_VERSION,
+            $version['version']
+        );
     }
 
     /**
@@ -51,8 +56,14 @@ class ClientFactory
      * @return Client
      * @throws ClientException
      */
-    public static function create($service, $transporter = null, $packer = null, $dataFormatter = null, $pathGenerator = null, $tries = null)
-    {
+    public static function create(
+        $service,
+        $transporter = null,
+        $packer = null,
+        $dataFormatter = null,
+        $pathGenerator = null,
+        $tries = null
+    ) {
         if (!$metadata = ServiceManager::get($service)) {
             $metadata = new Metadata($service);
 
