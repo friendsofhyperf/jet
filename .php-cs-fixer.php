@@ -5,7 +5,7 @@ declare(strict_types=1);
  * This file is part of friendsofhyperf/jet.
  *
  * @link     https://github.com/friendsofhyperf/jet
- * @document https://github.com/friendsofhyperf/jet/blob/4.x/README.md
+ * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
  * @contact  huangdijia@gmail.com
  */
 use Huangdijia\PhpCsFixer\Config;
@@ -16,7 +16,7 @@ return (new Config())
     ->setHeaderComment(
         projectName: 'friendsofhyperf/jet',
         projectLink: 'https://github.com/friendsofhyperf/jet',
-        projectDocument: 'https://github.com/friendsofhyperf/jet/blob/4.x/README.md',
+        projectDocument: 'https://github.com/friendsofhyperf/jet/blob/main/README.md',
         contacts: [
             'huangdijia@gmail.com',
         ],
