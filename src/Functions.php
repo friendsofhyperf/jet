@@ -100,7 +100,7 @@ function tap($value, ?callable $callback = null)
  * @param null|(callable(TValue):TReturn) $callback
  * @return ($callback is null ? TValue : TReturn)
  */
-function with($value, ?callable $callback = null)
+function with($value, ?callable $callback = null) // @phpstan-ignore-line
 {
     return is_null($callback) ? $value : $callback($value);
 }
