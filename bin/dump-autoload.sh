@@ -4,6 +4,9 @@ SCRIPT_PATH=$(dirname $(realpath $0))
 BASE_PATH=$(dirname ${SCRIPT_PATH})
 AUTOLOAD=${BASE_PATH}/src/autoload.php
 NAMESPACE="FriendsOfHyperf\\Jet\\"
+LOADER="JetClassLoader"$(openssl rand -hex 12)
+# echo $LOADER
+# exit 0
 
 cd $BASE_PATH
 # echo $BASE_PATH
@@ -13,9 +16,18 @@ cd $BASE_PATH
 cat <<EOT > ${AUTOLOAD}
 <?php
 
-(function () {
-    \$baseDir = realpath(__DIR__);
-    \$classMap = array(
+class ${LOADER}
+{
+    static \$registered = false;
+
+    public static function register()
+    {
+        if (self::\$registered) {
+            return;
+        }
+
+        \$baseDir = realpath(__DIR__);
+        \$classMap = array(
 EOT
 
 for FILE in `find ./src -type f -name "*.php"`; do
@@ -29,19 +41,24 @@ for FILE in `find ./src -type f -name "*.php"`; do
     CLASS="${NAMESPACE}${BASENAME//\//\\}"
     CLASSMAP="'${CLASS}' => \$baseDir . '${RELATIVE_PATH}',"
 
-    echo "        ${CLASSMAP}" >> ${AUTOLOAD}
+    echo "            ${CLASSMAP}" >> ${AUTOLOAD}
 
 done
 
 cat <<EOT >> ${AUTOLOAD}
-    );
+        );
 
-    spl_autoload_register(function (\$class) use (\$classMap) {
-        if (isset(\$classMap[\$class]) && is_file(\$classMap[\$class])) {
-            require_once \$classMap[\$class];
-        }
-    });
-})();
+        spl_autoload_register(function (\$class) use (\$classMap) {
+            if (isset(\$classMap[\$class]) && is_file(\$classMap[\$class])) {
+                require_once \$classMap[\$class];
+            }
+        });
+
+        self::\$registered = true;
+    }
+}
+
+${LOADER}::register();
 EOT
 
 echo "done!"
