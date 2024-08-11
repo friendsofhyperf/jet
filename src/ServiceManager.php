@@ -8,17 +8,17 @@ use FriendsOfHyperf\Jet\Support\Assert;
 class ServiceManager
 {
     /**
-     * @var array
+     * @var array<string, Metadata>
      */
     protected static $services = array();
 
     /**
      * @param string $service
-     * @return array
+     * @return Metadata|null
      */
     public static function get($service)
     {
-        return self::isRegistered($service) ? static::$services[$service] : array();
+        return self::isRegistered($service) ? static::$services[$service] : null;
     }
 
     /**
@@ -49,26 +49,5 @@ class ServiceManager
     public static function deregister($service)
     {
         unset(static::$services[$service]);
-    }
-
-    /**
-     * @param RegistryInterface $registry
-     * @param bool $force
-     * @return void
-     * @throws \InvalidArgumentException
-     */
-    public static function registerDefaultRegistry($registry, $force = false)
-    {
-        Assert::assertRegistry($registry);
-
-        RegistryManager::register(RegistryManager::DEFAULT_REGISTRY, $registry, $force);
-    }
-
-    /**
-     * @return null|RegistryInterface
-     */
-    public static function getDefaultRegistry()
-    {
-        return RegistryManager::get(RegistryManager::DEFAULT_REGISTRY);
     }
 }

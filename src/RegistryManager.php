@@ -9,7 +9,7 @@ class RegistryManager
     const DEFAULT_REGISTRY = 'default';
 
     /**
-     * @var array
+     * @var array<string, RegistryInterface>
      */
     protected static $registries = array();
 
