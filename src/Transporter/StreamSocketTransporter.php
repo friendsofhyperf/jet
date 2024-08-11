@@ -60,7 +60,7 @@ class StreamSocketTransporter extends AbstractTransporter
     public function receive()
     {
         $buf = '';
-        $timeout = 1000;
+        $timeoutMs = $this->timeout > 0 ? $this->timeout * 1000 : 1000;
         $client = $this->client;
 
         stream_set_blocking($this->client, false);
@@ -68,12 +68,12 @@ class StreamSocketTransporter extends AbstractTransporter
         // The maximum number of retries is 12, and 1000 microseconds is the minimum waiting time.
         // The waiting time is doubled each time until the server writes data to the buffer.
         // Usually, the data can be obtained within 1 microsecond.
-        $result = Util::retry(12, function () use (&$buf, &$timeout, $client) {
+        $result = Util::retry(12, function () use (&$buf, &$timeoutMs, $client) {
             $read = array($client);
             $write = null;
             $except = null;
 
-            while (stream_select($read, $write, $except, 0, $timeout)) {
+            while (stream_select($read, $write, $except, 0, $timeoutMs)) {
                 foreach ($read as $r) {
                     $res = fread($r, 8192);
 
@@ -86,7 +86,7 @@ class StreamSocketTransporter extends AbstractTransporter
             }
 
             if (!$buf) {
-                $timeout *= 2;
+                $timeoutMs *= 2;
 
                 throw new RecvFailedException('No data was received');
             }
