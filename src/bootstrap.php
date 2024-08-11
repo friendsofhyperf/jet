@@ -41,6 +41,7 @@ $classMap = array(
     'FriendsOfHyperf\Jet\Exception\Exception' => $baseDir . '/Exception/Exception.php',
     'FriendsOfHyperf\Jet\DataFormatter\DataFormatter' => $baseDir . '/DataFormatter/DataFormatter.php',
     'FriendsOfHyperf\Jet\DataFormatter\MultiplexDataFormatter' => $baseDir . '/DataFormatter/MultiplexDataFormatter.php',
+    'FriendsOfHyperf\Jet\UserAgent' => $baseDir . '/UserAgent.php',
     'FriendsOfHyperf\Jet\Client' => $baseDir . '/Client.php',
     'FriendsOfHyperf\Jet\Packer\JsonEofPacker' => $baseDir . '/Packer/JsonEofPacker.php',
     'FriendsOfHyperf\Jet\Packer\JsonLengthPacker' => $baseDir . '/Packer/JsonLengthPacker.php',
