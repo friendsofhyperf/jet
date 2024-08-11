@@ -50,7 +50,7 @@ class Str
     }
 
     /**
-     * @param array|string $search
+     * @param string $search
      * @param array|string $replace
      * @param string $subject
      * @return string
@@ -71,8 +71,8 @@ class Str
     }
 
     /**
-     * @param array $search
-     * @param array $replace
+     * @param string $search
+     * @param iterable<string> $replace
      * @param string $subject
      * @return string
      */
