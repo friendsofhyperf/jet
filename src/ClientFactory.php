@@ -13,39 +13,10 @@ namespace FriendsOfHyperf\Jet;
 
 use Closure;
 use Exception;
-use GuzzleHttp\ClientInterface;
 use InvalidArgumentException;
 
 class ClientFactory
 {
-    /**
-     * User agent.
-     * @var string
-     */
-    protected static $userAgent;
-
-    /**
-     * Set user agent.
-     */
-    public static function setUserAgent(string $userAgent): void
-    {
-        self::$userAgent = $userAgent;
-    }
-
-    /**
-     * Get user agent.
-     */
-    public static function getUserAgent(): string
-    {
-        return self::$userAgent ?: sprintf(
-            'jet/%s php/%s guzzle/%s curl/%s',
-            Client::MAJOR_VERSION,
-            PHP_VERSION,
-            defined(ClientInterface::class . '::VERSION') ? constant(ClientInterface::class . '::VERSION') : constant(ClientInterface::class . '::MAJOR_VERSION'),
-            curl_version()['version']
-        );
-    }
-
     /**
      * Create a client.
      * @param Closure|Metadata|string $service
