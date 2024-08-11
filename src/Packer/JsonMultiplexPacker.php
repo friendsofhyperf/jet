@@ -34,7 +34,7 @@ class JsonMultiplexPacker implements PackerInterface
      * @param string $data
      * @return array
      */
-    public function unpack($data)
+    public function unpack(string $data)
     {
         // $unpacked = unpack('Nid', substr($data, 4, 4));
         $body = substr($data, 8);
