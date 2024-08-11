@@ -23,7 +23,7 @@ use RuntimeException;
 
 class Metadata
 {
-    protected ?TransporterInterface $transporter;
+    protected ?TransporterInterface $transporter = null;
 
     protected array $transporterConfig = [];
 
@@ -37,7 +37,7 @@ class Metadata
 
     protected int $tries = 0;
 
-    protected ?string $protocol;
+    protected ?string $protocol = null;
 
     protected int $timeout = 3;
 
