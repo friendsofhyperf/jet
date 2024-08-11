@@ -1,5 +1,5 @@
 {
-    "name": "friendsofhyperf/jet-client",
+    "name": "friendsofhyperf/jet",
     "description": "Another jet client for Hyperf (PHP5.3)",
     "type": "library",
     "license": "MIT",
