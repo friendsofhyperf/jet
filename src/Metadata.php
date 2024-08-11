@@ -27,13 +27,13 @@ class Metadata
 
     protected array $transporterConfig = [];
 
-    protected ?PackerInterface $packer;
+    protected ?PackerInterface $packer = null;
 
-    protected ?DataFormatterInterface $dataFormatter;
+    protected ?DataFormatterInterface $dataFormatter = null;
 
-    protected ?PathGeneratorInterface $pathGenerator;
+    protected ?PathGeneratorInterface $pathGenerator = null;
 
-    protected ?RegistryInterface $registry;
+    protected ?RegistryInterface $registry = null;
 
     protected int $tries = 0;
 
