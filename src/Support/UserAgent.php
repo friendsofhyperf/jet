@@ -1,6 +1,8 @@
 <?php
 
-namespace FriendsOfHyperf\Jet;
+namespace FriendsOfHyperf\Jet\Support;
+
+use FriendsOfHyperf\Jet\Client;
 
 class UserAgent
 {
