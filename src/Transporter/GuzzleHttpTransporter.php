@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace FriendsOfHyperf\Jet\Transporter;
 
-use FriendsOfHyperf\Jet\ClientFactory;
+use FriendsOfHyperf\Jet\Support\UserAgent;
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\RequestOptions;
@@ -43,7 +43,7 @@ class GuzzleHttpTransporter extends AbstractTransporter
                 'Content-Type' => 'application/json',
                 'X-Real-Ip' => $_SERVER['SERVER_ADDR'] ?? '',
                 'X-Forwarded-For' => $_SERVER['REMOTE_ADDR'] ?? '',
-                'User-Agent' => ClientFactory::getUserAgent(),
+                'User-Agent' => UserAgent::get(),
             ],
             'http_errors' => false,
         ]);
