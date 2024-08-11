@@ -11,16 +11,12 @@ env:
 
 jobs:
   ci:
-    name: Test on PHP ${{ matrix.php }} Hyperf ${{ matrix.hyperf }}
+    name: Test on PHP ${{ matrix.php }}
     runs-on: "${{ matrix.os }}"
     strategy:
       matrix:
         os: [ubuntu-latest]
         php: ['8.0', '8.1', '8.2', '8.3']
-        hyperf: ['3.0.*', '3.1.*']
-        exclude:
-          - php: '8.0'
-            hyperf: '3.1.*'
       max-parallel: 20
       fail-fast: false
     steps:
@@ -34,8 +30,6 @@ jobs:
           coverage: none
       - name: Setup Packages
         run: |
-          composer require hyperf/di:${{ matrix.hyperf }} --dev --no-update
-          composer require hyperf/guzzle:${{ matrix.hyperf }} --dev --no-update
           composer update -o
       - name: Run Cs Fixer
         run: |
