@@ -35,8 +35,8 @@ class GuzzleHttpTransporter extends AbstractTransporter
 
     public function __construct(string $host = '', int $port = 9501, array $config = [])
     {
-        $this->host = $host;
-        $this->port = $port;
+        parent::__construct($host, $port);
+
         $this->config = array_merge_recursive($config, [
             'headers' => [
                 'Content-Type' => 'application/json',
