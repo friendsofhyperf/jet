@@ -50,8 +50,8 @@ class Str
     }
 
     /**
-     * @param string $search
-     * @param string $replace
+     * @param array|string $search
+     * @param array|string $replace
      * @param string $subject
      * @return string
      */
