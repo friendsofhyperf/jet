@@ -31,7 +31,7 @@ class ConsulRegistry implements RegistryInterface
 {
     protected array $options;
 
-    protected ?LoadBalancerInterface $loadBalancer;
+    protected ?LoadBalancerInterface $loadBalancer = null;
 
     /**
      * @param array $options ['uri' => 'http://127.0.0.1:8500', 'timeout' => 1]
