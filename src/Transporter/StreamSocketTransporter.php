@@ -19,6 +19,8 @@ use InvalidArgumentException;
 use RuntimeException;
 use Throwable;
 
+use function FriendsOfHyperf\Jet\retry;
+
 class StreamSocketTransporter extends AbstractTransporter
 {
     /**
@@ -26,15 +28,7 @@ class StreamSocketTransporter extends AbstractTransporter
      */
     protected $client;
 
-    /**
-     * @var int
-     */
-    protected $timeout;
-
-    /**
-     * @var bool
-     */
-    protected $isConnected = false;
+    protected bool $isConnected = false;
 
     public function __destruct()
     {

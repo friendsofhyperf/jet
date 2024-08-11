@@ -18,7 +18,7 @@ use RuntimeException;
 abstract class Facade
 {
     /**
-     * @var array
+     * @var array<string, Client>
      */
     protected static $instances = [];
 
@@ -29,7 +29,6 @@ abstract class Facade
      */
     public static function __callStatic($name, $arguments)
     {
-        // return call_user_func_array([static::getFacadeRoot(), $name], $arguments);
         return static::getFacadeRoot()->{$name}(...$arguments);
     }
 
