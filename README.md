@@ -18,7 +18,7 @@ require 'path/jet-client/bootstrap.php';
 ### Composer
 
 ```shell
-composer require "friendsofhyperf/jet:^1.0"
+composer require "friendsofhyperf/jet:^1.3"
 ```
 
 ## QuickStart
