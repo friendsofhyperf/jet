@@ -37,11 +37,6 @@
     "config": {
         "sort-packages": true
     },
-    "extra": {
-        "hyperf": {
-            "config": "FriendsOfHyperf\\Jet\\ConfigProvider"
-        }
-    },
     "suggest": {
         "swoole": ">=4.6.0"
     },

@@ -126,3 +126,49 @@ class Calculator extends Facade
 
 var_dump(Calculator::add(rand(0, 100), rand(0, 100)));
 ```
+
+## Coroutine support in Hyperf
+
+- Aspect
+
+```php
+<?php
+
+namespace App\Aspect;
+
+use Hyperf\Di\Aop\AbstractAspect;
+use Hyperf\Di\Aop\ProceedingJoinPoint;
+use Hyperf\Guzzle\ClientFactory;
+
+class GuzzleHttpTransporterAspect extends AbstractAspect
+{
+    public array $classes = [
+        'FriendsOfHyperf\Jet\Transporter\GuzzleHttpTransporter::getClient',
+    ];
+
+    protected ClientFactory $clientFactory;
+
+    public function __construct(ClientFactory $clientFactory)
+    {
+        $this->clientFactory = $clientFactory;
+    }
+
+    public function process(ProceedingJoinPoint $proceedingJoinPoint)
+    {
+        $instance = $proceedingJoinPoint->getInstance();
+        $config = (function () { return $this->config; })->call($instance);
+
+        return $this->clientFactory->create($config);
+    }
+}
+```
+
+- Config `config/autoload/aspects.php`
+
+```php
+<?php
+
+return [
+    'App\Aspect\GuzzleHttpTransporterAspect',
+];
+```
