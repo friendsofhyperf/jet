@@ -45,7 +45,6 @@ class GuzzleHttpTransporter extends AbstractTransporter
                 'User-Agent' => UserAgent::get(),
             ],
             'http_errors' => false,
-            'timeout' => (float) ($config['timeout'] ?? $this->timeout),
         ]);
     }
 
