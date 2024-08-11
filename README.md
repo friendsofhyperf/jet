@@ -5,7 +5,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/friendsofhyperf/jet)](https://packagist.org/packages/friendsofhyperf/jet)
 [![GitHub license](https://img.shields.io/github/license/friendsofhyperf/jet)](https://github.com/friendsofhyperf/jet)
 
-Another jet client for Hyperf (PHP5.3)
+Another jet client for Hyperf (PHP 5.3-7.0)
 
 ## Installation
 
