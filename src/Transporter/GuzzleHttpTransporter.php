@@ -33,9 +33,14 @@ class GuzzleHttpTransporter extends AbstractTransporter
             'X-Real-Ip' => $_SERVER['SERVER_ADDR'] ?? '',
             'X-Forwarded-For' => $_SERVER['REMOTE_ADDR'] ?? '',
             'User-Agent' => UserAgent::get(),
-        ], $config['headers'] ?? []);
-        $this->config['http_errors'] ??= false;
-        $this->config['timeout'] ??= $this->timeout;
+        ], $this->config['headers'] ?? []);
+        $this->config = array_replace(
+            [
+                'http_errors' => false,
+                'timeout' => $this->timeout,
+            ],
+            $this->config
+        );
     }
 
     public function send(string $data)
