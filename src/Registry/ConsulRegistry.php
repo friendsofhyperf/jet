@@ -22,6 +22,10 @@ use FriendsOfHyperf\Jet\Transporter\GuzzleHttpTransporter;
 use FriendsOfHyperf\Jet\Transporter\StreamSocketTransporter;
 use GuzzleHttp\Client;
 
+use function FriendsOfHyperf\Jet\array_get;
+use function FriendsOfHyperf\Jet\retry;
+use function FriendsOfHyperf\Jet\with;
+
 class ConsulRegistry implements RegistryInterface
 {
     /**

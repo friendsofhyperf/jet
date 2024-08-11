@@ -15,6 +15,8 @@ namespace FriendsOfHyperf\Jet\Consul;
 use FriendsOfHyperf\Jet\Exception\ServerException;
 use Psr\Http\Message\ResponseInterface;
 
+use function FriendsOfHyperf\Jet\array_get;
+
 class Response
 {
     /**

@@ -16,6 +16,8 @@ use FriendsOfHyperf\Jet\Exception\ConnectionException;
 use FriendsOfHyperf\Jet\Exception\ExceptionThrower;
 use FriendsOfHyperf\Jet\Exception\RecvFailedException;
 
+use function FriendsOfHyperf\Jet\retry;
+
 class StreamSocketTransporter extends AbstractTransporter
 {
     /**
