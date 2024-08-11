@@ -12,18 +12,16 @@ declare(strict_types=1);
 namespace FriendsOfHyperf\Jet\PathGenerator;
 
 use FriendsOfHyperf\Jet\Contract\PathGeneratorInterface;
-
-use function FriendsOfHyperf\Jet\str_replace_array;
-use function FriendsOfHyperf\Jet\str_studly;
+use FriendsOfHyperf\Jet\Support\Str;
 
 class DotPathGenerator implements PathGeneratorInterface
 {
     public function generate(string $service, string $method): string
     {
         $handledNamespace = explode('\\', $service);
-        $handledNamespace = str_replace_array('\\', ['/'], end($handledNamespace));
-        $path = str_studly($handledNamespace);
+        $handledNamespace = Str::replaceArray('\\', ['/'], end($handledNamespace));
+        $path = Str::studly($handledNamespace);
 
-        return $path . '.' . str_studly($method);
+        return $path . '.' . Str::studly($method);
     }
 }
