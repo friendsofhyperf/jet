@@ -16,6 +16,8 @@ use FriendsOfHyperf\Jet\Contract\PackerInterface;
 use FriendsOfHyperf\Jet\Packer\GrpcPacker;
 use Grpc\BaseStub;
 
+use function FriendsOfHyperf\Jet\str_start;
+
 class GrpcTransporter extends AbstractTransporter
 {
     /**
@@ -23,45 +25,26 @@ class GrpcTransporter extends AbstractTransporter
      */
     protected $clientFactory;
 
-    /**
-     * @var array
-     */
-    protected $ret;
+    protected array $ret;
 
-    /**
-     * @var string
-     */
-    protected $path;
+    protected string $path;
 
-    /**
-     * @var array
-     */
-    protected $config = [];
+    protected array $config = [];
 
-    /**
-     * @var array
-     */
-    protected $metadata = [];
+    protected array $metadata = [];
 
-    /**
-     * @var array
-     */
-    protected $options = [];
+    protected array $options = [];
 
     /**
      * @var object|string|null
      */
     protected $credentials;
 
-    /**
-     * @var PackerInterface
-     */
-    protected $packer;
+    protected PackerInterface $packer;
 
     public function __construct(string $host = '', int $port = 9501, array $config = [])
     {
-        $this->host = $host;
-        $this->port = $port;
+        parent::__construct($host, $port);
 
         foreach ($config as $k => $v) {
             if (in_array($k, ['path', 'metadata', 'options', 'credentials'])) {

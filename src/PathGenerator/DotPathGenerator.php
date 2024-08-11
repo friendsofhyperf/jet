@@ -13,6 +13,9 @@ namespace FriendsOfHyperf\Jet\PathGenerator;
 
 use FriendsOfHyperf\Jet\Contract\PathGeneratorInterface;
 
+use function FriendsOfHyperf\Jet\str_replace_array;
+use function FriendsOfHyperf\Jet\str_studly;
+
 class DotPathGenerator implements PathGeneratorInterface
 {
     public function generate(string $service, string $method): string

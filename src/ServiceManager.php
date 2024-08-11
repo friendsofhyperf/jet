@@ -11,40 +11,29 @@ declare(strict_types=1);
 
 namespace FriendsOfHyperf\Jet;
 
-use InvalidArgumentException;
-
 class ServiceManager
 {
     /**
-     * @var array
+     * @var array<string, Metadata>
      */
     protected static $services = [];
 
-    /**
-     * @return Metadata|null
-     */
-    public static function get(string $service)
+    public static function get(string $service): ?Metadata
     {
         return self::isRegistered($service) ? static::$services[$service] : null;
     }
 
-    /**
-     * @return bool
-     */
-    public static function isRegistered(string $service)
+    public static function isRegistered(string $service): bool
     {
         return isset(static::$services[$service]);
     }
 
-    /**
-     * @throws InvalidArgumentException
-     */
-    public static function register(string $service, Metadata $metadata)
+    public static function register(string $service, Metadata $metadata): void
     {
         static::$services[$service] = $metadata;
     }
 
-    public static function deregister(string $service)
+    public static function deregister(string $service): void
     {
         unset(static::$services[$service]);
     }

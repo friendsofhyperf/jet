@@ -3,6 +3,7 @@
 composer.lock
 *.bak
 /phpunit.xml
+/phpunit.xml.dist.bak
 /.phpunit.result.cache
 .idea
 .bashrc
