@@ -35,7 +35,7 @@ class GuzzleHttpTransporter extends AbstractTransporter
 
     public function __construct(string $host = '', int $port = 9501, array $config = [])
     {
-        parent::__construct($host, $port);
+        parent::__construct($host, $port,  (int) ($config['timeout'] ?? 1));
 
         $this->config = array_merge_recursive($config, [
             'headers' => [
@@ -45,7 +45,7 @@ class GuzzleHttpTransporter extends AbstractTransporter
                 'User-Agent' => UserAgent::get(),
             ],
             'http_errors' => false,
-            'timeout' => (int) ($config['timeout'] ?? $this->timeout),
+            'timeout' => $this->timeout,
         ]);
     }
 
