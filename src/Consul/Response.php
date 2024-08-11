@@ -12,9 +12,8 @@ declare(strict_types=1);
 namespace FriendsOfHyperf\Jet\Consul;
 
 use FriendsOfHyperf\Jet\Exception\ServerException;
+use FriendsOfHyperf\Jet\Support\Arr;
 use Psr\Http\Message\ResponseInterface;
-
-use function FriendsOfHyperf\Jet\array_get;
 
 class Response
 {
@@ -57,7 +56,7 @@ class Response
             return $this->decoded;
         }
 
-        return array_get($this->decoded, $key, $default);
+        return Arr::get($this->decoded, $key, $default);
     }
 
     /**
