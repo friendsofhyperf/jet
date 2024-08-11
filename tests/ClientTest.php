@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../src/bootstrap.php';
+require_once __DIR__ . '/../src/autoload.php';
 
 use FriendsOfHyperf\Jet\Client;
 use FriendsOfHyperf\Jet\ClientFactory;
