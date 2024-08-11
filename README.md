@@ -12,7 +12,7 @@ Another jet client for Hyperf (PHP 5.3-7.0)
 ### Require
 
 ```php
-require 'path/jet-client/bootstrap.php';
+require 'vendor/friendsofhyperf/jet/src/autoload.php';
 ```
 
 ### Composer

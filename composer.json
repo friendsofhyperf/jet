@@ -16,7 +16,7 @@
             "FriendsOfHyperf\\Jet\\": "src/"
         },
         "files": [
-            "src/bootstrap.php"
+            "src/autoload.php"
         ]
     },
     "extra": {

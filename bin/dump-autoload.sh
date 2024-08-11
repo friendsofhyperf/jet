@@ -2,7 +2,7 @@
 
 SCRIPT_PATH=$(dirname $(realpath $0))
 BASE_PATH=$(dirname ${SCRIPT_PATH})
-BOOTSTRAP=${BASE_PATH}/src/bootstrap.php
+AUTOLOAD=${BASE_PATH}/src/autoload.php
 NAMESPACE="FriendsOfHyperf\\Jet\\"
 
 cd $BASE_PATH
@@ -10,15 +10,17 @@ cd $BASE_PATH
 # echo $(pwd)
 # exit 0
 
-cat <<EOT > ${BOOTSTRAP}
+cat <<EOT > ${AUTOLOAD}
 <?php
 
-\$baseDir = realpath(__DIR__);
-\$classMap = array(
+(function () {
+    \$baseDir = realpath(__DIR__);
+    \$classMap = array(
 EOT
 
 for FILE in `find ./src -type f -name "*.php"`; do
-    if [ "${FILE}" == *bootstrap.php* ]; then
+    # if the file path contains autoload.php, skip it
+    if [[ ${FILE} == *autoload.php* ]]; then
         continue
     fi
 
@@ -27,18 +29,19 @@ for FILE in `find ./src -type f -name "*.php"`; do
     CLASS="${NAMESPACE}${BASENAME//\//\\}"
     CLASSMAP="'${CLASS}' => \$baseDir . '${RELATIVE_PATH}',"
 
-    echo "    ${CLASSMAP}" >> ${BOOTSTRAP}
+    echo "        ${CLASSMAP}" >> ${AUTOLOAD}
 
 done
 
-cat <<EOT >> ${BOOTSTRAP}
-);
+cat <<EOT >> ${AUTOLOAD}
+    );
 
-spl_autoload_register(function (\$class) use (\$classMap) {
-    if (isset(\$classMap[\$class]) && is_file(\$classMap[\$class])) {
-        require_once \$classMap[\$class];
-    }
-});
+    spl_autoload_register(function (\$class) use (\$classMap) {
+        if (isset(\$classMap[\$class]) && is_file(\$classMap[\$class])) {
+            require_once \$classMap[\$class];
+        }
+    });
+})();
 EOT
 
 echo "done!"
