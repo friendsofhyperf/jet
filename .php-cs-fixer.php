@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 /**
- * This file is part of jet.
+ * This file is part of friendsofhyperf/jet.
  *
  * @link     https://github.com/friendsofhyperf/jet
  * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
- * @contact  Huangdijia@gmail.com
+ * @contact  huangdijia@gmail.com
  */
 use Huangdijia\PhpCsFixer\Config;
 
@@ -14,11 +14,11 @@ require __DIR__ . '/vendor/autoload.php';
 
 return (new Config())
     ->setHeaderComment(
-        projectName: 'jet',
+        projectName: 'friendsofhyperf/jet',
         projectLink: 'https://github.com/friendsofhyperf/jet',
         projectDocument: 'https://github.com/friendsofhyperf/jet/blob/main/README.md',
         contacts: [
-            'Huangdijia@gmail.com',
+            'huangdijia@gmail.com',
         ],
     )
     ->setFinder(

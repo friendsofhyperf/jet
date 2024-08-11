@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 /**
- * This file is part of jet.
+ * This file is part of friendsofhyperf/jet.
  *
  * @link     https://github.com/friendsofhyperf/jet
  * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
- * @contact  Huangdijia@gmail.com
+ * @contact  huangdijia@gmail.com
  */
 
 namespace FriendsOfHyperf\Jet\Packer;
