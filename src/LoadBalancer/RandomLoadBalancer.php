@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * This file is part of friendsofhyperf/jet.
  * 
  * @link     https://github.com/friendsofhyperf/jet
