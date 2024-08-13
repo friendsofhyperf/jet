@@ -44,7 +44,7 @@ for FILE in `find ./src -type f -name "*.php"`; do
         continue
     fi
 
-    RELATIVE_PATH=`echo ${FILE} | sed -r "s/^\.\/src//"`
+    RELATIVE_PATH=`echo ${FILE} | sed -r "s/^\.//"`
     BASENAME="${RELATIVE_PATH%.php}"
     CLASS="${NAMESPACE}${BASENAME//\//\\}"
     CLASSMAP="'${CLASS}' => \$baseDir . '${RELATIVE_PATH}',"
