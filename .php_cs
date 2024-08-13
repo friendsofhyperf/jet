@@ -8,28 +8,49 @@ This file is part of friendsofhyperf/jet.
 @contact  huangdijia@gmail.com
 EOF;
 
+$finder = PhpCsFixer\Finder::create()
+    ->files()
+    ->in(__DIR__.'/src')
+    ->in(__DIR__.'/tests')
+    ->name('*.php')
+;
+
 return PhpCsFixer\Config::create()
+    ->setUsingCache(true)
     ->setRiskyAllowed(true)
     ->setRules(array(
-        '@Symfony' => true,
-        '@Symfony:risky' => true,
-        'combine_consecutive_unsets' => true,
-        'header_comment' => array('header' => $header),
+        '@PSR2' => true,
         'array_syntax' => array('syntax' => 'long'),
-        'no_extra_consecutive_blank_lines' => array('break', 'continue', 'extra', 'return', 'throw', 'use', 'parenthesis_brace_block', 'square_brace_block', 'curly_brace_block'),
-        'no_useless_else' => true,
-        'no_useless_return' => true,
-        'ordered_class_elements' => true,
-        'ordered_imports' => true,
-        'php_unit_strict' => true,
-        'phpdoc_add_missing_param_annotation' => true,
-        'psr4' => true,
-        'strict_comparison' => true,
-        'strict_param' => true,
+        'binary_operator_spaces' => true,
+        'blank_line_before_statement' => array('statements' => array('declare', 'return')),
+        'cast_spaces' => array('space' => 'single'),
+        'header_comment' => array('header' => $header),
+        'include' => true,
+        'class_attributes_separation' => array('elements' => array('method')),
+        'no_blank_lines_after_class_opening' => true,
+        'no_blank_lines_after_phpdoc' => true,
+        'no_empty_statement' => true,
+        'no_extra_consecutive_blank_lines' => true,
+        'no_leading_import_slash' => true,
+        'no_leading_namespace_whitespace' => true,
+        'no_trailing_comma_in_singleline_array' => true,
+        'no_unused_imports' => true,
+        'no_whitespace_in_blank_line' => true,
+        'object_operator_without_whitespace' => true,
+        'phpdoc_align' => true,
+        'phpdoc_indent' => true,
+        'phpdoc_no_access' => true,
+        'phpdoc_no_package' => true,
+        'phpdoc_order' => true,
+        'phpdoc_scalar' => true,
+        'phpdoc_trim' => true,
+        'phpdoc_types' => true,
+        'psr0' => true,
+        'single_blank_line_before_namespace' => true,
+        'standardize_not_equals' => true,
+        'ternary_operator_spaces' => true,
+        'trailing_comma_in_multiline_array' => true,
+        'unary_operator_spaces' => true,
     ))
-    ->setFinder(
-        PhpCsFixer\Finder::create()
-            ->exclude('tests')
-            ->in(__DIR__)
-    )
+    ->setFinder($finder)
 ;
