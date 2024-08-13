@@ -23,6 +23,8 @@ jobs:
           coverage: none
       - name: Setup Packages
         run: composer update -o
+      - name: Run Cs Fixer
+        run: vendor/bin/php-cs-fixer fix --dry-run --diff
       - name: Setup Consul
         run: docker run -d --name=dev-consul -e CONSUL_BIND_INTERFACE=eth0 --net=host consul:1.15.4
       - name: Setup Services

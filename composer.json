@@ -11,6 +11,9 @@
         "php": "^5.0|~7.0.0",
         "ext-curl": "*"
     },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.0"
+    },
     "autoload": {
         "psr-4": {
             "FriendsOfHyperf\\Jet\\": "src/"
@@ -25,6 +28,7 @@
         }
     },
     "scripts": {
+        "cs": "php-cs-fixer fix $1",
         "test": [
             "php tests/RegistryTest.php",
             "php tests/ClientTest.php"
