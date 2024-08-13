@@ -264,7 +264,6 @@ class Response implements \ArrayAccess
     }
 
     /**
-     *
      * @param string|int|null $key
      * @param mixed $default
      * @throws Exception

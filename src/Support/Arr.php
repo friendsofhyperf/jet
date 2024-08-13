@@ -86,7 +86,6 @@ class Arr
     }
 
     /**
-     *
      * @param mixed $array
      * @param int|string $key
      * @return bool
