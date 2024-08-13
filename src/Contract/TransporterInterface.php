@@ -33,5 +33,4 @@ interface TransporterInterface
      * @return TransporterInterface
      */
     public function setLoadBalancer($loadBalancer);
-
 }
