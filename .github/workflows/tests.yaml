@@ -19,7 +19,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-version }}
-          tools: phpize
+          tools: phpize, composer:v1
           coverage: none
       - name: Setup Packages
         run: composer update -o
