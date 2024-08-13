@@ -8,9 +8,9 @@
  * @contact  huangdijia@gmail.com
  */
 
-class JetClassLoader78077fc26b45d059afaed09e
+class JetClassLoader49191f56b51f5b7e5c380280
 {
-    public static $registered = false;
+    static $registered = false;
 
     public static function register()
     {
@@ -76,4 +76,4 @@ class JetClassLoader78077fc26b45d059afaed09e
     }
 }
 
-JetClassLoader78077fc26b45d059afaed09e::register();
+JetClassLoader49191f56b51f5b7e5c380280::register();

@@ -19,7 +19,7 @@
             "FriendsOfHyperf\\Jet\\": "src/"
         },
         "files": [
-            "src/autoload.php"
+            "autoload.php"
         ]
     },
     "extra": {

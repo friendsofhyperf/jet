@@ -2,7 +2,7 @@
 
 SCRIPT_PATH=$(dirname $(realpath $0))
 BASE_PATH=$(dirname ${SCRIPT_PATH})
-AUTOLOAD=${BASE_PATH}/src/autoload.php
+AUTOLOAD=${BASE_PATH}/autoload.php
 NAMESPACE="FriendsOfHyperf\\Jet\\"
 LOADER="JetClassLoader"$(openssl rand -hex 12)
 # echo $LOADER
