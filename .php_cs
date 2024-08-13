@@ -18,10 +18,11 @@ EOF;
 
 $finder = PhpCsFixer\Finder::create()
     ->files()
-    ->in(__DIR__.'/src')
-    ->in(__DIR__.'/tests')
-    // ->name('*.php')
-    ->notPath('src/autoload.php')
+    ->in(__DIR__ . '/src')
+    ->in(__DIR__ . '/tests')
+    ->name('*.php')
+    ->append([__FILE__])
+    ->notPath(__DIR__ . '/src/autoload.php')
 ;
 
 return PhpCsFixer\Config::create()
