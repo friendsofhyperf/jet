@@ -11,7 +11,6 @@
 namespace FriendsOfHyperf\Jet\Support;
 
 use FriendsOfHyperf\Jet\Support\Util;
-
 class Arr
 {
     /**

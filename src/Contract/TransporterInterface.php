@@ -24,7 +24,7 @@ interface TransporterInterface
     public function recv();
 
     /**
-     * @return LoadBalancerInterface 
+     * @return LoadBalancerInterface
      */
     public function getLoadBalancer();
 

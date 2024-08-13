@@ -19,7 +19,6 @@ use FriendsOfHyperf\Jet\RegistryManager;
 
 class Assert
 {
-
     /**
      * @param mixed $transporter
      * @throws \InvalidArgumentException
