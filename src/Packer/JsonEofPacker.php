@@ -25,8 +25,8 @@ class JsonEofPacker implements PackerInterface
     }
 
     /**
-     * @param mixed $data 
-     * @return string 
+     * @param mixed $data
+     * @return string
      */
     public function pack($data)
     {

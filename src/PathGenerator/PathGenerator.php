@@ -16,9 +16,9 @@ use FriendsOfHyperf\Jet\Support\Str;
 class PathGenerator implements PathGeneratorInterface
 {
     /**
-     * @param string $service 
-     * @param string $method 
-     * @return string 
+     * @param string $service
+     * @param string $method
+     * @return string
      */
     public function generate($service, $method)
     {
