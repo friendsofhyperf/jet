@@ -23,7 +23,7 @@ final class ExceptionThrower
     }
 
     /**
-     * @return \Exception 
+     * @return \Exception
      */
     public function getThrowable()
     {
