@@ -107,8 +107,8 @@ class Metadata
     /**
      * Set transporter.
      * @param TransporterInterface $transporter
-     * @return $this
      * @throws \InvalidArgumentException
+     * @return $this
      */
     public function setTransporter($transporter)
     {
@@ -139,8 +139,8 @@ class Metadata
     /**
      * Set packer.
      * @param PackerInterface $packer
-     * @return $this
      * @throws \InvalidArgumentException
+     * @return $this
      */
     public function setPacker($packer)
     {
@@ -167,8 +167,8 @@ class Metadata
     /**
      * Set data formatter.
      * @param DataFormatterInterface $dataFormatter
-     * @return $this
      * @throws \InvalidArgumentException
+     * @return $this
      */
     public function setDataFormatter($dataFormatter)
     {
@@ -195,8 +195,8 @@ class Metadata
     /**
      * Set path generator.
      * @param PathGeneratorInterface $pathGenerator
-     * @return $this
      * @throws \InvalidArgumentException
+     * @return $this
      */
     public function setPathGenerator($pathGenerator)
     {
@@ -223,8 +223,8 @@ class Metadata
     /**
      * Set registry.
      * @param RegistryInterface $registry
-     * @return $this
      * @throws \InvalidArgumentException
+     * @return $this
      */
     public function setRegistry($registry)
     {
@@ -247,8 +247,8 @@ class Metadata
     /**
      * Set tries.
      * @param int $tries
-     * @return $this
      * @throws \InvalidArgumentException
+     * @return $this
      */
     public function setTries($tries)
     {
@@ -273,8 +273,8 @@ class Metadata
     /**
      * Set timeout.
      * @param int $timeout
-     * @return $this
      * @throws \InvalidArgumentException
+     * @return $this
      */
     public function setTimeout($timeout)
     {

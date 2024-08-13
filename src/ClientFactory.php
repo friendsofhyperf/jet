@@ -26,8 +26,8 @@ class ClientFactory
      * @param DataFormatterInterface|null $dataFormatter
      * @param PathGeneratorInterface|null $pathGenerator
      * @param int|null $tries
-     * @return Client
      * @throws ClientException
+     * @return Client
      */
     public static function create(
         $service,

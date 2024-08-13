@@ -156,8 +156,8 @@ class ConsulRegistry implements RegistryInterface
      * @param string $service
      * @param string|null $protocol
      * @param int $timeout
-     * @return TransporterInterface
      * @throws Exception
+     * @return TransporterInterface
      */
     public function getTransporter($service, $protocol = null, $timeout = 1)
     {

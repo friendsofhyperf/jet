@@ -28,9 +28,9 @@ class Client
 
     /**
      * @param Metadata $metadata
-     * @return void
      * @throws \InvalidArgumentException
      * @throws \Exception
+     * @return void
      */
     public function __construct($metadata)
     {

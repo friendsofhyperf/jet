@@ -38,8 +38,8 @@ class ServiceManager
     /**
      * @param string $service
      * @param Metadata $metadata
-     * @return void
      * @throws \InvalidArgumentException
+     * @return void
      */
     public static function register($service, $metadata)
     {

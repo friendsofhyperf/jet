@@ -30,9 +30,9 @@ abstract class Facade
 
     /**
      * @param Client|string $name
-     * @return Client
      * @throws \InvalidArgumentException
      * @throws \Exception
+     * @return Client
      */
     protected static function resolveFacadeInstance($name)
     {

@@ -14,9 +14,9 @@ class Catalog extends Client
 {
     /**
      * @param array $options
-     * @return Response
      * @throws InvalidArgumentException
      * @throws Exception
+     * @return Response
      */
     public function services($options = array())
     {

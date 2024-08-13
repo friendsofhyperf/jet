@@ -49,8 +49,8 @@ class StreamSocketTransporter extends AbstractTransporter
     }
 
     /**
-     * @return string 
-     * @throws \Exception 
+     * @throws \Exception
+     * @return string
      */
     public function recv()
     {
@@ -110,9 +110,9 @@ class StreamSocketTransporter extends AbstractTransporter
     }
 
     /**
-     * @return array
      * @throws \InvalidArgumentException
      * @throws \Exception
+     * @return array
      */
     protected function getTarget()
     {

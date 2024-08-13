@@ -50,8 +50,8 @@ class Util
      * 
      * @param TValue $value
      * @param \Exception $exception
-     * @return TValue
      * @throws \InvalidArgumentException
+     * @return TValue
      */
     public static function throwIf($value, $exception)
     {

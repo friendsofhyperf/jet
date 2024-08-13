@@ -21,9 +21,9 @@ class CurlHttpTransporter extends AbstractTransporter
     protected $response;
 
     /**
-     * @return array
      * @throws \InvalidArgumentException
      * @throws \Exception
+     * @return array
      */
     protected function getTarget()
     {
@@ -43,9 +43,9 @@ class CurlHttpTransporter extends AbstractTransporter
 
     /**
      * @param string $data 
-     * @return void 
      * @throws \InvalidArgumentException 
      * @throws \Exception 
+     * @return void 
      */
     public function send($data)
     {

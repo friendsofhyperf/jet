@@ -267,8 +267,8 @@ class Response implements \ArrayAccess
      *
      * @param string|int|null $key
      * @param mixed $default
-     * @return mixed
      * @throws Exception
+     * @return mixed
      */
     public function json($key = null, $default = null)
     {
@@ -317,8 +317,8 @@ class Response implements \ArrayAccess
 
     /**
      * Throw an exception if a server or client error occurred.
-     * @return $this
      * @throws Exception
+     * @return $this
      */
     public function throwIf()
     {
@@ -384,9 +384,8 @@ class Response implements \ArrayAccess
      *
      * @param  string  $offset
      * @param  mixed  $value
-     * @return void
-     *
      * @throws \LogicException
+     * @return void
      */
     public function offsetSet($offset, $value)
     {
@@ -397,9 +396,8 @@ class Response implements \ArrayAccess
      * Unset the value at the given offset.
      *
      * @param  string  $offset
-     * @return void
-     *
      * @throws \LogicException
+     * @return void
      */
     public function offsetUnset($offset)
     {
