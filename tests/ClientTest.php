@@ -59,7 +59,6 @@ var_dump(Calculator::add(rand(0, 100), rand(0, 100)));
 echo "Create with custom client\n";
 /**
  * @method int add(int$a, int$b)
- * @package
  */
 class CalculatorService extends Client
 {
