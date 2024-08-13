@@ -10,7 +10,7 @@
 
 namespace FriendsOfHyperf\Jet\Consul;
 
-use \FriendsOfHyperf\Jet\Exception\ClientException;
+use FriendsOfHyperf\Jet\Exception\ClientException;
 use FriendsOfHyperf\Jet\Support\Arr;
 
 class Client
