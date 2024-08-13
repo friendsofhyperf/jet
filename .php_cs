@@ -21,7 +21,7 @@ $finder = PhpCsFixer\Finder::create()
     ->in(__DIR__ . '/src')
     ->in(__DIR__ . '/tests')
     ->name('*.php')
-    ->append([__FILE__])
+    ->append(array(__FILE__))
     ->notPath(__DIR__ . '/src/autoload.php')
 ;
 
