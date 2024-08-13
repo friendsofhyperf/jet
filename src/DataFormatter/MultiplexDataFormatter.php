@@ -14,13 +14,13 @@ class MultiplexDataFormatter implements DataFormatterInterface
     {
         list($path, $params, $id) = $data;
 
-        return [
+        return array(
             'id' => $id,
             'path' => $path,
             'data' => $params,
-            'extra' => [],
-            'context' => [],
-        ];
+            'extra' => array(),
+            'context' => array(),
+        );
     }
 
     /**
@@ -31,11 +31,11 @@ class MultiplexDataFormatter implements DataFormatterInterface
     {
         list($id, $result) = $data;
 
-        return [
+        return array(
             'id' => $id,
             'result' => $result,
-            'context' => [],
-        ];
+            'context' => array(),
+        );
     }
 
     /**
@@ -54,14 +54,14 @@ class MultiplexDataFormatter implements DataFormatterInterface
             );
         }
 
-        return [
+        return array(
             'id' => $id,
-            'error' => [
+            'error' => array(
                 'code' => $code,
                 'message' => $message,
                 'data' => $data,
-            ],
-            'context' => [],
-        ];
+            ),
+            'context' => array(),
+        );
     }
 }
