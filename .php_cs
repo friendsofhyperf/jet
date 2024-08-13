@@ -20,7 +20,7 @@ $finder = PhpCsFixer\Finder::create()
     ->files()
     ->in(__DIR__.'/src')
     ->in(__DIR__.'/tests')
-    ->name('*.php')
+    // ->name('*.php')
     ->notPath('src/autoload.php')
 ;
 
