@@ -1,8 +1,16 @@
 <?php
 
+/*
+ * This file is part of friendsofhyperf/jet.
+ *
+ * @link     https://github.com/friendsofhyperf/jet
+ * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
+ * @contact  huangdijia@gmail.com
+ */
+
 namespace FriendsOfHyperf\Jet\Consul;
 
-use \FriendsOfHyperf\Jet\Exception\ClientException;
+use FriendsOfHyperf\Jet\Exception\ClientException;
 use FriendsOfHyperf\Jet\Support\Arr;
 
 class Client

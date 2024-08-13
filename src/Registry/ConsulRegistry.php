@@ -1,5 +1,13 @@
 <?php
 
+/*
+ * This file is part of friendsofhyperf/jet.
+ *
+ * @link     https://github.com/friendsofhyperf/jet
+ * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
+ * @contact  huangdijia@gmail.com
+ */
+
 namespace FriendsOfHyperf\Jet\Registry;
 
 use Exception;
@@ -63,9 +71,6 @@ class ConsulRegistry implements RegistryInterface
         return $this->loadBalancer;
     }
 
-    /**
-     * @return array 
-     */
     public function getServices()
     {
         $loadBalancer = $this->getLoadBalancer();
@@ -94,7 +99,7 @@ class ConsulRegistry implements RegistryInterface
     /**
      * @param string $service
      * @param string|null $protocol
-     * @return array 
+     * @return array
      */
     public function getServiceNodes($service, $protocol = null)
     {
@@ -148,8 +153,8 @@ class ConsulRegistry implements RegistryInterface
      * @param string $service
      * @param string|null $protocol
      * @param int $timeout
-     * @return TransporterInterface
      * @throws Exception
+     * @return TransporterInterface
      */
     public function getTransporter($service, $protocol = null, $timeout = 1)
     {

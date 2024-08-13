@@ -1,4 +1,13 @@
 <?php
+
+/*
+ * This file is part of friendsofhyperf/jet.
+ *
+ * @link     https://github.com/friendsofhyperf/jet
+ * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
+ * @contact  huangdijia@gmail.com
+ */
+
 require_once __DIR__ . '/../src/autoload.php';
 
 use FriendsOfHyperf\Jet\Client;
@@ -50,7 +59,6 @@ var_dump(Calculator::add(rand(0, 100), rand(0, 100)));
 echo "Create with custom client\n";
 /**
  * @method int add(int$a, int$b)
- * @package
  */
 class CalculatorService extends Client
 {

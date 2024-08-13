@@ -1,5 +1,13 @@
 <?php
 
+/*
+ * This file is part of friendsofhyperf/jet.
+ *
+ * @link     https://github.com/friendsofhyperf/jet
+ * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
+ * @contact  huangdijia@gmail.com
+ */
+
 namespace FriendsOfHyperf\Jet;
 
 use FriendsOfHyperf\Jet\Exception\RecvFailedException;
@@ -20,9 +28,9 @@ class Client
 
     /**
      * @param Metadata $metadata
-     * @return void
      * @throws \InvalidArgumentException
      * @throws \Exception
+     * @return void
      */
     public function __construct($metadata)
     {

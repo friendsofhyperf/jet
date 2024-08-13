@@ -1,14 +1,22 @@
 <?php
 
+/*
+ * This file is part of friendsofhyperf/jet.
+ *
+ * @link     https://github.com/friendsofhyperf/jet
+ * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
+ * @contact  huangdijia@gmail.com
+ */
+
 namespace FriendsOfHyperf\Jet\Consul;
 
 class Catalog extends Client
 {
     /**
      * @param array $options
-     * @return Response
      * @throws InvalidArgumentException
      * @throws Exception
+     * @return Response
      */
     public function services($options = array())
     {

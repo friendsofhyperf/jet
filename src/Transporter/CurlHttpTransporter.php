@@ -1,5 +1,13 @@
 <?php
 
+/*
+ * This file is part of friendsofhyperf/jet.
+ *
+ * @link     https://github.com/friendsofhyperf/jet
+ * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
+ * @contact  huangdijia@gmail.com
+ */
+
 namespace FriendsOfHyperf\Jet\Transporter;
 
 use FriendsOfHyperf\Jet\Support\Util;
@@ -13,9 +21,9 @@ class CurlHttpTransporter extends AbstractTransporter
     protected $response;
 
     /**
-     * @return array
      * @throws \InvalidArgumentException
      * @throws \Exception
+     * @return array
      */
     protected function getTarget()
     {
@@ -34,10 +42,10 @@ class CurlHttpTransporter extends AbstractTransporter
     }
 
     /**
-     * @param string $data 
-     * @return void 
-     * @throws \InvalidArgumentException 
-     * @throws \Exception 
+     * @param string $data
+     * @throws \InvalidArgumentException
+     * @throws \Exception
+     * @return void
      */
     public function send($data)
     {
@@ -73,7 +81,7 @@ class CurlHttpTransporter extends AbstractTransporter
     }
 
     /**
-     * @return string 
+     * @return string
      */
     public function recv()
     {

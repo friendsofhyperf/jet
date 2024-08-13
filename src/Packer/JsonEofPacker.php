@@ -1,5 +1,13 @@
 <?php
 
+/*
+ * This file is part of friendsofhyperf/jet.
+ *
+ * @link     https://github.com/friendsofhyperf/jet
+ * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
+ * @contact  huangdijia@gmail.com
+ */
+
 namespace FriendsOfHyperf\Jet\Packer;
 
 use FriendsOfHyperf\Jet\Contract\PackerInterface;
@@ -17,8 +25,8 @@ class JsonEofPacker implements PackerInterface
     }
 
     /**
-     * @param mixed $data 
-     * @return string 
+     * @param mixed $data
+     * @return string
      */
     public function pack($data)
     {
@@ -28,8 +36,8 @@ class JsonEofPacker implements PackerInterface
     }
 
     /**
-     * @param string $data 
-     * @return array 
+     * @param string $data
+     * @return array
      */
     public function unpack($data)
     {

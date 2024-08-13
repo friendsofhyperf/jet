@@ -1,5 +1,13 @@
 <?php
 
+/*
+ * This file is part of friendsofhyperf/jet.
+ *
+ * @link     https://github.com/friendsofhyperf/jet
+ * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
+ * @contact  huangdijia@gmail.com
+ */
+
 namespace FriendsOfHyperf\Jet;
 
 use FriendsOfHyperf\Jet\Contract\DataFormatterInterface;
@@ -99,8 +107,8 @@ class Metadata
     /**
      * Set transporter.
      * @param TransporterInterface $transporter
-     * @return $this
      * @throws \InvalidArgumentException
+     * @return $this
      */
     public function setTransporter($transporter)
     {
@@ -131,15 +139,15 @@ class Metadata
     /**
      * Set packer.
      * @param PackerInterface $packer
-     * @return $this
      * @throws \InvalidArgumentException
+     * @return $this
      */
     public function setPacker($packer)
     {
         Assert::assertPacker($packer);
 
         $this->packer = $packer;
-        
+
         return $this;
     }
 
@@ -159,8 +167,8 @@ class Metadata
     /**
      * Set data formatter.
      * @param DataFormatterInterface $dataFormatter
-     * @return $this
      * @throws \InvalidArgumentException
+     * @return $this
      */
     public function setDataFormatter($dataFormatter)
     {
@@ -187,8 +195,8 @@ class Metadata
     /**
      * Set path generator.
      * @param PathGeneratorInterface $pathGenerator
-     * @return $this
      * @throws \InvalidArgumentException
+     * @return $this
      */
     public function setPathGenerator($pathGenerator)
     {
@@ -215,8 +223,8 @@ class Metadata
     /**
      * Set registry.
      * @param RegistryInterface $registry
-     * @return $this
      * @throws \InvalidArgumentException
+     * @return $this
      */
     public function setRegistry($registry)
     {
@@ -239,8 +247,8 @@ class Metadata
     /**
      * Set tries.
      * @param int $tries
-     * @return $this
      * @throws \InvalidArgumentException
+     * @return $this
      */
     public function setTries($tries)
     {
@@ -265,8 +273,8 @@ class Metadata
     /**
      * Set timeout.
      * @param int $timeout
-     * @return $this
      * @throws \InvalidArgumentException
+     * @return $this
      */
     public function setTimeout($timeout)
     {

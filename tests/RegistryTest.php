@@ -1,4 +1,13 @@
 <?php
+
+/*
+ * This file is part of friendsofhyperf/jet.
+ *
+ * @link     https://github.com/friendsofhyperf/jet
+ * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
+ * @contact  huangdijia@gmail.com
+ */
+
 require_once __DIR__ . '/../src/autoload.php';
 
 use FriendsOfHyperf\Jet\Consul\Catalog;
@@ -28,7 +37,7 @@ $services = $registry->getServices();
 var_dump($services);
 
 echo "Test get service nodes\n";
-$nodes = $registry->getServiceNodes($service  = 'CalculatorService');
+$nodes = $registry->getServiceNodes($service = 'CalculatorService');
 var_dump($nodes);
 
 echo "Test JetRegistryManager::register()\n";

@@ -1,5 +1,13 @@
 <?php
 
+/*
+ * This file is part of friendsofhyperf/jet.
+ *
+ * @link     https://github.com/friendsofhyperf/jet
+ * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
+ * @contact  huangdijia@gmail.com
+ */
+
 require_once __DIR__ . '/../src/autoload.php';
 
 use FriendsOfHyperf\Jet\Consul\Agent;
@@ -64,7 +72,6 @@ foreach ($protocols as $i => $protocol) {
     if ($agent->registerService($requestBody)->throwIf()->ok()) {
         echo "Registered!\n";
     }
-
 }
 
 var_dump($health->service('CalculatorService')->throwIf()->json());

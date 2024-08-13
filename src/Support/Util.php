@@ -1,5 +1,13 @@
 <?php
 
+/*
+ * This file is part of friendsofhyperf/jet.
+ *
+ * @link     https://github.com/friendsofhyperf/jet
+ * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
+ * @contact  huangdijia@gmail.com
+ */
+
 namespace FriendsOfHyperf\Jet\Support;
 
 class Util
@@ -7,6 +15,7 @@ class Util
     /**
      * Retry
      * @template TReturn
+     *
      * @param int $times
      * @param callable(int):TReturn $callback
      * @param int $sleep
@@ -39,11 +48,11 @@ class Util
 
     /**
      * @template TValue
-     * 
+     *
      * @param TValue $value
      * @param \Exception $exception
-     * @return TValue
      * @throws \InvalidArgumentException
+     * @return TValue
      */
     public static function throwIf($value, $exception)
     {
@@ -60,7 +69,7 @@ class Util
 
     /**
      * @template TValue
-     * 
+     *
      * @param TValue $value
      * @param null|(callable(TValue)) $callback
      * @return TValue
@@ -77,7 +86,7 @@ class Util
     /**
      * @template TValue
      * @template TReturn
-     * 
+     *
      * @param mixed $value
      * @param null|(callable(TValue):TReturn) $callback
      * @return ($callback is null ? TValue : TReturn)

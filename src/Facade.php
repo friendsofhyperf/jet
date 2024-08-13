@@ -1,5 +1,13 @@
 <?php
 
+/*
+ * This file is part of friendsofhyperf/jet.
+ *
+ * @link     https://github.com/friendsofhyperf/jet
+ * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
+ * @contact  huangdijia@gmail.com
+ */
+
 namespace FriendsOfHyperf\Jet;
 
 abstract class Facade
@@ -10,10 +18,10 @@ abstract class Facade
     protected static $instances = array();
 
     /**
-     * @return Client
      * @throws \RuntimeException
      * @throws \InvalidArgumentException
      * @throws \Exception
+     * @return Client
      */
     protected static function getFacadeRoot()
     {
@@ -22,9 +30,9 @@ abstract class Facade
 
     /**
      * @param Client|string $name
-     * @return Client
      * @throws \InvalidArgumentException
      * @throws \Exception
+     * @return Client
      */
     protected static function resolveFacadeInstance($name)
     {
@@ -40,8 +48,8 @@ abstract class Facade
     }
 
     /**
-     * @return Client|string
      * @throws \RuntimeException
+     * @return Client|string
      */
     protected static function getFacadeAccessor()
     {

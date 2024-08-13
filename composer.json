@@ -11,6 +11,9 @@
         "php": "^5.0|~7.0.0",
         "ext-curl": "*"
     },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.0"
+    },
     "autoload": {
         "psr-4": {
             "FriendsOfHyperf\\Jet\\": "src/"
@@ -25,6 +28,8 @@
         }
     },
     "scripts": {
+        "cs": "php-cs-fixer fix $1",
+        "lint": "find src/ -type f -name '*.php' -print0 | xargs -0 -L1 -P4 -- php -l -f",
         "test": [
             "php tests/RegistryTest.php",
             "php tests/ClientTest.php"

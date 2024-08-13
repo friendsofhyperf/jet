@@ -1,5 +1,13 @@
 <?php
 
+/*
+ * This file is part of friendsofhyperf/jet.
+ *
+ * @link     https://github.com/friendsofhyperf/jet
+ * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
+ * @contact  huangdijia@gmail.com
+ */
+
 namespace FriendsOfHyperf\Jet\Consul;
 
 class Agent extends Client
@@ -18,8 +26,8 @@ class Agent extends Client
     }
 
     /**
-     * @param string $serviceId 
-     * @return Response 
+     * @param string $serviceId
+     * @return Response
      */
     public function deregisterService($serviceId)
     {

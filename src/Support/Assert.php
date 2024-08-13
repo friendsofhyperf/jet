@@ -1,5 +1,13 @@
 <?php
 
+/*
+ * This file is part of friendsofhyperf/jet.
+ *
+ * @link     https://github.com/friendsofhyperf/jet
+ * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
+ * @contact  huangdijia@gmail.com
+ */
+
 namespace FriendsOfHyperf\Jet\Support;
 
 use FriendsOfHyperf\Jet\Contract\DataFormatterInterface;
@@ -11,7 +19,6 @@ use FriendsOfHyperf\Jet\RegistryManager;
 
 class Assert
 {
-
     /**
      * @param mixed $transporter
      * @throws \InvalidArgumentException
@@ -116,8 +123,8 @@ class Assert
     public static function assertProtocol($protocol)
     {
         if (
-            !is_null($protocol) 
-            && !is_string($protocol) 
+            !is_null($protocol)
+            && !is_string($protocol)
             && !in_array($protocol, array('jsonrpc', 'jsonrpc-http'))
         ) {
             throw new \InvalidArgumentException('PROTOCOL of service must be jsonrpc or jsonrpc-http.');

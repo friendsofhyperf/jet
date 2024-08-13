@@ -1,5 +1,13 @@
 <?php
 
+/*
+ * This file is part of friendsofhyperf/jet.
+ *
+ * @link     https://github.com/friendsofhyperf/jet
+ * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
+ * @contact  huangdijia@gmail.com
+ */
+
 namespace FriendsOfHyperf\Jet\Support;
 
 use FriendsOfHyperf\Jet\Client;
@@ -25,7 +33,7 @@ class UserAgent
      */
     public static function get()
     {
-        if (! is_null(self::$value)) {
+        if (!is_null(self::$value)) {
             return self::$value;
         }
 

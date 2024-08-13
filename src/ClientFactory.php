@@ -1,5 +1,13 @@
 <?php
 
+/*
+ * This file is part of friendsofhyperf/jet.
+ *
+ * @link     https://github.com/friendsofhyperf/jet
+ * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
+ * @contact  huangdijia@gmail.com
+ */
+
 namespace FriendsOfHyperf\Jet;
 
 use FriendsOfHyperf\Jet\Contract\DataFormatterInterface;
@@ -18,8 +26,8 @@ class ClientFactory
      * @param DataFormatterInterface|null $dataFormatter
      * @param PathGeneratorInterface|null $pathGenerator
      * @param int|null $tries
-     * @return Client
      * @throws ClientException
+     * @return Client
      */
     public static function create(
         $service,

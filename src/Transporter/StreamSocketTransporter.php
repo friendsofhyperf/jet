@@ -1,5 +1,13 @@
 <?php
 
+/*
+ * This file is part of friendsofhyperf/jet.
+ *
+ * @link     https://github.com/friendsofhyperf/jet
+ * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
+ * @contact  huangdijia@gmail.com
+ */
+
 namespace FriendsOfHyperf\Jet\Transporter;
 
 use FriendsOfHyperf\Jet\Exception\ConnectionException;
@@ -29,10 +37,10 @@ class StreamSocketTransporter extends AbstractTransporter
 
     /**
      * @param string $data
-     * @return void
      * @throws \InvalidArgumentException
      * @throws \Exception
      * @throws \RuntimeException
+     * @return void
      */
     public function send($data)
     {
@@ -41,8 +49,8 @@ class StreamSocketTransporter extends AbstractTransporter
     }
 
     /**
-     * @return string 
-     * @throws \Exception 
+     * @throws \Exception
+     * @return string
      */
     public function recv()
     {
@@ -102,9 +110,9 @@ class StreamSocketTransporter extends AbstractTransporter
     }
 
     /**
-     * @return array
      * @throws \InvalidArgumentException
      * @throws \Exception
+     * @return array
      */
     protected function getTarget()
     {
@@ -123,10 +131,10 @@ class StreamSocketTransporter extends AbstractTransporter
     }
 
     /**
-     * @return void
      * @throws \InvalidArgumentException
      * @throws \Exception
      * @throws \RuntimeException
+     * @return void
      */
     protected function connect()
     {

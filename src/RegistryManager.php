@@ -1,5 +1,13 @@
 <?php
 
+/*
+ * This file is part of friendsofhyperf/jet.
+ *
+ * @link     https://github.com/friendsofhyperf/jet
+ * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
+ * @contact  huangdijia@gmail.com
+ */
+
 namespace FriendsOfHyperf\Jet;
 
 use FriendsOfHyperf\Jet\Contract\RegistryInterface;
@@ -14,8 +22,8 @@ class RegistryManager
     protected static $registries = array();
 
     /**
-     * @param string $name 
-     * @return RegistryInterface|null 
+     * @param string $name
+     * @return RegistryInterface|null
      */
     public static function get($name)
     {
@@ -23,12 +31,12 @@ class RegistryManager
     }
 
     /**
-     * @param string $name 
-     * @param RegistryInterface $registry 
-     * @param bool $force 
-     * @return void 
-     * @throws \InvalidArgumentException 
-     * @throws \RuntimeException 
+     * @param string $name
+     * @param RegistryInterface $registry
+     * @param bool $force
+     * @throws \InvalidArgumentException
+     * @throws \RuntimeException
+     * @return void
      */
     public static function register($name, $registry, $force = false)
     {
@@ -44,8 +52,8 @@ class RegistryManager
     }
 
     /**
-     * @param string $name 
-     * @return bool 
+     * @param string $name
+     * @return bool
      */
     public static function isRegistered($name)
     {
@@ -53,8 +61,8 @@ class RegistryManager
     }
 
     /**
-     * @param string $name 
-     * @return void 
+     * @param string $name
+     * @return void
      */
     public static function deregister($name)
     {

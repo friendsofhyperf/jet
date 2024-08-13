@@ -1,8 +1,16 @@
 <?php
 
+/*
+ * This file is part of friendsofhyperf/jet.
+ *
+ * @link     https://github.com/friendsofhyperf/jet
+ * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
+ * @contact  huangdijia@gmail.com
+ */
+
 class JetClassLoader78077fc26b45d059afaed09e
 {
-    static $registered = false;
+    public static $registered = false;
 
     public static function register()
     {
