@@ -38,7 +38,7 @@ abstract class AbstractLoadBalancer implements LoadBalancerInterface
     }
 
     /**
-     * @return LoadBalancerNode[] 
+     * @return LoadBalancerNode[]
      */
     public function getNodes()
     {

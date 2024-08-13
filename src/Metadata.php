@@ -147,7 +147,7 @@ class Metadata
         Assert::assertPacker($packer);
 
         $this->packer = $packer;
-        
+
         return $this;
     }
 
