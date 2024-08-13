@@ -27,7 +27,6 @@ class JsonMultiplexPacker implements PackerInterface
             pack('N', time()),
             $data
         );
-
     }
 
     /**
