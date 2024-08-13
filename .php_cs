@@ -22,7 +22,7 @@ return PhpCsFixer\Config::create()
         '@PSR2' => true,
         'array_syntax' => array('syntax' => 'long'),
         'binary_operator_spaces' => true,
-        'cast_spaces' => array('space' => 'single'),
+        // 'cast_spaces' => array('space' => 'single'),
         'header_comment' => array('header' => $header),
         'include' => true,
         'no_blank_lines_after_class_opening' => true,
