@@ -34,9 +34,9 @@ class RegistryManager
      * @param string $name 
      * @param RegistryInterface $registry 
      * @param bool $force 
-     * @return void 
      * @throws \InvalidArgumentException 
      * @throws \RuntimeException 
+     * @return void 
      */
     public static function register($name, $registry, $force = false)
     {

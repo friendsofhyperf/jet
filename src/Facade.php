@@ -18,10 +18,10 @@ abstract class Facade
     protected static $instances = array();
 
     /**
-     * @return Client
      * @throws \RuntimeException
      * @throws \InvalidArgumentException
      * @throws \Exception
+     * @return Client
      */
     protected static function getFacadeRoot()
     {
@@ -48,8 +48,8 @@ abstract class Facade
     }
 
     /**
-     * @return Client|string
      * @throws \RuntimeException
+     * @return Client|string
      */
     protected static function getFacadeAccessor()
     {

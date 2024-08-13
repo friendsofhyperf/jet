@@ -37,10 +37,10 @@ class StreamSocketTransporter extends AbstractTransporter
 
     /**
      * @param string $data
-     * @return void
      * @throws \InvalidArgumentException
      * @throws \Exception
      * @throws \RuntimeException
+     * @return void
      */
     public function send($data)
     {
@@ -131,10 +131,10 @@ class StreamSocketTransporter extends AbstractTransporter
     }
 
     /**
-     * @return void
      * @throws \InvalidArgumentException
      * @throws \Exception
      * @throws \RuntimeException
+     * @return void
      */
     protected function connect()
     {
