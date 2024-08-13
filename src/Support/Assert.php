@@ -124,8 +124,8 @@ class Assert
     public static function assertProtocol($protocol)
     {
         if (
-            !is_null($protocol) 
-            && !is_string($protocol) 
+            !is_null($protocol)
+            && !is_string($protocol)
             && !in_array($protocol, array('jsonrpc', 'jsonrpc-http'))
         ) {
             throw new \InvalidArgumentException('PROTOCOL of service must be jsonrpc or jsonrpc-http.');
