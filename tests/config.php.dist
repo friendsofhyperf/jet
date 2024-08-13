@@ -7,6 +7,7 @@
  * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
  * @contact  huangdijia@gmail.com
  */
+
 return array(
     'consul' => array(
         'host' => '127.0.0.1',
