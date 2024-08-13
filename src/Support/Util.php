@@ -15,6 +15,7 @@ class Util
     /**
      * Retry
      * @template TReturn
+     *
      * @param int $times
      * @param callable(int):TReturn $callback
      * @param int $sleep
@@ -47,7 +48,7 @@ class Util
 
     /**
      * @template TValue
-     * 
+     *
      * @param TValue $value
      * @param \Exception $exception
      * @throws \InvalidArgumentException
@@ -68,7 +69,7 @@ class Util
 
     /**
      * @template TValue
-     * 
+     *
      * @param TValue $value
      * @param null|(callable(TValue)) $callback
      * @return TValue
@@ -85,7 +86,7 @@ class Util
     /**
      * @template TValue
      * @template TReturn
-     * 
+     *
      * @param mixed $value
      * @param null|(callable(TValue):TReturn) $callback
      * @return ($callback is null ? TValue : TReturn)
