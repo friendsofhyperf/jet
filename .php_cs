@@ -21,6 +21,7 @@ $finder = PhpCsFixer\Finder::create()
     ->in(__DIR__.'/src')
     ->in(__DIR__.'/tests')
     ->name('*.php')
+    ->exclude('src/autoload.php')
 ;
 
 return PhpCsFixer\Config::create()
