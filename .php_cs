@@ -1,13 +1,11 @@
 <?php
 
 $header = <<<'EOF'
-This file is part of PHP CS Fixer.
+This file is part of friendsofhyperf/jet.
 
-(c) Fabien Potencier <fabien@symfony.com>
-    Dariusz Rumiński <dariusz.ruminski@gmail.com>
-
-This source file is subject to the MIT license that is bundled
-with this source code in the file LICENSE.
+@link     https://github.com/friendsofhyperf/jet
+@document https://github.com/friendsofhyperf/jet/blob/main/README.md
+@contact  huangdijia@gmail.com
 EOF;
 
 return PhpCsFixer\Config::create()
