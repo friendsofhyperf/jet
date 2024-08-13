@@ -15,8 +15,8 @@ use FriendsOfHyperf\Jet\Contract\DataFormatterInterface;
 class MultiplexDataFormatter implements DataFormatterInterface
 {
     /**
-     * @param array $data 
-     * @return array 
+     * @param array $data
+     * @return array
      */
     public function formatRequest($data)
     {
@@ -32,8 +32,8 @@ class MultiplexDataFormatter implements DataFormatterInterface
     }
 
     /**
-     * @param array $data 
-     * @return array 
+     * @param array $data
+     * @return array
      */
     public function formatResponse($data)
     {
@@ -47,8 +47,8 @@ class MultiplexDataFormatter implements DataFormatterInterface
     }
 
     /**
-     * @param array $data 
-     * @return array 
+     * @param array $data
+     * @return array
      */
     public function formatErrorResponse($data)
     {

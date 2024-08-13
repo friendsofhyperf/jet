@@ -72,7 +72,7 @@ class ConsulRegistry implements RegistryInterface
     }
 
     /**
-     * @return array 
+     * 
      */
     public function getServices()
     {
@@ -102,7 +102,7 @@ class ConsulRegistry implements RegistryInterface
     /**
      * @param string $service
      * @param string|null $protocol
-     * @return array 
+     * @return array
      */
     public function getServiceNodes($service, $protocol = null)
     {

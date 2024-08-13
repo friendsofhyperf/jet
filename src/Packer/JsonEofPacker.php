@@ -36,8 +36,8 @@ class JsonEofPacker implements PackerInterface
     }
 
     /**
-     * @param string $data 
-     * @return array 
+     * @param string $data
+     * @return array
      */
     public function unpack($data)
     {
