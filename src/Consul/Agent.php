@@ -26,8 +26,8 @@ class Agent extends Client
     }
 
     /**
-     * @param string $serviceId 
-     * @return Response 
+     * @param string $serviceId
+     * @return Response
      */
     public function deregisterService($serviceId)
     {

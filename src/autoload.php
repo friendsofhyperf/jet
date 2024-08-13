@@ -10,7 +10,7 @@
 
 class JetClassLoader78077fc26b45d059afaed09e
 {
-    static $registered = false;
+    public static $registered = false;
 
     public static function register()
     {
