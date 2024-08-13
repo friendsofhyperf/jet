@@ -71,9 +71,6 @@ class ConsulRegistry implements RegistryInterface
         return $this->loadBalancer;
     }
 
-    /**
-     * 
-     */
     public function getServices()
     {
         $loadBalancer = $this->getLoadBalancer();

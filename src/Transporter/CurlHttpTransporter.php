@@ -42,10 +42,10 @@ class CurlHttpTransporter extends AbstractTransporter
     }
 
     /**
-     * @param string $data 
-     * @throws \InvalidArgumentException 
-     * @throws \Exception 
-     * @return void 
+     * @param string $data
+     * @throws \InvalidArgumentException
+     * @throws \Exception
+     * @return void
      */
     public function send($data)
     {
@@ -81,7 +81,7 @@ class CurlHttpTransporter extends AbstractTransporter
     }
 
     /**
-     * @return string 
+     * @return string
      */
     public function recv()
     {
