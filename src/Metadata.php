@@ -83,10 +83,13 @@ class Metadata
 
     /**
      * Set protocol.
+     * @return $this
      */
     public function setProtocol(string $protocol)
     {
         $this->protocol = $protocol;
+
+        return $this;
     }
 
     /**
@@ -100,10 +103,13 @@ class Metadata
 
     /**
      * Set transporter.
+     * @return $this
      */
     public function setTransporter(TransporterInterface $transporter)
     {
         $this->transporter = $transporter;
+
+        return $this;
     }
 
     /**
@@ -125,10 +131,13 @@ class Metadata
 
     /**
      * Set packer.
+     * @return $this
      */
     public function setPacker(PackerInterface $packer)
     {
         $this->packer = $packer;
+
+        return $this;
     }
 
     /**
@@ -146,10 +155,13 @@ class Metadata
 
     /**
      * Set data formatter.
+     * @return $this
      */
     public function setDataFormatter(DataFormatterInterface $dataFormatter)
     {
         $this->dataFormatter = $dataFormatter;
+
+        return $this;
     }
 
     /**
@@ -167,10 +179,13 @@ class Metadata
 
     /**
      * Set path generator.
+     * @return $this
      */
     public function setPathGenerator(PathGeneratorInterface $pathGenerator)
     {
         $this->pathGenerator = $pathGenerator;
+
+        return $this;
     }
 
     /**
@@ -188,10 +203,13 @@ class Metadata
 
     /**
      * Set registry.
+     * @return $this
      */
     public function setRegistry(RegistryInterface $registry)
     {
         $this->registry = $registry;
+
+        return $this;
     }
 
     /**
@@ -205,10 +223,13 @@ class Metadata
 
     /**
      * Set tries.
+     * @return $this
      */
     public function setTries(int $tries)
     {
         $this->tries = $tries;
+
+        return $this;
     }
 
     /**
@@ -222,10 +243,13 @@ class Metadata
 
     /**
      * Set timeout.
+     * @return $this
      */
     public function setTimeout(int $timeout)
     {
         $this->timeout = $timeout;
+
+        return $this;
     }
 
     /**
