@@ -72,7 +72,6 @@ foreach ($protocols as $i => $protocol) {
     if ($agent->registerService($requestBody)->throwIf()->ok()) {
         echo "Registered!\n";
     }
-
 }
 
 var_dump($health->service('CalculatorService')->throwIf()->json());
