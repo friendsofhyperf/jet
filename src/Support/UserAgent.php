@@ -33,7 +33,7 @@ class UserAgent
      */
     public static function get()
     {
-        if (! is_null(self::$value)) {
+        if (!is_null(self::$value)) {
             return self::$value;
         }
 
