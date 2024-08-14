@@ -37,7 +37,7 @@ assert($client->add($a = rand(0, 100), $b = rand(0, 100)) == $a + $b);
 
 echo "Create with tcp transporter\n";
 $client = ClientFactory::create($service, new StreamSocketTransporter($jsonrpcTcpHost, $jsonrpcTcpPort));
-var_dump($client->add(rand(0, 100), rand(0, 100)));
+assert($client->add($a = rand(0, 100), $b = rand(0, 100)) == $a + $b);
 
 echo "Create with facade\n";
 /**
@@ -53,7 +53,7 @@ class Calculator extends Facade
     }
 }
 
-var_dump(Calculator::add(rand(0, 100), rand(0, 100)));
+assert(Calculator::add($a = rand(0, 100), $b = rand(0, 100)) == $a + $b);
 
 echo "Create with custom client\n";
 /**
@@ -73,4 +73,4 @@ class CalculatorService extends Client
 }
 
 $service = new CalculatorService;
-var_dump($service->add(rand(0, 100), rand(0, 100)));
+assert($service->add($a = rand(0, 100), $b = rand(0, 100)) == $a + $b);
