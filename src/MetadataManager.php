@@ -18,17 +18,12 @@ class MetadataManager
      */
     protected static array $metadata = [];
 
-    /**
-     * @param string $name
-     * @param Metadata $metadata
-     */
     public static function register(string $name, Metadata $metadata)
     {
         static::$metadata[$name] = $metadata;
     }
 
     /**
-     * @param string $name
      * @return null|Metadata
      */
     public static function get(string $name)
