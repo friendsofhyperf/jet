@@ -72,7 +72,7 @@ class ClientTest extends TestCase
             (new Metadata())->setTransporter($this->createGuzzleHttpTransporter())
         );
 
-        $client = ClientFactory::create($name, 'test');
+        $client = ClientFactory::create($this->service, $name);
 
         $a = rand(1, 99);
         $b = rand(1, 99);
