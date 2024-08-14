@@ -12,6 +12,8 @@ declare(strict_types=1);
 namespace FriendsOfHyperf\Jet\Tests;
 
 use FriendsOfHyperf\Jet\ClientFactory;
+use FriendsOfHyperf\Jet\Metadata;
+use FriendsOfHyperf\Jet\MetadataManager;
 use FriendsOfHyperf\Jet\RegistryManager;
 
 /**
@@ -56,6 +58,21 @@ class ClientTest extends TestCase
     public function testCalculatorServiceByStreamSocketTransporter()
     {
         $client = ClientFactory::create($this->service, $this->createStreamSocketTransporter());
+
+        $a = rand(1, 99);
+        $b = rand(1, 99);
+
+        $this->assertSame($a + $b, $client->add($a, $b));
+    }
+
+    public function testMetadataManager()
+    {
+        MetadataManager::register(
+            $name = 'test',
+            (new Metadata())->setTransporter($this->createGuzzleHttpTransporter())
+        );
+
+        $client = ClientFactory::create($this->service, $name);
 
         $a = rand(1, 99);
         $b = rand(1, 99);

@@ -67,9 +67,20 @@ class Metadata
      */
     protected $timeout = 3;
 
-    public function __construct(string $name)
+    public function __construct(string $name = '')
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return static
+     */
+    public function withName(string $name)
+    {
+        $clone = clone $this;
+        $clone->name = $name;
+
+        return $clone;
     }
 
     /**
