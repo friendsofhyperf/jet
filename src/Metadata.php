@@ -105,7 +105,7 @@ class Metadata
 
     /**
      * Set protocol.
-     * @deprecated use withProtocol instead
+     * @deprecated use withProtocol instead, will be removed in v4.0
      * @return $this
      */
     public function setProtocol(string $protocol)
@@ -137,7 +137,7 @@ class Metadata
 
     /**
      * Set transporter.
-     * @deprecated use withTransporter instead
+     * @deprecated use withTransporter instead, will be removed in v4.0
      * @return $this
      */
     public function setTransporter(TransporterInterface $transporter)
@@ -177,7 +177,7 @@ class Metadata
 
     /**
      * Set packer.
-     * @deprecated use withPacker instead
+     * @deprecated use withPacker instead, will be removed in v4.0
      * @return $this
      */
     public function setPacker(PackerInterface $packer)
@@ -213,7 +213,7 @@ class Metadata
 
     /**
      * Set data formatter.
-     * @deprecated use withDataFormatter instead
+     * @deprecated use withDataFormatter instead, will be removed in v4.0
      * @return $this
      */
     public function setDataFormatter(DataFormatterInterface $dataFormatter)
@@ -284,7 +284,7 @@ class Metadata
 
     /**
      * Set registry.
-     * @deprecated use withRegistry instead
+     * @deprecated use withRegistry instead, will be removed in v4.0
      * @return $this
      */
     public function setRegistry(RegistryInterface $registry)
