@@ -65,7 +65,8 @@ class CalculatorService extends Client
     {
         global $jsonrpcHttpHost, $jsonrpcHttpPort;
 
-        $metadata = (new Metadata($service))->withTransporter(new CurlHttpTransporter($jsonrpcHttpHost, $jsonrpcHttpPort));
+        $metadata = new Metadata($service);
+        $metadata = $metadata->withTransporter(new CurlHttpTransporter($jsonrpcHttpHost, $jsonrpcHttpPort));
 
         parent::__construct($metadata);
     }
