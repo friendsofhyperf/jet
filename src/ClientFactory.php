@@ -37,36 +37,43 @@ class ClientFactory
         $pathGenerator = null,
         $tries = null
     ) {
-        if (!$metadata = ServiceManager::get($service)) {
-            $metadata = new Metadata($service);
+        if ($metadata = ServiceManager::get($service)) {
+            return new Client($metadata);
+        }
 
-            if (RegistryManager::isRegistered(RegistryManager::DEFAULT_REGISTRY)) {
-                $metadata->setRegistry(RegistryManager::get(RegistryManager::DEFAULT_REGISTRY));
-            }
+        if (is_string($transporter) && $metadata = ProtocolManager::get($transporter)) {
+            $metadata = $metadata->withName($service);
+            return new Client($metadata);
+        }
 
-            if (is_numeric($transporter)) {
-                $metadata->setTimeout($transporter);
-            } elseif (is_string($transporter)) {
-                $metadata->setProtocol($transporter);
-            } elseif ($transporter instanceof TransporterInterface) {
-                $metadata->setTransporter($transporter);
-            }
+        $metadata = new Metadata($service);
 
-            if ($packer instanceof PackerInterface) {
-                $metadata->setPacker($packer);
-            }
+        if (RegistryManager::isRegistered(RegistryManager::DEFAULT_REGISTRY)) {
+            $metadata->setRegistry(RegistryManager::get(RegistryManager::DEFAULT_REGISTRY));
+        }
 
-            if ($dataFormatter instanceof DataFormatterInterface) {
-                $metadata->setDataFormatter($dataFormatter);
-            }
+        if (is_numeric($transporter)) {
+            $metadata->setTimeout($transporter);
+        } elseif (is_string($transporter)) {
+            $metadata->setProtocol($transporter);
+        } elseif ($transporter instanceof TransporterInterface) {
+            $metadata->setTransporter($transporter);
+        }
 
-            if ($pathGenerator instanceof PathGeneratorInterface) {
-                $metadata->setPathGenerator($pathGenerator);
-            }
+        if ($packer instanceof PackerInterface) {
+            $metadata->setPacker($packer);
+        }
 
-            if (is_numeric($tries)) {
-                $metadata->setTries($tries);
-            }
+        if ($dataFormatter instanceof DataFormatterInterface) {
+            $metadata->setDataFormatter($dataFormatter);
+        }
+
+        if ($pathGenerator instanceof PathGeneratorInterface) {
+            $metadata->setPathGenerator($pathGenerator);
+        }
+
+        if (is_numeric($tries)) {
+            $metadata->setTries($tries);
         }
 
         return new Client($metadata);
