@@ -25,22 +25,22 @@ class Metadata
     /**
      * @var null|TransporterInterface
      */
-    protected $transporter;
+    protected $transporter = null;
 
     /**
      * @var null|PackerInterface
      */
-    protected $packer;
+    protected $packer = null;
 
     /**
      * @var null|DataFormatterInterface
      */
-    protected $dataFormatter;
+    protected $dataFormatter = null;
 
     /**
      * @var null|PathGeneratorInterface
      */
-    protected $pathGenerator;
+    protected $pathGenerator = null;
 
     /**
      * @var null|RegistryInterface
@@ -60,16 +60,28 @@ class Metadata
     /**
      * @var null|string
      */
-    protected $protocol;
+    protected $protocol = null;
 
     /**
      * @var int
      */
     protected $timeout = 3;
 
-    public function __construct($name)
+    public function __construct($name = '')
     {
         $this->name = $name;
+    }
+
+    /**
+     * @param string $name
+     * @return static
+     */
+    public function withName($name)
+    {
+        $clone = clone $this;
+        $clone->name = $name;
+
+        return $clone;
     }
 
     /**
