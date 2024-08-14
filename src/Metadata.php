@@ -130,7 +130,6 @@ class Metadata
     }
 
     /**
-     * 
      * @param TransporterInterface $transporter
      * @return static
      */
