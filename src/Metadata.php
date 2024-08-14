@@ -107,7 +107,7 @@ class Metadata
 
     /**
      * Set protocol.
-     * @deprecated use withProtocol instead
+     * @deprecated use withProtocol instead, will be removed in v4.0
      * @param string $protocol
      * @return $this
      */
@@ -143,7 +143,7 @@ class Metadata
 
     /**
      * Set transporter.
-     * @deprecated use withTransporter instead
+     * @deprecated use withTransporter instead, will be removed in v4.0
      * @param TransporterInterface $transporter
      * @throws \InvalidArgumentException
      * @return $this
@@ -188,7 +188,7 @@ class Metadata
 
     /**
      * Set packer.
-     * @deprecated use withPacker instead
+     * @deprecated use withPacker instead, will be removed in v4.0
      * @param PackerInterface $packer
      * @throws \InvalidArgumentException
      * @return $this
@@ -229,7 +229,7 @@ class Metadata
 
     /**
      * Set data formatter.
-     * @deprecated use withDataFormatter instead
+     * @deprecated use withDataFormatter instead, will be removed in v4.0
      * @param DataFormatterInterface $dataFormatter
      * @throws \InvalidArgumentException
      * @return $this
@@ -270,7 +270,7 @@ class Metadata
 
     /**
      * Set path generator.
-     * @deprecated use withPathGenerator instead
+     * @deprecated use withPathGenerator instead, will be removed in v4.0
      * @param PathGeneratorInterface $pathGenerator
      * @throws \InvalidArgumentException
      * @return $this
@@ -311,7 +311,7 @@ class Metadata
 
     /**
      * Set registry.
-     * @deprecated use withRegistry instead
+     * @deprecated use withRegistry instead, will be removed in v4.0
      * @param RegistryInterface $registry
      * @throws \InvalidArgumentException
      * @return $this
@@ -348,7 +348,7 @@ class Metadata
 
     /**
      * Set tries.
-     * @deprecated use withTries instead
+     * @deprecated use withTries instead, will be removed in v4.0
      * @param int $tries
      * @throws \InvalidArgumentException
      * @return $this
@@ -387,7 +387,7 @@ class Metadata
 
     /**
      * Set timeout.
-     * @deprecated use withTimeout instead
+     * @deprecated use withTimeout instead, will be removed in v4.0
      * @param int $timeout
      * @throws \InvalidArgumentException
      * @return $this
