@@ -8,7 +8,6 @@
  * @contact  huangdijia@gmail.com
  */
 
-use FriendsOfHyperf\Jet\Client;
 use FriendsOfHyperf\Jet\Metadata;
 use FriendsOfHyperf\Jet\MetadataManager;
 
