@@ -25,10 +25,11 @@ use FriendsOfHyperf\Jet\ServiceManager;
 use FriendsOfHyperf\Jet\Registry\ConsulRegistry;
 use FriendsOfHyperf\Jet\Transporter\GuzzleHttpTransporter;
 
-$metadata = new Metadata('CalculatorService');
-$metadata->setTransporter(new GuzzleHttpTransporter('127.0.0.1', 9502));
-// or
-$metadata->setRegistry(new ConsulRegistry(['uri' => 'http://127.0.0.1:8500']));
+$metadata = (new Metadata('CalculatorService'))
+    ->withTransporter(new GuzzleHttpTransporter('127.0.0.1', 9502))
+    // or
+    ->setRegistry(new ConsulRegistry(['uri' => 'http://127.0.0.1:8500']))
+    ;
 
 ServiceManager::register('CalculatorService', $metadata);
 ```
@@ -62,17 +63,17 @@ use FriendsOfHyperf\Jet\ClientFactory;
 
 return ClientFactory::create(function() {
     return (new Metadata('CalculatorService'))
-        ->setPacker(new GrpcPacker())
-        ->setPathGenerator(new GrpcPathGenerator())
+        ->withPacker(new GrpcPacker())
+        ->withPathGenerator(new GrpcPathGenerator())
         // If use consul next config is necessary
-        ->setRegistry(RegistryManager::get(RegistryManager::DEFAULT))
-        ->setTransporterConfig([
+        ->withRegistry(RegistryManager::get(RegistryManager::DEFAULT))
+        ->withTransporterConfig([
             'path' => 'calculator.CalCulator',
         ])
-        ->setProtocol('grpc')
-        ->setTimeout(10)
+        ->withProtocol('grpc')
+        ->withTimeout(10)
         // If not use consul,directly use GrpcTransporter 
-        ->setTransporter(new GrpcTransporter('127.0.0.1', 9502, [
+        ->withTransporter(new GrpcTransporter('127.0.0.1', 9502, [
             'path' => 'calculator.CalCulator',
         ]));
 });
@@ -94,9 +95,9 @@ class CalculatorService extends Client
     {
         $metadata = (new Metadata($service))
             // Custom transporter
-            ->setTransporter(new GuzzleHttpTransporter('127.0.0.1', 9502))
+            ->withTransporter(new GuzzleHttpTransporter('127.0.0.1', 9502))
             // Custom registry
-            ->setRegistry(new ConsulRegistry(['uri' => 'http://127.0.0.1:8500']));
+            ->withRegistry(new ConsulRegistry(['uri' => 'http://127.0.0.1:8500']));
 
         parent::__construct($metadata);
     }
