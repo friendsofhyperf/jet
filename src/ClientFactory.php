@@ -79,7 +79,9 @@ class ClientFactory
             $metadata->setTries($tries);
         }
 
-        ServiceManager::register($service, $metadata);
+        if (!ServiceManager::isRegistered($service)) {
+            ServiceManager::register($service, $metadata);
+        }
 
         return new Client($metadata);
     }
