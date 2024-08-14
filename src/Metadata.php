@@ -54,7 +54,7 @@ class Metadata
     }
 
     /**
-     * @deprecated use withName instead
+     * @deprecated use withName instead, will be removed in v4.0
      * @return $this
      */
     public function setName(string $name)
@@ -82,7 +82,7 @@ class Metadata
 
     /**
      * Set protocol.
-     * @deprecated use withProtocol instead
+     * @deprecated use withProtocol instead, will be removed in v4.0
      * @return $this
      */
     public function setProtocol(string $protocol)
@@ -109,7 +109,7 @@ class Metadata
 
     /**
      * Set transporter.
-     * @deprecated use withTransporter instead
+     * @deprecated use withTransporter instead, will be removed in v4.0
      * @return $this
      */
     public function setTransporter(TransporterInterface $transporter)
@@ -151,7 +151,7 @@ class Metadata
 
     /**
      * Set packer.
-     * @deprecated use withPacker instead
+     * @deprecated use withPacker instead, will be removed in v4.0
      * @return $this
      */
     public function setPacker(PackerInterface $packer)
@@ -182,7 +182,7 @@ class Metadata
 
     /**
      * Set data formatter.
-     * @deprecated use withDataFormatter instead
+     * @deprecated use withDataFormatter instead, will be removed in v4.0
      * @return $this
      */
     public function setDataFormatter(DataFormatterInterface $dataFormatter)
@@ -213,7 +213,7 @@ class Metadata
 
     /**
      * Set path generator.
-     * @deprecated use withPathGenerator instead
+     * @deprecated use withPathGenerator instead, will be removed in v4.0
      * @return $this
      */
     public function setPathGenerator(PathGeneratorInterface $pathGenerator)
@@ -244,7 +244,7 @@ class Metadata
 
     /**
      * Set registry.
-     * @deprecated use withRegistry instead
+     * @deprecated use withRegistry instead, will be removed in v4.0
      * @return $this
      */
     public function setRegistry(RegistryInterface $registry)
@@ -271,7 +271,7 @@ class Metadata
 
     /**
      * Set tries.
-     * @deprecated use withTries instead
+     * @deprecated use withTries instead, will be removed in v4.0
      * @return $this
      */
     public function setTries(int $tries)
@@ -298,7 +298,7 @@ class Metadata
 
     /**
      * Set timeout.
-     * @deprecated use withTimeout instead
+     * @deprecated use withTimeout instead, will be removed in v4.0
      * @return $this
      */
     public function setTimeout(int $timeout)
@@ -325,7 +325,7 @@ class Metadata
 
     /**
      * Set transporter config.
-     * @deprecated use withTransporterConfig instead
+     * @deprecated use withTransporterConfig instead, will be removed in v4.0
      * @return $this
      */
     public function setTransporterConfig(array $config = [])
