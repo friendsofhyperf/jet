@@ -8,9 +8,9 @@
  * @contact  huangdijia@gmail.com
  */
 
-class JetClassLoader78077fc26b45d059afaed09e
+class JetClassLoader7325e9ad55c42d0289bfb972
 {
-    public static $registered = false;
+    static $registered = false;
 
     public static function register()
     {
@@ -36,6 +36,7 @@ class JetClassLoader78077fc26b45d059afaed09e
             'FriendsOfHyperf\Jet\LoadBalancer\LoadBalancerNode' => $baseDir . '/LoadBalancer/LoadBalancerNode.php',
             'FriendsOfHyperf\Jet\LoadBalancer\RoundRobinLoadBalancer' => $baseDir . '/LoadBalancer/RoundRobinLoadBalancer.php',
             'FriendsOfHyperf\Jet\LoadBalancer\RandomLoadBalancer' => $baseDir . '/LoadBalancer/RandomLoadBalancer.php',
+            'FriendsOfHyperf\Jet\MetadataManager' => $baseDir . '/MetadataManager.php',
             'FriendsOfHyperf\Jet\ClientFactory' => $baseDir . '/ClientFactory.php',
             'FriendsOfHyperf\Jet\PathGenerator\PathGenerator' => $baseDir . '/PathGenerator/PathGenerator.php',
             'FriendsOfHyperf\Jet\PathGenerator\DotPathGenerator' => $baseDir . '/PathGenerator/DotPathGenerator.php',
@@ -76,4 +77,4 @@ class JetClassLoader78077fc26b45d059afaed09e
     }
 }
 
-JetClassLoader78077fc26b45d059afaed09e::register();
+JetClassLoader7325e9ad55c42d0289bfb972::register();
