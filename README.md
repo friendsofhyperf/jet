@@ -25,9 +25,9 @@ use FriendsOfHyperf\Jet\ServiceManager;
 use FriendsOfHyperf\Jet\Registry\ConsulRegistry;
 use FriendsOfHyperf\Jet\Transporter\GuzzleHttpTransporter;
 
-$metadata = new Metadata('CalculatorService');
-$metadata->setTransporter(new GuzzleHttpTransporter('127.0.0.1', 9502));
-$metadata->setRegistry(new ConsulRegistry(['uri' => 'http://127.0.0.1:8500']));
+$metadata = (new Metadata('CalculatorService'))
+    ->withTransporter(new GuzzleHttpTransporter('127.0.0.1', 9502))
+    ->withRegistry(new ConsulRegistry(['uri' => 'http://127.0.0.1:8500']));
 
 ServiceManager::register('CalculatorService', $metadata);
 ```
@@ -68,13 +68,9 @@ class CalculatorService extends Client
 {
     public function __construct($service = 'CalculatorService')
     {
-        $metadata = new Metadata($service);
-
-        // Custom transporter
-        $metadata->setTransporter(new GuzzleHttpTransporter('127.0.0.1', 9502));
-
-        // Custom registry
-        $metadata->setRegistry(new ConsulRegistry(['uri' => 'http://127.0.0.1:8500']));
+        $metadata = (new Metadata($service))
+            ->withTransporter(new GuzzleHttpTransporter('127.0.0.1', 9502))
+            ->withRegistry(new ConsulRegistry(['uri' => 'http://127.0.0.1:8500']));
 
         parent::__construct($metadata);
     }

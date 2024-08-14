@@ -93,7 +93,19 @@ class Metadata
     }
 
     /**
+     * @return static
+     */
+    public function withProtocol(string $protocol)
+    {
+        $clone = clone $this;
+        $clone->protocol = $protocol;
+
+        return $clone;
+    }
+
+    /**
      * Set protocol.
+     * @deprecated use withProtocol instead
      * @return $this
      */
     public function setProtocol(string $protocol)
@@ -113,7 +125,19 @@ class Metadata
     }
 
     /**
+     * @return static
+     */
+    public function withTransporter(TransporterInterface $transporter)
+    {
+        $clone = clone $this;
+        $clone->transporter = $transporter;
+
+        return $clone;
+    }
+
+    /**
      * Set transporter.
+     * @deprecated use withTransporter instead
      * @return $this
      */
     public function setTransporter(TransporterInterface $transporter)
@@ -141,7 +165,19 @@ class Metadata
     }
 
     /**
+     * @return static
+     */
+    public function withPacker(PackerInterface $packer)
+    {
+        $clone = clone $this;
+        $clone->packer = $packer;
+
+        return $clone;
+    }
+
+    /**
      * Set packer.
+     * @deprecated use withPacker instead
      * @return $this
      */
     public function setPacker(PackerInterface $packer)
@@ -165,7 +201,19 @@ class Metadata
     }
 
     /**
+     * @return static
+     */
+    public function withDataFormatter(DataFormatterInterface $dataFormatter)
+    {
+        $clone = clone $this;
+        $clone->dataFormatter = $dataFormatter;
+
+        return $clone;
+    }
+
+    /**
      * Set data formatter.
+     * @deprecated use withDataFormatter instead
      * @return $this
      */
     public function setDataFormatter(DataFormatterInterface $dataFormatter)
@@ -186,6 +234,17 @@ class Metadata
         }
 
         return $this->dataFormatter;
+    }
+
+    /**
+     * @return static
+     */
+    public function withPathGenerator(PathGeneratorInterface $pathGenerator)
+    {
+        $clone = clone $this;
+        $clone->pathGenerator = $pathGenerator;
+
+        return $clone;
     }
 
     /**
@@ -213,7 +272,19 @@ class Metadata
     }
 
     /**
+     * @return static
+     */
+    public function withRegistry(RegistryInterface $registry)
+    {
+        $clone = clone $this;
+        $clone->registry = $registry;
+
+        return $clone;
+    }
+
+    /**
      * Set registry.
+     * @deprecated use withRegistry instead
      * @return $this
      */
     public function setRegistry(RegistryInterface $registry)
@@ -230,6 +301,17 @@ class Metadata
     public function getRegistry()
     {
         return $this->registry;
+    }
+
+    /**
+     * @return static
+     */
+    public function withTries(int $tries)
+    {
+        $clone = clone $this;
+        $clone->tries = $tries;
+
+        return $clone;
     }
 
     /**
@@ -250,6 +332,17 @@ class Metadata
     public function getTries()
     {
         return (int) $this->tries;
+    }
+
+    /**
+     * @return static
+     */
+    public function withTimeout(int $timeout)
+    {
+        $clone = clone $this;
+        $clone->timeout = $timeout;
+
+        return $clone;
     }
 
     /**

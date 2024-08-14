@@ -69,7 +69,7 @@ class ClientTest extends TestCase
     {
         MetadataManager::register(
             $name = 'test',
-            (new Metadata())->setTransporter($this->createGuzzleHttpTransporter())
+            (new Metadata())->withTransporter($this->createGuzzleHttpTransporter())
         );
 
         $client = ClientFactory::create($this->service, $name);
