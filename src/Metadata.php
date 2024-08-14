@@ -45,6 +45,14 @@ class Metadata
     {
     }
 
+    public function withName(string $name): static
+    {
+        $clone = clone $this;
+        $clone->name = $name;
+
+        return $clone;
+    }
+
     /**
      * @return $this
      */
