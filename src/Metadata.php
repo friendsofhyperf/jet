@@ -94,7 +94,20 @@ class Metadata
     }
 
     /**
+     * @param string $protocol
+     * @return static
+     */
+    public function withProtocol($protocol)
+    {
+        $clone = clone $this;
+        $clone->protocol = $protocol;
+
+        return $clone;
+    }
+
+    /**
      * Set protocol.
+     * @deprecated use withProtocol instead
      * @param string $protocol
      * @return $this
      */
@@ -117,7 +130,21 @@ class Metadata
     }
 
     /**
+     * 
+     * @param TransporterInterface $transporter
+     * @return static
+     */
+    public function withTransporter($transporter)
+    {
+        $clone = clone $this;
+        $clone->transporter = $transporter;
+
+        return $clone;
+    }
+
+    /**
      * Set transporter.
+     * @deprecated use withTransporter instead
      * @param TransporterInterface $transporter
      * @throws \InvalidArgumentException
      * @return $this
@@ -149,7 +176,20 @@ class Metadata
     }
 
     /**
+     * @param PackerInterface $packer
+     * @return static
+     */
+    public function withPacker($packer)
+    {
+        $clone = clone $this;
+        $clone->packer = $packer;
+
+        return $clone;
+    }
+
+    /**
      * Set packer.
+     * @deprecated use withPacker instead
      * @param PackerInterface $packer
      * @throws \InvalidArgumentException
      * @return $this
@@ -177,7 +217,20 @@ class Metadata
     }
 
     /**
+     * @param DataFormatterInterface $dataFormatter
+     * @return static
+     */
+    public function withDataFormatter($dataFormatter)
+    {
+        $clone = clone $this;
+        $clone->dataFormatter = $dataFormatter;
+
+        return $clone;
+    }
+
+    /**
      * Set data formatter.
+     * @deprecated use withDataFormatter instead
      * @param DataFormatterInterface $dataFormatter
      * @throws \InvalidArgumentException
      * @return $this
@@ -205,7 +258,20 @@ class Metadata
     }
 
     /**
+     * @param PathGeneratorInterface $pathGenerator
+     * @return static
+     */
+    public function withPathGenerator($pathGenerator)
+    {
+        $clone = clone $this;
+        $clone->pathGenerator = $pathGenerator;
+
+        return $clone;
+    }
+
+    /**
      * Set path generator.
+     * @deprecated use withPathGenerator instead
      * @param PathGeneratorInterface $pathGenerator
      * @throws \InvalidArgumentException
      * @return $this
@@ -233,7 +299,20 @@ class Metadata
     }
 
     /**
+     * @param RegistryInterface $registry
+     * @return static
+     */
+    public function withRegistry($registry)
+    {
+        $clone = clone $this;
+        $clone->registry = $registry;
+
+        return $clone;
+    }
+
+    /**
      * Set registry.
+     * @deprecated use withRegistry instead
      * @param RegistryInterface $registry
      * @throws \InvalidArgumentException
      * @return $this
@@ -257,7 +336,20 @@ class Metadata
     }
 
     /**
+     * @param int $tries
+     * @return static
+     */
+    public function withTries($tries)
+    {
+        $clone = clone $this;
+        $clone->tries = $tries;
+
+        return $clone;
+    }
+
+    /**
      * Set tries.
+     * @deprecated use withTries instead
      * @param int $tries
      * @throws \InvalidArgumentException
      * @return $this
@@ -283,7 +375,20 @@ class Metadata
     }
 
     /**
+     * @param int $timeout
+     * @return static
+     */
+    public function withTimeout($timeout)
+    {
+        $clone = clone $this;
+        $clone->timeout = $timeout;
+
+        return $clone;
+    }
+
+    /**
      * Set timeout.
+     * @deprecated use withTimeout instead
      * @param int $timeout
      * @throws \InvalidArgumentException
      * @return $this
