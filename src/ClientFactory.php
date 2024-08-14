@@ -24,38 +24,54 @@ class ClientFactory
      * @throws \InvalidArgumentException
      * @throws \Exception
      */
-    public static function create(string $service, $transporter = null, ?PackerInterface $packer = null, ?DataFormatterInterface $dataFormatter = null, ?PathGeneratorInterface $pathGenerator = null, ?int $tries = null): Client
-    {
-        if (! $metadata = ServiceManager::get($service)) {
-            $metadata = new Metadata($service);
+    public static function create(
+        string $service,
+        $transporter = null,
+        ?PackerInterface $packer = null,
+        ?DataFormatterInterface $dataFormatter = null,
+        ?PathGeneratorInterface $pathGenerator = null,
+        ?int $tries = null
+    ): Client {
+        if ($metadata = ServiceManager::get($service)) {
+            return new Client($metadata);
+        }
 
-            if (RegistryManager::isRegistered(RegistryManager::DEFAULT)) {
-                $metadata->setRegistry(RegistryManager::get(RegistryManager::DEFAULT));
-            }
+        if (
+            func_num_args() == 2
+            && is_string($transporter)
+            && $metadata = MetadataManager::get($transporter)
+        ) {
+            return new Client($metadata->withName($service));
+        }
 
-            if ($transporter instanceof TransporterInterface) {
-                $metadata->setTransporter($transporter);
-            } elseif (is_numeric($transporter)) {
-                $metadata->setTimeout($transporter);
-            } elseif (is_string($transporter)) {
-                $metadata->setProtocol($transporter);
-            }
+        $metadata = new Metadata($service);
 
-            if ($packer) {
-                $metadata->setPacker($packer);
-            }
+        if (RegistryManager::isRegistered(RegistryManager::DEFAULT)) {
+            $metadata->setRegistry(RegistryManager::get(RegistryManager::DEFAULT));
+        }
 
-            if ($dataFormatter) {
-                $metadata->setDataFormatter($dataFormatter);
-            }
+        if ($transporter instanceof TransporterInterface) {
+            $metadata->setTransporter($transporter);
+        } elseif (is_numeric($transporter)) {
+            $metadata->setTimeout($transporter);
+        } elseif (is_string($transporter)) {
+            $metadata->setProtocol($transporter);
+        }
 
-            if ($pathGenerator) {
-                $metadata->setPathGenerator($pathGenerator);
-            }
+        if ($packer) {
+            $metadata->setPacker($packer);
+        }
 
-            if ($tries) {
-                $metadata->setTries($tries);
-            }
+        if ($dataFormatter) {
+            $metadata->setDataFormatter($dataFormatter);
+        }
+
+        if ($pathGenerator) {
+            $metadata->setPathGenerator($pathGenerator);
+        }
+
+        if ($tries) {
+            $metadata->setTries($tries);
         }
 
         return new Client($metadata);
