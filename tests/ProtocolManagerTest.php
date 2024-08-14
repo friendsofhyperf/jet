@@ -12,7 +12,7 @@ use FriendsOfHyperf\Jet\Client;
 use FriendsOfHyperf\Jet\Metadata;
 use FriendsOfHyperf\Jet\ProtocolManager;
 
- require_once __DIR__ . '/../src/autoload.php';
+require_once __DIR__ . '/../src/autoload.php';
 
 ProtocolManager::register('jsonrpc', $metadata = new Metadata());
 
