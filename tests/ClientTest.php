@@ -16,8 +16,6 @@ use FriendsOfHyperf\Jet\Metadata;
 use FriendsOfHyperf\Jet\MetadataManager;
 use FriendsOfHyperf\Jet\RegistryManager;
 
-use function FriendsOfHyperf\Jet\tap;
-
 /**
  * @internal
  * @coversNothing
@@ -49,11 +47,7 @@ class ClientTest extends TestCase
 
     public function testCalculatorServiceByGuzzleHttpTransporter()
     {
-        $client = ClientFactory::create(function () {
-            return tap(new Metadata($this->service), function (Metadata $metadata) {
-                $metadata->setTransporter($this->createGuzzleHttpTransporter());
-            });
-        });
+        $client = ClientFactory::create(fn () => (new Metadata($this->service))->withTransporter($this->createGuzzleHttpTransporter()));
 
         $a = rand(1, 99);
         $b = rand(1, 99);
@@ -63,11 +57,7 @@ class ClientTest extends TestCase
 
     public function testCalculatorServiceByStreamSocketTransporter()
     {
-        $client = ClientFactory::create(function () {
-            return tap(new Metadata($this->service), function (Metadata $metadata) {
-                $metadata->setTransporter($this->createStreamSocketTransporter());
-            });
-        });
+        $client = ClientFactory::create(fn () => (new Metadata($this->service))->withTransporter($this->createStreamSocketTransporter()));
 
         $a = rand(1, 99);
         $b = rand(1, 99);
@@ -77,7 +67,7 @@ class ClientTest extends TestCase
 
     public function testMetadataManager()
     {
-        MetadataManager::register($name = 'test', (new Metadata())->setTransporter($this->createGuzzleHttpTransporter()));
+        MetadataManager::register($name = 'test', (new Metadata())->withTransporter($this->createGuzzleHttpTransporter()));
 
         $client = ClientFactory::create(fn () => MetadataManager::get($name)->withName($this->service));
 
