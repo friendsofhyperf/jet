@@ -44,7 +44,7 @@ class ClientFactory
         if (
             func_num_args() == 2
             && is_string($transporter)
-            && $metadata = ProtocolManager::get($transporter)
+            && $metadata = MetadataManager::get($transporter)
         ) {
             return new Client($metadata->withName($service));
         }
