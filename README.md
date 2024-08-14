@@ -32,8 +32,8 @@ use FriendsOfHyperf\Jet\Registry\ConsulRegistry;
 use FriendsOfHyperf\Jet\ServiceManager;
 
 $metadata = (new Metadata('Name'))
-    ->setTransporter(new CurlHttpTransporter('127.0.0.1', 9502))
-    ->setRegistry(new ConsulRegistry(array('uri' => 'http://127.0.0.1:8500')));
+    ->withTransporter(new CurlHttpTransporter('127.0.0.1', 9502))
+    ->withRegistry(new ConsulRegistry(array('uri' => 'http://127.0.0.1:8500')));
 
 ServiceManager::register('CalculatorService', $metadata);
 ```
@@ -71,8 +71,8 @@ class CalculatorService extends Client
     public function __construct()
     {
         $metadata = (new Metadata('CalculatorService'))
-            ->setTransporter(new CurlHttpTransporter('127.0.0.1', 9502))
-            ->setRegistry(new ConsulRegistry(array('uri' => 'http://127.0.0.1:8500')));
+            ->withTransporter(new CurlHttpTransporter('127.0.0.1', 9502))
+            ->withRegistry(new ConsulRegistry(array('uri' => 'http://127.0.0.1:8500')));
 
         parent::__construct($metadata);
     }
