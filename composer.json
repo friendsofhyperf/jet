@@ -31,7 +31,7 @@
         "cs": "php-cs-fixer fix $1",
         "lint": "find src/ -type f -name '*.php' -print0 | xargs -0 -L1 -P4 -- php -l -f",
         "test": [
-            "php tests/ProtocolManagerTest.php",
+            "php tests/MetadataManagerTest.php",
             "php tests/RegistryTest.php",
             "php tests/ClientTest.php"
         ]
