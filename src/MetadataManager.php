@@ -16,7 +16,7 @@ class MetadataManager
     /**
      * @var array<string, Metadata>
      */
-    protected static array $metadata = [];
+    protected static $metadata = [];
 
     public static function register(string $name, Metadata $metadata)
     {
