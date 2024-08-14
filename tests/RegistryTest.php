@@ -42,4 +42,4 @@ var_dump($nodes);
 
 echo "Test JetRegistryManager::register()\n";
 RegistryManager::register(RegistryManager::DEFAULT_REGISTRY, $registry, true);
-var_dump(RegistryManager::get(RegistryManager::DEFAULT_REGISTRY) instanceof RegistryInterface);
+assert(RegistryManager::get(RegistryManager::DEFAULT_REGISTRY) instanceof RegistryInterface);
