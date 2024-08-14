@@ -33,7 +33,7 @@ $service = 'CalculatorService';
 
 echo "Create with http transporter\n";
 $client = ClientFactory::create($service, new CurlHttpTransporter($jsonrpcHttpHost, $jsonrpcHttpPort));
-var_dump($client->add(rand(0, 100), rand(0, 100)));
+assert($client->add($a = rand(0, 100), $b = rand(0, 100)) == $a + $b);
 
 echo "Create with tcp transporter\n";
 $client = ClientFactory::create($service, new StreamSocketTransporter($jsonrpcTcpHost, $jsonrpcTcpPort));
