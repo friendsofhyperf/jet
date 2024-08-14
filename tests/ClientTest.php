@@ -33,11 +33,11 @@ $service = 'CalculatorService';
 
 echo "Create with http transporter\n";
 $client = ClientFactory::create($service, new CurlHttpTransporter($jsonrpcHttpHost, $jsonrpcHttpPort));
-var_dump($client->add(rand(0, 100), rand(0, 100)));
+assert($client->add($a = rand(0, 100), $b = rand(0, 100)) == $a + $b);
 
 echo "Create with tcp transporter\n";
 $client = ClientFactory::create($service, new StreamSocketTransporter($jsonrpcTcpHost, $jsonrpcTcpPort));
-var_dump($client->add(rand(0, 100), rand(0, 100)));
+assert($client->add($a = rand(0, 100), $b = rand(0, 100)) == $a + $b);
 
 echo "Create with facade\n";
 /**
@@ -50,11 +50,10 @@ class Calculator extends Facade
         global $jsonrpcHttpHost, $jsonrpcHttpPort;
 
         return ClientFactory::create('CalculatorService', new CurlHttpTransporter($jsonrpcHttpHost, $jsonrpcHttpPort));
-        // return 'CalculatorService';
     }
 }
 
-var_dump(Calculator::add(rand(0, 100), rand(0, 100)));
+assert(Calculator::add($a = rand(0, 100), $b = rand(0, 100)) == $a + $b);
 
 echo "Create with custom client\n";
 /**
@@ -67,11 +66,11 @@ class CalculatorService extends Client
         global $jsonrpcHttpHost, $jsonrpcHttpPort;
 
         $metadata = new Metadata($service);
-        $metadata->setTransporter(new CurlHttpTransporter($jsonrpcHttpHost, $jsonrpcHttpPort));
+        $metadata = $metadata->withTransporter(new CurlHttpTransporter($jsonrpcHttpHost, $jsonrpcHttpPort));
 
         parent::__construct($metadata);
     }
 }
 
 $service = new CalculatorService;
-var_dump($service->add(rand(0, 100), rand(0, 100)));
+assert($service->add($a = rand(0, 100), $b = rand(0, 100)) == $a + $b);
