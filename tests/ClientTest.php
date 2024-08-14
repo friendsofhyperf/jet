@@ -50,7 +50,6 @@ class Calculator extends Facade
         global $jsonrpcHttpHost, $jsonrpcHttpPort;
 
         return ClientFactory::create('CalculatorService', new CurlHttpTransporter($jsonrpcHttpHost, $jsonrpcHttpPort));
-        // return 'CalculatorService';
     }
 }
 
