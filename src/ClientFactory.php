@@ -19,7 +19,7 @@ use FriendsOfHyperf\Jet\Exception\ClientException;
 class ClientFactory
 {
     /**
-     * 创建客户端
+     * Create a client
      * @param string $service
      * @param TransporterInterface|string|int|null $transporter
      * @param PackerInterface|null $packer
