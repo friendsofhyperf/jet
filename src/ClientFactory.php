@@ -19,28 +19,22 @@ class ClientFactory
 {
     /**
      * Create a client.
-     * @param Closure|Metadata|string $service
+     * @param (Closure(): Metadata)|Metadata|string|mixed $service
+     * @param Metadata|string|null $metadata
      * @throws InvalidArgumentException
      * @throws Exception
      */
-    public static function create($service): Client
+    public static function create($service, $metadata = null): Client
     {
-        if ($service instanceof Metadata) {
-            return new Client($service);
-        }
-
-        if (is_string($service)) {
-            $metadata = ServiceManager::get($service) ?? new Metadata($service);
-            return new Client($metadata);
-        }
-
-        if ($service instanceof Closure) {
-            $metadata = $service();
-            if ($metadata instanceof Metadata) {
-                return new Client($metadata);
-            }
-        }
-
-        throw new InvalidArgumentException('$service must been instanced of string/Closure/Metadata');
+        return match (true) {
+            $service instanceof Metadata => new Client($service),
+            $service instanceof Closure => new Client($service()),
+            is_string($service) => match (true) {
+                is_string($metadata) => new Client(MetadataManager::get($metadata)->withName($service)),
+                $metadata instanceof Metadata => new Client($metadata->withName($service)),
+                default => new Client(ServiceManager::get($service) ?? new Metadata($service)),
+            },
+            default => throw new InvalidArgumentException('$service must been instanced of string/Closure/Metadata'),
+        };
     }
 }
