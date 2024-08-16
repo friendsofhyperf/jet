@@ -52,31 +52,31 @@ class ClientFactory
         $metadata = new Metadata($service);
 
         if (RegistryManager::isRegistered(RegistryManager::DEFAULT_REGISTRY)) {
-            $metadata->setRegistry(RegistryManager::get(RegistryManager::DEFAULT_REGISTRY));
+            $metadata = $metadata->withRegistry(RegistryManager::get(RegistryManager::DEFAULT_REGISTRY));
         }
 
         if (is_numeric($transporter)) {
-            $metadata->setTimeout($transporter);
+            $metadata = $metadata->withTimeout($transporter);
         } elseif (is_string($transporter)) {
-            $metadata->setProtocol($transporter);
+            $metadata = $metadata->withProtocol($transporter);
         } elseif ($transporter instanceof TransporterInterface) {
-            $metadata->setTransporter($transporter);
+            $metadata = $metadata->withTransporter($transporter);
         }
 
         if ($packer instanceof PackerInterface) {
-            $metadata->setPacker($packer);
+            $metadata = $metadata->withPacker($packer);
         }
 
         if ($dataFormatter instanceof DataFormatterInterface) {
-            $metadata->setDataFormatter($dataFormatter);
+            $metadata = $metadata->withDataFormatter($dataFormatter);
         }
 
         if ($pathGenerator instanceof PathGeneratorInterface) {
-            $metadata->setPathGenerator($pathGenerator);
+            $metadata = $metadata->withPathGenerator($pathGenerator);
         }
 
         if (is_numeric($tries)) {
-            $metadata->setTries($tries);
+            $metadata = $metadata->withTries($tries);
         }
 
         if (!ServiceManager::isRegistered($service)) {
