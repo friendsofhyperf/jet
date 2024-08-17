@@ -8,7 +8,7 @@
  * @contact  huangdijia@gmail.com
  */
 
-namespace Hyperf\Conditionable;
+namespace FriendsOfHyperf\Jet\Support\Traits;
 
 use Closure;
 

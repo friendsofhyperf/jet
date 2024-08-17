@@ -8,7 +8,7 @@
  * @contact  huangdijia@gmail.com
  */
 
-class JetClassLoadera08617baa14e5dcdd030f4ae
+class JetClassLoader7e6d81318ed2cb505e49c2c9
 {
     static $registered = false;
 
@@ -78,4 +78,4 @@ class JetClassLoadera08617baa14e5dcdd030f4ae
     }
 }
 
-JetClassLoadera08617baa14e5dcdd030f4ae::register();
+JetClassLoader7e6d81318ed2cb505e49c2c9::register();
