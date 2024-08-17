@@ -58,7 +58,7 @@ trait Conditionable
     {
         $value = $value instanceof Closure ? $value($this) : $value;
 
-        if (! $value) {
+        if (!$value) {
             return $callback($this, $value) ?? $this;
         }
         if ($default) {
