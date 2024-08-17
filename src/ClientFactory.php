@@ -51,37 +51,52 @@ class ClientFactory
 
         $metadata = new Metadata($service);
 
-        if (RegistryManager::isRegistered(RegistryManager::DEFAULT_REGISTRY)) {
-            $metadata = $metadata->withRegistry(RegistryManager::get(RegistryManager::DEFAULT_REGISTRY));
-        }
-
-        if (is_numeric($transporter)) {
-            $metadata = $metadata->withTimeout($transporter);
-        } elseif (is_string($transporter)) {
-            $metadata = $metadata->withProtocol($transporter);
-        } elseif ($transporter instanceof TransporterInterface) {
-            $metadata = $metadata->withTransporter($transporter);
-        }
-
-        if ($packer instanceof PackerInterface) {
-            $metadata = $metadata->withPacker($packer);
-        }
-
-        if ($dataFormatter instanceof DataFormatterInterface) {
-            $metadata = $metadata->withDataFormatter($dataFormatter);
-        }
-
-        if ($pathGenerator instanceof PathGeneratorInterface) {
-            $metadata = $metadata->withPathGenerator($pathGenerator);
-        }
-
-        if (is_numeric($tries)) {
-            $metadata = $metadata->withTries($tries);
-        }
-
-        if (!ServiceManager::isRegistered($service)) {
-            ServiceManager::register($service, $metadata);
-        }
+        $metadata = $metadata->when(
+            RegistryManager::isRegistered(RegistryManager::DEFAULT_REGISTRY),
+            function ($metadata) {
+                return $metadata->withRegistry(RegistryManager::get(RegistryManager::DEFAULT_REGISTRY));
+            }
+        )->when(
+            is_numeric($transporter),
+            function ($metadata) use ($transporter) {
+                return $metadata->withTimeout($transporter);
+            }
+        )->when(
+            is_string($transporter),
+            function ($metadata) use ($transporter) {
+                return $metadata->withProtocol($transporter);
+            }
+        )->when(
+            $transporter instanceof TransporterInterface,
+            function ($metadata) use ($transporter) {
+                return $metadata->withTransporter($transporter);
+            }
+        )->when(
+            $packer instanceof PackerInterface,
+            function ($metadata) use ($packer) {
+                return $metadata->withPacker($packer);
+            }
+        )->when(
+            $dataFormatter instanceof DataFormatterInterface,
+            function ($metadata) use ($dataFormatter) {
+                return $metadata->withDataFormatter($dataFormatter);
+            }
+        )->when(
+            $pathGenerator instanceof PathGeneratorInterface,
+            function ($metadata) use ($pathGenerator) {
+                return $metadata->withPathGenerator($pathGenerator);
+            }
+        )->when(
+            is_numeric($tries),
+            function ($metadata) use ($tries) {
+                return $metadata->withTries($tries);
+            }
+        )->unless(
+            ServiceManager::isRegistered($service),
+            function ($metadata) use ($service) {
+                ServiceManager::register($service, $metadata);
+            }
+        );
 
         return new Client($metadata);
     }
