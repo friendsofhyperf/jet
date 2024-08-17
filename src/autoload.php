@@ -8,7 +8,7 @@
  * @contact  huangdijia@gmail.com
  */
 
-class JetClassLoader7325e9ad55c42d0289bfb972
+class JetClassLoadera08617baa14e5dcdd030f4ae
 {
     static $registered = false;
 
@@ -47,6 +47,7 @@ class JetClassLoader7325e9ad55c42d0289bfb972
             'FriendsOfHyperf\Jet\Consul\Response' => $baseDir . '/Consul/Response.php',
             'FriendsOfHyperf\Jet\Consul\Client' => $baseDir . '/Consul/Client.php',
             'FriendsOfHyperf\Jet\Support\Str' => $baseDir . '/Support/Str.php',
+            'FriendsOfHyperf\Jet\Support\Traits\Conditionable' => $baseDir . '/Support/Traits/Conditionable.php',
             'FriendsOfHyperf\Jet\Support\Assert' => $baseDir . '/Support/Assert.php',
             'FriendsOfHyperf\Jet\Support\Util' => $baseDir . '/Support/Util.php',
             'FriendsOfHyperf\Jet\Support\UserAgent' => $baseDir . '/Support/UserAgent.php',
@@ -77,4 +78,4 @@ class JetClassLoader7325e9ad55c42d0289bfb972
     }
 }
 
-JetClassLoader7325e9ad55c42d0289bfb972::register();
+JetClassLoadera08617baa14e5dcdd030f4ae::register();
