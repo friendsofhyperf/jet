@@ -16,7 +16,7 @@ use Closure;
 
 trait Conditionable
 {
-    /**
+    /*
      * Apply the callback if the given "value" is (or resolves to) truthy.
      *
      * @template TWhenParameter
@@ -42,7 +42,7 @@ trait Conditionable
         return $this;
     }
 
-    /**
+    /*
      * Apply the callback if the given "value" is (or resolves to) falsy.
      *
      * @template TUnlessParameter
