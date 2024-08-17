@@ -11,23 +11,23 @@ declare(strict_types=1);
 
 namespace FriendsOfHyperf\Jet\Support\Traits;
 
-use Closure;
-
+/**
+ * @template TWhenParameter
+ * @template TWhenReturnType
+ * @template TUnlessParameter
+ * @template TUnlessReturnType
+ */
 trait Conditionable
 {
-    /*
+    /**
      * Apply the callback if the given "value" is (or resolves to) truthy.
      *
-     * @template TWhenParameter
-     * @template TWhenReturnType
-     *
-     * @param null|(Closure($this): TWhenParameter)|TWhenParameter $value
-     * @param null|(callable($this, TWhenParameter): TWhenReturnType) $callback
-     * @param null|(callable($this, TWhenParameter): TWhenReturnType) $default
-     * @param null|mixed $value
+     * @param (\Closure($this):TWhenParameter)|TWhenParameter $value
+     * @param null|(callable($this,TWhenParameter):TWhenReturnType) $callback
+     * @param null|(callable($this,TWhenParameter):TWhenReturnType) $default
      * @return $this|TWhenReturnType
      */
-    public function when($value = null, $callback = null, $default = null)
+    public function when(mixed $value = null, ?callable $callback = null, ?callable $default = null)
     {
         $value = $value instanceof \Closure ? $value($this) : $value;
 
@@ -41,19 +41,15 @@ trait Conditionable
         return $this;
     }
 
-    /*
+    /**
      * Apply the callback if the given "value" is (or resolves to) falsy.
      *
-     * @template TUnlessParameter
-     * @template TUnlessReturnType
-     *
-     * @param null|(Closure($this): TUnlessParameter)|TUnlessParameter $value
-     * @param null|(callable($this, TUnlessParameter): TUnlessReturnType) $callback
-     * @param null|(callable($this, TUnlessParameter): TUnlessReturnType) $default
-     * @param null|mixed $value
+     * @param (\Closure($this):TUnlessParameter)|TUnlessParameter $value
+     * @param null|(callable($this,TUnlessParameter):TUnlessReturnType) $callback
+     * @param null|(callable($this,TUnlessParameter):TUnlessReturnType) $default
      * @return $this|TUnlessReturnType
      */
-    public function unless($value = null, $callback = null, $default = null)
+    public function unless(mixed $value = null, ?callable $callback = null, ?callable $default = null)
     {
         $value = $value instanceof \Closure ? $value($this) : $value;
 
