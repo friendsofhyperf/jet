@@ -44,35 +44,34 @@ class ClientFactory
             return new Client($metadata->withName($service));
         }
 
-        $metadata = new Metadata($service);
-
-        if (RegistryManager::isRegistered(RegistryManager::DEFAULT)) {
-            $metadata = $metadata->withRegistry(RegistryManager::get(RegistryManager::DEFAULT));
-        }
-
-        if ($transporter instanceof TransporterInterface) {
-            $metadata = $metadata->withTransporter($transporter);
-        } elseif (is_numeric($transporter)) {
-            $metadata = $metadata->withTimeout($transporter);
-        } elseif (is_string($transporter)) {
-            $metadata = $metadata->withProtocol($transporter);
-        }
-
-        if ($packer) {
-            $metadata = $metadata->withPacker($packer);
-        }
-
-        if ($dataFormatter) {
-            $metadata = $metadata->withDataFormatter($dataFormatter);
-        }
-
-        if ($pathGenerator) {
-            $metadata = $metadata->withPathGenerator($pathGenerator);
-        }
-
-        if ($tries) {
-            $metadata = $metadata->withTries($tries);
-        }
+        $metadata = (new Metadata($service))
+            ->when(RegistryManager::isRegistered(RegistryManager::DEFAULT), function (Metadata $metadata) {
+                return $metadata->withRegistry(RegistryManager::get(RegistryManager::DEFAULT));
+            })
+            ->when(is_numeric($transporter), function (Metadata $metadata) use ($transporter) {
+                return $metadata->withTimeout($transporter);
+            })
+            ->when(is_string($transporter), function (Metadata $metadata) use ($transporter) {
+                return $metadata->withProtocol($transporter);
+            })
+            ->when($transporter instanceof TransporterInterface, function (Metadata $metadata) use ($transporter) {
+                return $metadata->withTransporter($transporter);
+            })
+            ->when($packer instanceof PackerInterface, function (Metadata $metadata) use ($packer) {
+                return $metadata->withPacker($packer);
+            })
+            ->when($dataFormatter instanceof DataFormatterInterface, function (Metadata $metadata) use ($dataFormatter) {
+                return $metadata->withDataFormatter($dataFormatter);
+            })
+            ->when($pathGenerator instanceof PathGeneratorInterface, function (Metadata $metadata) use ($pathGenerator) {
+                return $metadata->withPathGenerator($pathGenerator);
+            })
+            ->when(is_numeric($tries), function (Metadata $metadata) use ($tries) {
+                return $metadata->withTries($tries);
+            })
+            ->unless(ServiceManager::isRegistered($service), function (Metadata $metadata) use ($service) {
+                ServiceManager::register($service, $metadata);
+            });
 
         return new Client($metadata);
     }

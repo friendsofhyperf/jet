@@ -19,9 +19,12 @@ use FriendsOfHyperf\Jet\Contract\TransporterInterface;
 use FriendsOfHyperf\Jet\DataFormatter\DataFormatter;
 use FriendsOfHyperf\Jet\Packer\JsonEofPacker;
 use FriendsOfHyperf\Jet\PathGenerator\PathGenerator;
+use FriendsOfHyperf\Jet\Support\Traits\Conditionable;
 
 class Metadata
 {
+    use Conditionable;
+
     /**
      * @var null|TransporterInterface
      */
