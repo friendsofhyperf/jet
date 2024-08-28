@@ -131,21 +131,24 @@ class StreamSocketTransporter extends AbstractTransporter
         if ($this->isConnected) {
             return;
         }
+
         if ($this->client) {
             fclose($this->client);
             unset($this->client);
         }
 
-        [$host, $port] = $this->getTarget();
+        retry(5, function() {
+            [$host, $port] = $this->getTarget();
 
-        $client = stream_socket_client("tcp://{$host}:{$port}", $errno, $errstr, $this->timeout);
+            $client = stream_socket_client("tcp://{$host}:{$port}", $errno, $errstr, $this->timeout);
 
-        if ($client === false) {
-            throw new ConnectionException(sprintf('[%d] %s', $errno, $errstr));
-        }
+            if ($client === false) {
+                throw new ConnectionException(sprintf('[%d] %s', $errno, $errstr));
+            }
 
-        $this->client = $client;
-        $this->isConnected = true;
+            $this->client = $client;
+            $this->isConnected = true;
+        });
     }
 
     protected function close()
