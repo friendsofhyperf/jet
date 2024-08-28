@@ -146,14 +146,16 @@ class StreamSocketTransporter extends AbstractTransporter
             unset($this->client);
         }
 
-        list($host, $port) = $this->getTarget();
+        Util::retry(5, function(){
+            list($host, $port) = $this->getTarget();
 
-        $client = stream_socket_client("tcp://{$host}:{$port}", $errno, $errstr, $this->timeout);
+            $client = stream_socket_client("tcp://{$host}:{$port}", $errno, $errstr, $this->timeout);
 
-        Util::throwIf($client === false, new \RuntimeException(sprintf('[%d] %s', $errno, $errstr)));
+            Util::throwIf($client === false, new \RuntimeException(sprintf('[%d] %s', $errno, $errstr)));
 
-        $this->client = $client;
-        $this->isConnected = true;
+            $this->client = $client;
+            $this->isConnected = true;
+        });
     }
 
     /**
