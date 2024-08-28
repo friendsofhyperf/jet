@@ -103,7 +103,7 @@ class StreamSocketTransporter extends AbstractTransporter
     }
 
     /**
-     * @return (int|string)[]
+     * @return array{string, int}
      * @throws \InvalidArgumentException
      * @throws \Exception
      */
