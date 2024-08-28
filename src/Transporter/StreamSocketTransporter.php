@@ -146,7 +146,7 @@ class StreamSocketTransporter extends AbstractTransporter
             unset($this->client);
         }
 
-        Util::retry(5, function(){
+        Util::retry(5, function () {
             list($host, $port) = $this->getTarget();
 
             $client = stream_socket_client("tcp://{$host}:{$port}", $errno, $errstr, $this->timeout);
