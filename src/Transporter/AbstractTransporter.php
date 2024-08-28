@@ -42,7 +42,7 @@ abstract class AbstractTransporter implements TransporterInterface
     }
 
     /**
-     * @return (int|string)[]
+     * @return array{string, int}
      * @throws InvalidArgumentException
      */
     protected function getTarget()
