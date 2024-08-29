@@ -20,12 +20,12 @@ class StreamSocketTransporter extends AbstractTransporter
     /**
      * @var null|resource
      */
-    protected $client;
+    public $client;
 
     /**
      * @var bool
      */
-    protected $isConnected = false;
+    public $isConnected = false;
 
     /**
      * @return void
@@ -114,7 +114,7 @@ class StreamSocketTransporter extends AbstractTransporter
      * @throws \Exception
      * @return array
      */
-    protected function getTarget()
+    public function getTarget()
     {
         if ($this->getLoadBalancer()) {
             $node = $this->getLoadBalancer()->select();
@@ -146,15 +146,16 @@ class StreamSocketTransporter extends AbstractTransporter
             unset($this->client);
         }
 
-        Util::retry(5, function () {
-            list($host, $port) = $this->getTarget();
+        $that = $this;
+        Util::retry(5, function () use ($that) {
+            list($host, $port) = $that->getTarget();
 
-            $client = stream_socket_client("tcp://{$host}:{$port}", $errno, $errstr, $this->timeout);
+            $client = stream_socket_client("tcp://{$host}:{$port}", $errno, $errstr, $that->timeout);
 
             Util::throwIf($client === false, new \RuntimeException(sprintf('[%d] %s', $errno, $errstr)));
 
-            $this->client = $client;
-            $this->isConnected = true;
+            $that->client = $client;
+            $that->isConnected = true;
         });
     }
 
