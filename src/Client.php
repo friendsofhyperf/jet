@@ -70,7 +70,11 @@ class Client
                 throw new RecvFailedException('Recv failed');
             }
 
-            return with((array) $packer->unpack($ret), function ($data) {
+            return with((array) $packer->unpack($ret), function ($data) use ($ret) {
+                if (! is_array($data)) {
+                    throw new RecvFailedException('Recv failed, invalid data: ' . $ret);
+                }
+
                 if (array_key_exists('result', $data)) {
                     return $data['result'];
                 }
