@@ -75,7 +75,7 @@ class Client
                     return $data['result'];
                 }
 
-                throw new ServerException($data['error'] ?? ['code' => 0, 'message' => 'Recv failed, invalid data: ' . $ret]);
+                throw new ServerException($data['error'] ?? ['code' => 0, 'message' => 'Invalid data: ' . $ret]);
             });
         };
 
