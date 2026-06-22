@@ -1,6 +1,13 @@
 <?php
 
 declare(strict_types=1);
+/**
+ * This file is part of friendsofhyperf/jet.
+ *
+ * @link     https://github.com/friendsofhyperf/jet
+ * @document https://github.com/friendsofhyperf/jet/blob/main/README.md
+ * @contact  huangdijia@gmail.com
+ */
 
 namespace FriendsOfHyperf\Jet\Transporter;
 
@@ -12,14 +19,14 @@ use RuntimeException;
 class MultiplexRpcTransporter extends StreamSocketTransporter
 {
     public const PING = 'ping';
+
     public const PONG = 'pong';
-    
+
     public function receive()
     {
         stream_set_blocking($this->client, false);
 
-
-        while(true){
+        while (true) {
             $header = $this->readBytes(4);
 
             $unpacked = unpack('Nlength', $header);
@@ -42,7 +49,7 @@ class MultiplexRpcTransporter extends StreamSocketTransporter
      */
     private function readBytes(int $length): string
     {
-        $buffer = ''; 
+        $buffer = '';
 
         while (strlen($buffer) < $length) {
             $read = [$this->client];

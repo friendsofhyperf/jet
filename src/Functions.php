@@ -21,7 +21,7 @@ use Throwable;
  * @template T
  *
  * @param callable(int):T $callback
- * @param (callable(Throwable):mixed)|null $when
+ * @param null|(callable(Throwable):mixed) $when
  * @return T
  * @throws Throwable
  */
@@ -72,7 +72,7 @@ function throw_if($condition, $exception, ...$parameters)
  * @template TValue
  *
  * @param TValue $value
- * @param (callable(TValue):mixed)|null $callback
+ * @param null|(callable(TValue):mixed) $callback
  * @return TValue
  */
 function tap($value, ?callable $callback = null)
@@ -105,7 +105,7 @@ function tap($value, ?callable $callback = null)
  * @template TReturn
  *
  * @param TValue $value
- * @param callable(TValue):TReturn|null $callback
+ * @param null|callable(TValue):TReturn $callback
  * @return ($callback is null ? TValue : TReturn)
  */
 function with($value, ?callable $callback = null)

@@ -18,7 +18,7 @@ interface RegistryInterface
     public function setLoadBalancer(?LoadBalancerInterface $loadBalancer);
 
     /**
-     * @return LoadBalancerInterface|null
+     * @return null|LoadBalancerInterface
      */
     public function getLoadBalancer();
 
