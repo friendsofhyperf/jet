@@ -13,6 +13,7 @@ namespace FriendsOfHyperf\Jet\Tests;
 
 use FriendsOfHyperf\Jet\Registry\ConsulRegistry;
 use FriendsOfHyperf\Jet\Transporter\GuzzleHttpTransporter;
+use FriendsOfHyperf\Jet\Transporter\MultiplexRpcTransporter;
 use FriendsOfHyperf\Jet\Transporter\StreamSocketTransporter;
 
 /**
@@ -37,6 +38,12 @@ class TestCase extends \PHPUnit\Framework\TestCase
 
     private $jsonrpcHttpTimeout;
 
+    private $jsonrpcLengthCheckHost;
+
+    private $jsonrpcLengthCheckPort;
+
+    private $jsonrpcLengthCheckTimeout;
+
     public function __construct($name = null, array $data = [], $dataName = '')
     {
         parent::__construct($name, $data, $dataName);
@@ -51,6 +58,10 @@ class TestCase extends \PHPUnit\Framework\TestCase
         $this->jsonrpcHttpHost = $_ENV['JSONRPC_HTTP_HOST'] ?? '127.0.0.1';
         $this->jsonrpcHttpPort = (int) ($_ENV['JSONRPC_HTTP_PORT'] ?? 9502);
         $this->jsonrpcHttpTimeout = (int) ($_ENV['JSONRPC_HTTP_TIMEOUT'] ?? 2);
+
+        $this->jsonrpcLengthCheckHost = $_ENV['JSONRPC_LENGTH_CHECK_HOST'] ?? '127.0.0.1';
+        $this->jsonrpcLengthCheckPort = (int) ($_ENV['JSONRPC_LENGTH_CHECK_PORT'] ?? 9504);
+        $this->jsonrpcLengthCheckTimeout = (int) ($_ENV['JSONRPC_LENGTH_CHECK_TIMEOUT'] ?? 2);
     }
 
     public function createGuzzleHttpTransporter()
@@ -61,6 +72,11 @@ class TestCase extends \PHPUnit\Framework\TestCase
     public function createStreamSocketTransporter()
     {
         return new StreamSocketTransporter($this->jsonrpcHost, $this->jsonrpcPort, $this->jsonrpcTimeout);
+    }
+
+    public function createMultiplexRpcTransporter()
+    {
+        return new MultiplexRpcTransporter($this->jsonrpcLengthCheckHost, $this->jsonrpcLengthCheckPort, $this->jsonrpcLengthCheckTimeout);
     }
 
     protected function createRegistry()
