@@ -12,8 +12,10 @@ declare(strict_types=1);
 namespace FriendsOfHyperf\Jet\Tests;
 
 use FriendsOfHyperf\Jet\ClientFactory;
+use FriendsOfHyperf\Jet\DataFormatter\MultiplexDataFormatter;
 use FriendsOfHyperf\Jet\Metadata;
 use FriendsOfHyperf\Jet\MetadataManager;
+use FriendsOfHyperf\Jet\Packer\JsonMultiplexPacker;
 use FriendsOfHyperf\Jet\RegistryManager;
 
 /**
@@ -67,7 +69,12 @@ class ClientTest extends TestCase
 
     public function testCalculatorServiceByMultiplexRpcTransporter()
     {
-        $client = ClientFactory::create($this->service, $this->createMultiplexRpcTransporter());
+        $client = ClientFactory::create(
+            $this->service,
+            $this->createMultiplexRpcTransporter(),
+            new JsonMultiplexPacker(),
+            new MultiplexDataFormatter(),
+        );
 
         $a = rand(1, 99);
         $b = rand(1, 99);
