@@ -27,5 +27,8 @@
         <env name="JSONRPC_HOST" value="127.0.0.1" />
         <env name="JSONRPC_PORT" value="9503" />
         <env name="JSONRPC_TIMEOUT" value="2" />
+        <env name="JSONRPC_LENGTH_CHECK_HOST" value="127.0.0.1" />
+        <env name="JSONRPC_LENGTH_CHECK_PORT" value="9504" />
+        <env name="JSONRPC_LENGTH_CHECK_TIMEOUT" value="2" />
     </php>
 </phpunit>
