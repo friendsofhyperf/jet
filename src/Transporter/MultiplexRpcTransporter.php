@@ -77,7 +77,6 @@ class MultiplexRpcTransporter extends StreamSocketTransporter
 
                 $buffer .= $chunk;
             }
-            var_dump($buffer);
         }
 
         return $buffer;
