@@ -24,7 +24,7 @@ use function FriendsOfHyperf\Jet\retry;
 class StreamSocketTransporter extends AbstractTransporter
 {
     /**
-     * @var resource|null
+     * @var null|resource
      */
     protected $client;
 

@@ -18,7 +18,7 @@ use InvalidArgumentException;
 abstract class AbstractTransporter implements TransporterInterface
 {
     /**
-     * @var LoadBalancerInterface|null
+     * @var null|LoadBalancerInterface
      */
     protected $loadBalancer;
 

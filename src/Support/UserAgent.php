@@ -17,7 +17,7 @@ use GuzzleHttp\ClientInterface;
 class UserAgent
 {
     /**
-     * @var string|null
+     * @var null|string
      */
     protected static $value;
 

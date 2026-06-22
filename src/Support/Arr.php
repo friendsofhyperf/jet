@@ -21,7 +21,7 @@ class Arr
      * Get an item from an array using "dot" notation.
      *
      * @param array|ArrayAccess $array
-     * @param int|string|null $key
+     * @param null|int|string $key
      * @param mixed $default
      * @return mixed
      */
@@ -54,7 +54,7 @@ class Arr
      * Check if an item or items exist in an array using "dot" notation.
      *
      * @param array|ArrayAccess $array
-     * @param array|string|null $keys
+     * @param null|array|string $keys
      * @return bool
      */
     public static function has($array, $keys)

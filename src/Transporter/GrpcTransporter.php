@@ -35,7 +35,7 @@ class GrpcTransporter extends AbstractTransporter
     protected array $options = [];
 
     /**
-     * @var object|string|null
+     * @var null|object|string
      */
     protected $credentials;
 

@@ -23,7 +23,7 @@ class Response
     private $response;
 
     /**
-     * @var array|null
+     * @var null|array
      */
     private $decoded;
 
@@ -38,7 +38,7 @@ class Response
     }
 
     /**
-     * @param mixed|null $default
+     * @param null|mixed $default
      * @return mixed
      * @throws ServerException
      */
@@ -60,7 +60,7 @@ class Response
     }
 
     /**
-     * @return bool|object|null
+     * @return null|bool|object
      */
     public function object()
     {

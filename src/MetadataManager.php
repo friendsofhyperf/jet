@@ -24,7 +24,7 @@ class MetadataManager
     }
 
     /**
-     * @return Metadata|null
+     * @return null|Metadata
      */
     public static function get(string $name)
     {

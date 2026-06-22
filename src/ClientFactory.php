@@ -20,7 +20,7 @@ class ClientFactory
     /**
      * Create a client.
      * @param (Closure(): Metadata)|Metadata|string|mixed $service
-     * @param Metadata|string|null $metadata
+     * @param null|Metadata|string $metadata
      * @throws InvalidArgumentException
      * @throws Exception
      */
