@@ -11,10 +11,8 @@ declare(strict_types=1);
 
 namespace FriendsOfHyperf\Jet\Transporter;
 
-use Exception;
 use FriendsOfHyperf\Jet\Exception\ConnectionException;
 use FriendsOfHyperf\Jet\Exception\RecvFailedException;
-use RuntimeException;
 
 class MultiplexRpcTransporter extends StreamSocketTransporter
 {
@@ -45,7 +43,7 @@ class MultiplexRpcTransporter extends StreamSocketTransporter
     }
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     private function readBytes(int $length): string
     {
@@ -58,7 +56,7 @@ class MultiplexRpcTransporter extends StreamSocketTransporter
 
             $selected = stream_select($read, $write, $except, $this->timeout);
             if ($selected === false) {
-                throw new RuntimeException('Failed to select stream.');
+                throw new \RuntimeException('Failed to select stream.');
             }
 
             if ($selected === 0) {
@@ -79,6 +77,7 @@ class MultiplexRpcTransporter extends StreamSocketTransporter
 
                 $buffer .= $chunk;
             }
+            var_dump($buffer);
         }
 
         return $buffer;
