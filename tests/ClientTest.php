@@ -73,7 +73,7 @@ class ClientTest extends TestCase
             $this->service,
             $this->createMultiplexRpcTransporter(),
             new JsonMultiplexPacker(),
-            new MultiplexDataFormatter(),
+            new MultiplexDataFormatter()
         );
 
         $a = rand(1, 99);
