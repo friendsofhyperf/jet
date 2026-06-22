@@ -47,7 +47,10 @@ class ClientTest extends TestCase
 
     public function testCalculatorServiceByGuzzleHttpTransporter()
     {
-        $client = ClientFactory::create(fn () => (new Metadata($this->service))->withTransporter($this->createGuzzleHttpTransporter()));
+        $client = ClientFactory::create(
+            fn () => (new Metadata($this->service))
+                ->withTransporter($this->createGuzzleHttpTransporter())
+        );
 
         $a = rand(1, 99);
         $b = rand(1, 99);
@@ -57,7 +60,25 @@ class ClientTest extends TestCase
 
     public function testCalculatorServiceByStreamSocketTransporter()
     {
-        $client = ClientFactory::create(fn () => (new Metadata($this->service))->withTransporter($this->createStreamSocketTransporter()));
+        $client = ClientFactory::create(
+            fn () => (new Metadata($this->service))
+                ->withTransporter($this->createStreamSocketTransporter())
+        );
+
+        $a = rand(1, 99);
+        $b = rand(1, 99);
+
+        $this->assertSame($a + $b, $client->add($a, $b));
+    }
+
+    public function testCalculatorServiceByMultiplexRpcTransporter()
+    {
+        $client = ClientFactory::create(
+            fn () => (new Metadata($this->service))
+                ->withTransporter($this->createMultiplexRpcTransporter())
+                ->withDataFormatter(new \FriendsOfHyperf\Jet\DataFormatter\MultiplexDataFormatter())
+                ->withPacker(new \FriendsOfHyperf\Jet\Packer\JsonMultiplexPacker())
+        );
 
         $a = rand(1, 99);
         $b = rand(1, 99);
