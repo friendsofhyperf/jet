@@ -65,6 +65,16 @@ class ClientTest extends TestCase
         $this->assertSame($a + $b, $client->add($a, $b));
     }
 
+    public function testCalculatorServiceByMultiplexRpcTransporter()
+    {
+        $client = ClientFactory::create($this->service, $this->createMultiplexRpcTransporter());
+
+        $a = rand(1, 99);
+        $b = rand(1, 99);
+
+        $this->assertSame($a + $b, $client->add($a, $b));
+    }
+
     public function testMetadataManager()
     {
         MetadataManager::register(

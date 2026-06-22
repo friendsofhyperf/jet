@@ -13,6 +13,7 @@ namespace FriendsOfHyperf\Jet\Tests;
 
 use FriendsOfHyperf\Jet\Registry\ConsulRegistry;
 use FriendsOfHyperf\Jet\Transporter\GuzzleHttpTransporter;
+use FriendsOfHyperf\Jet\Transporter\MultiplexRpcTransporter;
 use FriendsOfHyperf\Jet\Transporter\StreamSocketTransporter;
 
 /**
@@ -61,6 +62,11 @@ class TestCase extends \PHPUnit\Framework\TestCase
     public function createStreamSocketTransporter()
     {
         return new StreamSocketTransporter($this->jsonrpcHost, $this->jsonrpcPort, $this->jsonrpcTimeout);
+    }
+
+    public function createMultiplexRpcTransporter()
+    {
+        return new MultiplexRpcTransporter($this->jsonrpcHost, $this->jsonrpcPort, $this->jsonrpcTimeout);
     }
 
     protected function createRegistry()
