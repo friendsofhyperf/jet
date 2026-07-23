@@ -24,6 +24,10 @@ class ServerException extends JetException
     {
         $code = $error['code'] ?? 0;
         $message = $error['message'] ?? 'Server Error';
+        $class = $error['data']['class'] ?? '';
+        if ($class) {
+            $message = $class . ': ' . $message;
+        }
 
         $this->error = $error;
 

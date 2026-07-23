@@ -26,8 +26,12 @@ class MultiplexRpcTransporter extends StreamSocketTransporter
     {
         stream_set_blocking($this->client, false);
 
+        $remainingTimeout = $this->timeout;
+        $start = microtime(true);
+        
         while (true) {
-            $header = $this->readBytes(4);
+            $header = $this->readBytes(4, $remainingTimeout);
+            $remainingTimeout = max(0, $remainingTimeout - (microtime(true) - $start));
 
             $unpacked = unpack('Nlength', $header);
             $length = $unpacked['length'];
@@ -35,7 +39,9 @@ class MultiplexRpcTransporter extends StreamSocketTransporter
             if ($length < 4) {
                 throw new RecvFailedException(sprintf('Invalid package length: %d', $length));
             }
-            $body = $this->readBytes($length);
+            $body = $this->readBytes($length, $remainingTimeout);
+            $remainingTimeout = max(0, $remainingTimeout - (microtime(true) - $start));
+
             if (in_array($body, [self::PING, self::PONG], true)) {
                 continue;
             }
@@ -47,7 +53,7 @@ class MultiplexRpcTransporter extends StreamSocketTransporter
     /**
      * @throws Exception
      */
-    private function readBytes(int $length): string
+    private function readBytes(int $length, float $timeout): string
     {
         $buffer = '';
 
@@ -56,7 +62,10 @@ class MultiplexRpcTransporter extends StreamSocketTransporter
             $write = null;
             $except = null;
 
-            $selected = stream_select($read, $write, $except, $this->timeout);
+            $timeoutSeconds = (int) $timeout;
+            $timeoutMicroseconds = (int) (($timeout - $timeoutSeconds) * 1000000);
+
+            $selected = stream_select($read, $write, $except, $timeoutSeconds, $timeoutMicroseconds);
             if ($selected === false) {
                 throw new RuntimeException('Failed to select stream.');
             }
